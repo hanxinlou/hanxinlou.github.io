@@ -527,6 +527,13 @@
 <li>Google浏览器右上角 SwitchAyOmega - Auto switch</li>
 </ul>
 <p>参考：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">自建ss服务器教程</a></p>
+<h3 id="6-无法连接问题"><a href="#6-无法连接问题" class="headerlink" title="6.无法连接问题"></a>6.无法连接问题</h3><ul>
+<li>ping服务器IP，若ping不通，大概率被封，建议重新部署服务器</li>
+<li>若ping通，则IP没有被封，但是无法连接，有可能是端口被封（ping 走的是 ICMP，SSH 走的是 TCP）</li>
+<li>检查端口是否被封去<a href="http://tool.chinaz.com/port/" target="_blank" rel="noopener">站长工具</a>检测，输入服务器IP和端口即可</li>
+<li>若是端口被封，可以尝试<code>bash ssr.sh</code>修改服务器端口（事实证明并没有什么用）</li>
+<li>最好的解决方案就是重新部署服务器</li>
+</ul>
 -->
       
     </div>
