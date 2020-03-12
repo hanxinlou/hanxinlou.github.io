@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>HTML、CSS学习笔记（二） | Guihanhan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CSS1.介绍CSS HTML是用来描述页面骨架的，CSS就是把页面变好看，写页面CSS样式的  2.行内元素和块元素 行内元素就是不换行的元素，常见的有span，strong这种,一般都是一些设置文本的元素 块元素（盒模型），这种元素都有自己的大小，宽高，方便在页面上布局每个块元素都有自己的盒模型 行内块元素，同时具备宽高和不换行两个属性  3.盒模型      红色是内容；蓝色区域是内边距；绿">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML、CSS学习笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2020/01/13/html+css-2/index.html">
+<meta property="og:site_name" content="Guihanhan">
+<meta property="og:description" content="CSS1.介绍CSS HTML是用来描述页面骨架的，CSS就是把页面变好看，写页面CSS样式的  2.行内元素和块元素 行内元素就是不换行的元素，常见的有span，strong这种,一般都是一些设置文本的元素 块元素（盒模型），这种元素都有自己的大小，宽高，方便在页面上布局每个块元素都有自己的盒模型 行内块元素，同时具备宽高和不换行两个属性  3.盒模型      红色是内容；蓝色区域是内边距；绿">
+<meta property="og:image" content="http://yoursite.com/2020/01/13/html+css-2/img3.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/01/13/html+css-2/img4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/01/13/html+css-2/img5.jpg">
+<meta property="article:published_time" content="2020-01-13T10:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-12T08:53:00.000Z">
+<meta property="article:author" content="guihanhan">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/13/html+css-2/img3.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Guihanhan" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,700&amp;subset=korean" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <!--<div id="banner"></div>-->
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="/" id="main-nav-title" class="main-nav-link">Guihanhan</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives/">Archives</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-html+css-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTML、CSS学习笔记（二）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-介绍CSS"><a href="#1-介绍CSS" class="headerlink" title="1.介绍CSS"></a>1.介绍CSS</h3><ul>
+<li>HTML是用来描述页面骨架的，CSS就是把页面变好看，写页面CSS样式的</li>
+</ul>
+<h3 id="2-行内元素和块元素"><a href="#2-行内元素和块元素" class="headerlink" title="2.行内元素和块元素"></a>2.行内元素和块元素</h3><ul>
+<li>行内元素就是<strong>不换行</strong>的元素，常见的有<code>span，strong</code>这种,一般都是一些<strong>设置文本</strong>的元素</li>
+<li>块元素（盒模型），这种元素都<strong>有自己的大小，宽高</strong>，方便在页面上布局<br>每个块元素都有自己的盒模型</li>
+<li>行内块元素，同时具备<strong>宽高和不换行</strong>两个属性</li>
+</ul>
+<h3 id="3-盒模型"><a href="#3-盒模型" class="headerlink" title="3.盒模型"></a>3.盒模型</h3><div style="display: flex; justify-cntent: flex-start">
+<img src="/2020/01/13/html+css-2/img3.jpg" width="50%">
+<img src="/2020/01/13/html+css-2/img4.jpg" width="50%">
+</div>
+
+<ul>
+<li>红色是内容；蓝色区域是内边距；绿色是边框；棕色是外边距</li>
+<li>宽度就是绿色+蓝色+红色部分(内容+内边距+边框)</li>
+</ul>
+<h3 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4.使用方式"></a>4.使用方式</h3><h4 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h4><ul>
+<li>每个标签是有一个<code>style</code>属性的，这个<code>style</code>属性可以直接作用于标签的样式  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"    </span></span></span><br><span class="line"><span class="tag"><span class="string">width: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">padding: 10px 10px 10px 10px;</span></span></span><br><span class="line"><span class="tag"><span class="string">background-color: #3385ff;</span></span></span><br><span class="line"><span class="tag"><span class="string">color: white;</span></span></span><br><span class="line"><span class="tag"><span class="string">margin: 100px 100px 100px 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距</span></span><br><span class="line"><span class="comment">padding-top，padding-right，padding-bottom,padding-left</span></span><br><span class="line"><span class="comment">style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4 id="嵌入方式"><a href="#嵌入方式" class="headerlink" title="嵌入方式"></a>嵌入方式</h4><ul>
+<li><p>把<code>style</code>属性里写的css全部放到一起</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.search-btn</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    padding: 10px 10px 10px 10px;</span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#3385ff</span>;</span></span><br><span class="line">    color: white;</span><br><span class="line">    margin: 100px 100px 100px 100px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-btn"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  多了一个<code>style</code>标签，浏览器会解析<code>style</code>标签里的所有规则，然后应用到页面的元素里面，<br>  为了让浏览器知道这些样式要用到哪个标签，就需要<strong>选择器选择标签</strong></p>
+  <img src="/2020/01/13/html+css-2/img5.jpg" width="50%" align="left/">
+
+<p>  这个<code>.search-btn</code>就表示选中所有class名字为<code>search-btn</code>的标签应用大括号里的所有规则</p>
+</li>
+</ul>
+<h4 id="链接方式"><a href="#链接方式" class="headerlink" title="链接方式"></a>链接方式</h4><ul>
+<li>使用link标签，就可以让浏览器解析其他地方的css样式，或者放在本地，或者放在网上  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"base.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Tips：浏览器默认会给<code>body</code>带上一点的<code>margin</code>和<code>paddding</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/13/html+css-2/" data-id="ck7oin88a0007dwtja89472h8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/14/hexo_markdown_image/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Newer</span>
+      <div class="article-nav-title">
+        
+          Hexo+Markdown修改图片样式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/13/html+css-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-caption">Older</span>
+      <div class="article-nav-title">HTML、CSS学习笔记（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 guihanhan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> with 
+      theme_by <a href="http://hexo.io/" target="_blank">mango</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
