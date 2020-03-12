@@ -51,11 +51,11 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-html+css-3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
   </div>
 
   </div>
@@ -66,7 +66,158 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/12/html+css-3/">HTML、CSS学习笔记（三）</a>
+      <a class="article-title" href="/2020/03/12/JS-2/">JavaScript学习笔记（一）条件判断&amp;循环</a>
+    </h1>
+  
+
+        <a href="/2020/03/12/JS-2/" class="article-date">
+  <time datetime="2020-03-12T10:15:00.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="三-条件判断"><a href="#三-条件判断" class="headerlink" title="三.条件判断"></a>三.条件判断</h2><h3 id="1-if"><a href="#1-if" class="headerlink" title="1.if"></a>1.if</h3><ul>
+<li>使用 <strong><code>if</code></strong> 来规定要执行的代码块，如果指定条件为 <strong><code>true</code></strong></li>
+<li>使用 <strong><code>else if</code></strong> 来规定要测试的新条件，如果第一个条件为 <strong><code>false</code></strong></li>
+<li>使用 <strong><code>else</code></strong> 来规定要执行的代码块，如果相同的条件为 <strong><code>false</code></strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (条件 <span class="number">1</span>) &#123;</span><br><span class="line">    条件 <span class="number">1</span> 为 <span class="literal">true</span> 时执行的代码块</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (条件 <span class="number">2</span>) &#123;</span><br><span class="line">    条件 <span class="number">1</span> 为 <span class="literal">false</span> 而条件 <span class="number">2</span> 为 <span class="literal">true</span> 时执行的代码块</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    条件 <span class="number">1</span> 和条件 <span class="number">2</span> 同时为 <span class="literal">false</span> 时执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2-switch"><a href="#2-switch" class="headerlink" title="2.switch"></a>2.switch</h3><ul>
+<li>使用 <strong><code>switch</code></strong> 来规定多个被执行的备选代码块</li>
+<li>计算一次 <strong><code>switch</code> 表达式</strong></li>
+<li>把表达式的值与<strong>每个 <code>case</code> 的值</strong>进行对比</li>
+<li>如果存在匹配，则<strong>执行关联代码</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式) &#123;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">default</span>:</span><br><span class="line">        默认代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="四-循环"><a href="#四-循环" class="headerlink" title="四.循环"></a>四.循环</h2><h3 id="1-For-循环"><a href="#1-For-循环" class="headerlink" title="1.For 循环"></a>1.For 循环</h3><ul>
+<li>语句 1 在循环（代码块）<strong>开始之前</strong>执行</li>
+<li>语句 2 定义运行循环（代码块）的<strong>条件</strong></li>
+<li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (语句 <span class="number">1</span>; 语句 <span class="number">2</span>; 语句 <span class="number">3</span>) &#123;</span><br><span class="line">     要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2-For-In-循环"><a href="#2-For-In-循环" class="headerlink" title="2.For/In 循环"></a>2.For/In 循环</h3><ul>
+<li><strong>遍历对象属性</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;<span class="attr">fname</span>:<span class="string">"Bill"</span>, <span class="attr">lname</span>:<span class="string">"Gates"</span>, <span class="attr">age</span>:<span class="number">62</span>&#125;; </span><br><span class="line"><span class="keyword">var</span> text = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> person) &#123;</span><br><span class="line">    text += person[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="While-循环"><a href="#While-循环" class="headerlink" title="While 循环"></a>While 循环</h3><ul>
+<li>while 循环会<strong>一直循环</strong>代码块，<strong>只要指定的条件为 <code>true</code></strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (条件) &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Do-While-循环"><a href="#Do-While-循环" class="headerlink" title="Do/While 循环"></a>Do/While 循环</h3><ul>
+<li><strong><code>do/while</code> 循环</strong>是 <code>while</code> 循环的<strong>变体</strong></li>
+<li>在检查<strong>条件是否为真之前</strong>，这种循环会执行一次代码块，然后只要条件为真就会<strong>重复循环</strong>。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (条件);</span><br></pre></td></tr></table></figure></li>
+</ul>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7olwqzn0001h8tj97z9er8b" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/JS-1/">JavaScript学习笔记（一）变量&amp;逻辑</a>
+    </h1>
+  
+
+        <a href="/2020/03/12/JS-1/" class="article-date">
+  <time datetime="2020-03-12T09:12:00.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一.变量"></a>一.变量</h2><h3 id="1-数据类型及操作"><a href="#1-数据类型及操作" class="headerlink" title="1.数据类型及操作"></a>1.数据类型及操作</h3><h4 id="1-1类型"><a href="#1-1类型" class="headerlink" title="1.1类型"></a>1.1类型</h4><ul>
+<li><strong>字符串</strong></li>
+<li><strong>数字</strong></li>
+<li><strong>布尔值</strong></li>
+<li><strong><code>undefined</code></strong></li>
+<li><strong><code>null</code></strong></li>
+</ul>
+<h5 id="null和undefined的区别"><a href="#null和undefined的区别" class="headerlink" title="null和undefined的区别"></a><code>null</code>和<code>undefined</code>的区别</h5><ul>
+<li><code>null</code>是一个表示 <strong>“无”的对象</strong>，<strong>转为数值时为<code>0</code></strong>；<code>undefined</code>是一个表示 <strong>“无”的原始值</strong>，<strong>转为数值时为<code>NaN</code></strong>。</li>
+<li><code>null</code>的使用场合：</li>
+</ul>
+<p>1.给对象赋值的时候使用。<br>2.作为函数的参数，表示该函数的参数不是对象。<br>3.作为对象原型链的终点。<br>4.<code>Object.getPrototypeOf(Object.prototype)</code>// null</p>
+<ul>
+<li><code>undefined</code>的使用场合：</li>
+</ul>
+<p>1.变量被声明了，但没有赋值时，就等于<code>undefined</code>。<br>2.调用函数时，应该提供的参数没有提供，该参数等于<code>undefined</code>。<br>3.对象没有赋值的属性，该属性的值为<code>undefined</code>。<br>4.函数没有返回值时，默认返回<code>undefined</code>。</p>
+<p><strong>判断一个数字是不是<code>NAN</code>还要用 <code>Number.isNaN()</code> 来判断</strong></p>
+<h4 id="1-2操作"><a href="#1-2操作" class="headerlink" title="1.2操作"></a>1.2操作</h4><h5 id="①字符串拼接-“-”"><a href="#①字符串拼接-“-”" class="headerlink" title="①字符串拼接 “+”"></a>①字符串拼接 “<code>+</code>”</h5><p>所有数据类型都会被转为<strong>字符串类型</strong></p>
+<h5 id="②数学运算-“-”、“-”、“-”、“-”、“-”"><a href="#②数学运算-“-”、“-”、“-”、“-”、“-”" class="headerlink" title="②数学运算 “+”、“-”、“*”、“/”、“%”"></a>②数学运算 “<code>+</code>”、“<code>-</code>”、“<code>*</code>”、“<code>/</code>”、“<code>%</code>”</h5><p>所有数据都会被转换成<strong>数字类型</strong></p>
+<h2 id="二-逻辑"><a href="#二-逻辑" class="headerlink" title="二.逻辑"></a>二.逻辑</h2><ul>
+<li>大于 <strong><code>&gt;</code></strong></li>
+<li>小于 <strong><code>&lt;</code></strong></li>
+<li>大于等于 <strong><code>&gt;=</code></strong></li>
+<li>小于等于 <strong><code>&lt;=</code></strong></li>
+<li>等于 <strong><code>===</code></strong> or <strong><code>==</code></strong></li>
+</ul>
+<h3 id="Tips-区分-和"><a href="#Tips-区分-和" class="headerlink" title="Tips: 区分 === 和 =="></a>Tips: 区分 <code>===</code> 和 <code>==</code></h3><ul>
+<li><code>===</code> 如果数据类型<strong>不同</strong>，直接 <strong><code>false</code></strong>；</li>
+<li><code>==</code> 如果数据类型<strong>不同</strong>，先<strong>转换成相同的数据类型</strong>，再比较</li>
+<li><strong>在js里最好用<code>===</code></strong></li>
+</ul>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-1/" data-id="ck7olwqzb0000h8tj3m8qf5sf" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html+css-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/html+css-3/">HTML、CSS学习笔记（三）布局</a>
     </h1>
   
 
@@ -118,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/html+css-3/" data-id="ck7oin88z000sdwtj5ocxe2in" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/html+css-3/" data-id="ck7olwr07000fh8tjck1ofbhr" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -232,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/15/ChemicalElements/" data-id="ck7oin87y0001dwtj8vxk7jar" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/15/ChemicalElements/" data-id="ck7olwqzt0004h8tj0qdi8gog" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -303,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/14/hexo_markdown_image/" data-id="ck7oin8860005dwtj6q8o27z3" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/14/hexo_markdown_image/" data-id="ck7olwr010009h8tjh4cufoqb" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
@@ -319,7 +470,7 @@
   <div class="article-meta">
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
   </div>
 
   </div>
@@ -330,7 +481,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/html+css-2/">HTML、CSS学习笔记（二）</a>
+      <a class="article-title" href="/2020/01/13/html+css-2/">HTML、CSS学习笔记（二）CSS&amp;盒模型</a>
     </h1>
   
 
@@ -383,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-2/" data-id="ck7oin88a0007dwtja89472h8" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-2/" data-id="ck7olwr05000dh8tjdqv7diwi" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -399,7 +550,7 @@
   <div class="article-meta">
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
   </div>
 
   </div>
@@ -410,7 +561,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/html+css-1/">HTML、CSS学习笔记（一）</a>
+      <a class="article-title" href="/2020/01/13/html+css-1/">HTML、CSS学习笔记（一）HTML&amp;标签</a>
     </h1>
   
 
@@ -451,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-1/" data-id="ck7oin8880006dwtjcqfd8bfu" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-1/" data-id="ck7olwr02000ah8tjh6nidhqt" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -548,7 +699,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/12/google/" data-id="ck7oin87q0000dwtj78n0fzt1" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/12/google/" data-id="ck7olwqzx0006h8tjfhqebdbt" class="article-share-link">Share</a>-->
       
       
     </footer>
@@ -597,7 +748,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/11/hello-world/" data-id="ck7oin8810002dwtj84j21xd1" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/11/hello-world/" data-id="ck7olwqzv0005h8tj8vrh4i1s" class="article-share-link">Share</a>-->
       
       
     </footer>
