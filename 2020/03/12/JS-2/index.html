@@ -88,7 +88,7 @@
 <li>使用 <strong><code>switch</code></strong> 来规定多个被执行的备选代码块</li>
 <li>计算一次 <strong><code>switch</code> 表达式</strong></li>
 <li>把表达式的值与<strong>每个 <code>case</code> 的值</strong>进行对比</li>
-<li>如果存在匹配，则<strong>执行关联代码</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">switch</span>(表达式) &#123;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">default</span>:</span><br><span class="line">        默认代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>如果存在匹配，则<strong>执行关联代码</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">switch</span> (表达式) &#123;</span><br><span class="line">    <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        默认代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -96,12 +96,12 @@
 <h2 id="四-循环"><a href="#四-循环" class="headerlink" title="四. 循环"></a>四. 循环</h2><h3 id="1-For-循环"><a href="#1-For-循环" class="headerlink" title="1. For 循环"></a>1. For 循环</h3><ul>
 <li>语句 1 在循环（代码块）<strong>开始之前</strong>执行</li>
 <li>语句 2 定义运行循环（代码块）的<strong>条件</strong></li>
-<li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">for</span> (语句 <span class="number">1</span>; 语句 <span class="number">2</span>; 语句 <span class="number">3</span>) &#123;</span><br><span class="line">     要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">for</span> (语句 <span class="number">1</span>; 语句 <span class="number">2</span>; 语句 <span class="number">3</span>) &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h3 id="2-For-In-循环"><a href="#2-For-In-循环" class="headerlink" title="2. For/In 循环"></a>2. For/In 循环</h3><ul>
-<li><strong>遍历对象属性</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;<span class="attr">fname</span>:<span class="string">"Bill"</span>, <span class="attr">lname</span>:<span class="string">"Gates"</span>, <span class="attr">age</span>:<span class="number">62</span>&#125;; </span><br><span class="line"><span class="keyword">var</span> text = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> person) &#123;</span><br><span class="line">    text += person[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><strong>遍历对象属性</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> person = &#123; <span class="attr">fname</span>: <span class="string">"Bill"</span>, <span class="attr">lname</span>: <span class="string">"Gates"</span>, <span class="attr">age</span>: <span class="number">62</span> &#125;;</span><br><span class="line"><span class="keyword">var</span> text = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> person) &#123;</span><br><span class="line">    text += person[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7rhbroi0005xktjgc5yh160" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7rhqs3x0004q0tjb30xgbf3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -139,9 +139,9 @@
     </a>
   
   
-    <a href="/2020/03/12/html+css-3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/12/JS-1/" id="article-nav-older" class="article-nav-link-wrap">
       <span class="article-nav-caption">Older</span>
-      <div class="article-nav-title">HTML、CSS学习笔记（三）布局</div>
+      <div class="article-nav-title">JavaScript学习笔记（一）变量&amp;逻辑</div>
     </a>
   
 </nav>
