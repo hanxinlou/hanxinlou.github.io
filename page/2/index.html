@@ -51,6 +51,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-google" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/12/google/">Vultr+Shadowsocks+Proxy SwitchAyOmega实现自由上网</a>
+    </h1>
+  
+
+        <a href="/2020/01/12/google/" class="article-date">
+  <time datetime="2020-01-12T07:00:00.000Z" itemprop="datePublished">2020-01-12</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>记录下自己如何实现科学上网</p>
+<h3 id="1-购买VPS服务器"><a href="#1-购买VPS服务器" class="headerlink" title="1.购买VPS服务器"></a>1.购买VPS服务器</h3><ul>
+<li><a href="https://www.vultr.com/" target="_blank" rel="noopener">Vultr</a></li>
+<li>Server: Cloud Computer</li>
+<li>Server Location: Los Angeles</li>
+<li>Server Type: Ubuntu 16.04 x64</li>
+<li>Server Size: 55GB SSD $10/month</li>
+</ul>
+<hr>
+<h3 id="2-部署VPS服务器"><a href="#2-部署VPS服务器" class="headerlink" title="2.部署VPS服务器"></a>2.部署VPS服务器</h3><ul>
+<li>安装Putty <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank" rel="noopener">下载地址</a></li>
+<li>输入服务器IP地址、端口(22)、连接类型(SSH)</li>
+<li>save，load，open</li>
+<li>输入用户名(root)、密码(登录Vultr查看服务器密码)</li>
+<li>登陆成功</li>
+<li>安装wget <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y wget</span><br></pre></td></tr></table></figure></li>
+<li>安装一键部署SSR脚本(脚本来自于<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">自建ss服务器教程</a>) <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</span><br></pre></td></tr></table></figure></li>
+<li>管理脚本命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash ssr.sh</span><br></pre></td></tr></table></figure></li>
+<li>选择 - 1.安装 ShadowsocksR</li>
+<li>设置端口和密码</li>
+<li>设置加密方式 - 10.aes-256-cfb</li>
+<li>选择协议插件 - 2.auth_shal_v4</li>
+<li>选择混淆插件 - 1.plain</li>
+<li>部署完成</li>
+</ul>
+<hr>
+<h3 id="3-一键加速VPS服务器"><a href="#3-一键加速VPS服务器" class="headerlink" title="3.一键加速VPS服务器"></a>3.一键加速VPS服务器</h3><ul>
+<li>Google BBR加速<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line">chmod +x bbr.sh</span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure></li>
+<li>安装成功后reboot重启服务器</li>
+</ul>
+<hr>
+<h3 id="4-Shadowsocks设置"><a href="#4-Shadowsocks设置" class="headerlink" title="4.Shadowsocks设置"></a>4.Shadowsocks设置</h3><ul>
+<li>安装Shadowsocks </li>
+<li>输入服务器地址、端口、密码</li>
+<li>选择加密方式 - aes-256-cfb</li>
+<li>代理端口 - 1080</li>
+<li>右键系统代理 - PAC模式</li>
+<li>右键PAC - 使用本地在线PAC</li>
+<li>右键开机启动</li>
+</ul>
+<hr>
+<h3 id="5-Google浏览器设置"><a href="#5-Google浏览器设置" class="headerlink" title="5.Google浏览器设置"></a>5.Google浏览器设置</h3><ul>
+<li>安装扩展程序 <strong>Proxy SwitchAyOmega</strong></li>
+<li>添加情景模式</li>
+<li>输入名称 - SSR</li>
+<li>选择类型 - 代理服务器</li>
+<li>代理协议 - HTTP</li>
+<li>代理服务器 - 127.0.0.1</li>
+<li>代理端口 - 1080</li>
+<li>Google浏览器右上角 SwitchAyOmega - Auto switch</li>
+</ul>
+<p>参考：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">自建ss服务器教程</a></p>
+<h3 id="6-无法连接问题"><a href="#6-无法连接问题" class="headerlink" title="6.无法连接问题"></a>6.无法连接问题</h3><ul>
+<li>ping服务器IP，若ping不通，大概率被封，建议重新部署服务器</li>
+<li>若ping通，则IP没有被封，但是无法连接，有可能是端口被封（ping 走的是 ICMP，SSH 走的是 TCP）</li>
+<li>检查端口是否被封去<a href="http://tool.chinaz.com/port/" target="_blank" rel="noopener">站长工具</a>检测，输入服务器IP和端口即可</li>
+<li>若是端口被封，可以尝试<code>bash ssr.sh</code>修改服务器端口（事实证明并没有什么用）</li>
+<li>最好的解决方案就是重新部署服务器</li>
+</ul>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/01/12/google/" data-id="ck7rj6jmx000aostj4stxa9ne" class="article-share-link">Share</a>-->
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
@@ -90,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/11/hello-world/" data-id="ck7rhqs46000aq0tj45vx9n44" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/11/hello-world/" data-id="ck7rj6jmg0009ostjg0jw4ree" class="article-share-link">Share</a>-->
       
       
     </footer>
