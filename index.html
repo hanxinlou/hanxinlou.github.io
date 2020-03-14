@@ -51,6 +51,102 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/JS-4/">JavaScript学习笔记（四）DOM&amp;BOM</a>
+    </h1>
+  
+
+        <a href="/2020/03/12/JS-4/" class="article-date">
+  <time datetime="2020-03-12T11:09:53.533Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="七-HTML文档树"><a href="#七-HTML文档树" class="headerlink" title="七. HTML文档树"></a>七. HTML文档树</h2><h3 id="1-HTML树"><a href="#1-HTML树" class="headerlink" title="1. HTML树"></a>1. HTML树</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1'</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-1'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-21'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-3'</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-3-1'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-3-2'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="/2020/03/12/JS-4/img1.jpg" width="50%">
+
+<ul>
+<li>最上面的节点，叫做<strong>根节点</strong></li>
+<li>这种嵌套关系，就被叫做<strong>父子节点</strong></li>
+</ul>
+<hr>
+<h2 id="八-DOM（Document-Object-Model）文档对象模型"><a href="#八-DOM（Document-Object-Model）文档对象模型" class="headerlink" title="八. DOM（Document Object Model）文档对象模型"></a>八. DOM（Document Object Model）文档对象模型</h2><h3 id="1-DOM是什么"><a href="#1-DOM是什么" class="headerlink" title="1. DOM是什么"></a>1. DOM是什么</h3><ul>
+<li>DOM就是一个<strong>文档树</strong>的对象</li>
+<li>文档树对象的属性,包含了HTML，CSS的结构和内容</li>
+</ul>
+<h3 id="2-节点的操作"><a href="#2-节点的操作" class="headerlink" title="2. 节点的操作"></a>2. 节点的操作</h3><ul>
+<li><strong>创建节点：<code>document.createElement</code></strong></li>
+<li><strong>添加节点：<code>element.appendChild</code></strong></li>
+<li><strong>删除节点：<code>element.removeChild</code></strong></li>
+<li><strong>查找节点：<code>document.getElementById、document.getElementsByClassName、document.querySelector、document.querySelectorAll</code></strong></li>
+</ul>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'div1'</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-1'</span>&gt;</span> div1-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">'div1-2'</span>&gt;</span> div1-2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* CSS */</span></span><br><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-id">#div1</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: space-around;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">122</span>,<span class="number">204</span>,<span class="number">0.7</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-id">#div1-1</span> ,<span class="selector-id">#div1-2</span>, <span class="selector-id">#div1-3</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">122</span>,<span class="number">204</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-修改某个节点的内容"><a href="#2-1-修改某个节点的内容" class="headerlink" title="2.1 修改某个节点的内容"></a>2.1 修改某个节点的内容</h4><p>①找到这个节点<br>②改变这个节点的内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="comment">//找到id为div1-1的这个节点，然后把它放到element这个变量里面</span></span><br><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">'div1-1'</span>)</span><br><span class="line"><span class="comment">//修改innerText属性</span></span><br><span class="line">element.innerText = <span class="string">'汪小黑'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>document</code>就是<code>dom</code>对象，整个页面的全部信息都在这个对象里面</li>
+<li>得到的节点(<code>element</code>)是一个 <strong>DOM节点对象</strong> ，这个节点的文本就存储在这个节点的 <strong><code>innerText</code>属性</strong> 里面</li>
+</ul>
+<h4 id="2-2-删掉某个子节点"><a href="#2-2-删掉某个子节点" class="headerlink" title="2.2 删掉某个子节点"></a>2.2 删掉某个子节点</h4><p>①找到要删除的子节点<br>②找到子节点节点的父节点<br>③删除子节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> childElement = <span class="built_in">document</span>.getElementById(<span class="string">'div1-2'</span>)</span><br><span class="line"><span class="keyword">var</span> ParentElement = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">ParentElement.removeChild(childElement)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-增加子节点"><a href="#2-3-增加子节点" class="headerlink" title="2.3 增加子节点"></a>2.3 增加子节点</h4><p>①找到要增加子节点的节点<br>②创建一个节点<br>③给节点增加子节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> parentElement = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>)</span><br><span class="line"><span class="keyword">var</span> childElement = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">parentElement.appendChild(childElement)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-DOM事件"><a href="#3-DOM事件" class="headerlink" title="3. DOM事件"></a>3. DOM事件</h3><ul>
+<li>每个节点都可以<strong>监听</strong>发生在自己身上的<strong>事件</strong></li>
+<li>事件包括<strong>单击,双击，键盘，滚轮，鼠标移入,移出</strong>等等</li>
+</ul>
+<h4 id="3-1-流程"><a href="#3-1-流程" class="headerlink" title="3.1 流程"></a>3.1 流程</h4><ul>
+<li>找到需要写DOM事件的节点</li>
+<li>监听节点上的某个事件</li>
+<li>写触发某个事件之后的逻辑</li>
+</ul>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><p>点击div1-1，div1变黄</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">'div1-1'</span>)</span><br><span class="line">element.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> parentEle = <span class="built_in">document</span>.getElementById(<span class="string">'div1'</span>)</span><br><span class="line">  parentEle.style.backgroundColor = <span class="string">'yellow'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Tips：每个节点的CSS，存储在这个节点的style中</strong></p>
+<hr>
+<h2 id="九-BOM"><a href="#九-BOM" class="headerlink" title="九. BOM"></a>九. BOM</h2><h3 id="1-BOM是什么"><a href="#1-BOM是什么" class="headerlink" title="1. BOM是什么"></a>1. BOM是什么</h3><ul>
+<li>BOM（Browser Object Model），即<strong>浏览器对象模型</strong></li>
+<li>BOM核心对象是<strong>window</strong></li>
+<li>六大模块：</li>
+</ul>
+<p><strong>①document：文档对象</strong><br><strong>②frames：窗口中所有命名的框架</strong><br><strong>③history：当前页面历史记录</strong><br><strong>④location：当前页面地址信息</strong><br><strong>⑤navigator：浏览器相关信息</strong><br><strong>⑥screen：用户显示屏幕相关属性</strong></p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-4/" data-id="ck7rg6j69000klktjgcu0aa4d" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS-3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
@@ -77,16 +173,16 @@
     
     <div class="article-entry-abstract" itemprop="articleBody">
       
-        <!--<h2 id="五-函数"><a href="#五-函数" class="headerlink" title="五. 函数"></a>五. 函数</h2><h3 id="1-函数定义：关键字-函数名"><a href="#1-函数定义：关键字-函数名" class="headerlink" title="1. 函数定义：关键字+函数名"></a>1. 函数定义：关键字+函数名</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函数名(<span class="params">参数</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> ... <span class="comment">//如果没有`return`，函数返回值就是`undefined`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <!--<h2 id="五-函数"><a href="#五-函数" class="headerlink" title="五. 函数"></a>五. 函数</h2><h3 id="1-函数定义：关键字-函数名"><a href="#1-函数定义：关键字-函数名" class="headerlink" title="1. 函数定义：关键字+函数名"></a>1. 函数定义：关键字+函数名</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> 函数名(<span class="params">参数</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> ... <span class="comment">//如果没有`return`，函数返回值就是`undefined`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2. 构造函数"></a>2. 构造函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函数名(<span class="params">参数<span class="number">1</span>, 参数<span class="number">2</span>,...</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.属性<span class="number">1</span> = 参数<span class="number">1</span>,</span><br><span class="line">  <span class="keyword">this</span>.属性<span class="number">2</span> = 参数<span class="number">2</span>,</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">this</span>.方法<span class="number">1</span> = <span class="function"><span class="keyword">function</span> (<span class="params">参数</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> ...</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//new是一个用于构造函数的关键字</span></span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> 函数名(参数<span class="number">1</span>, 参数<span class="number">2</span>,...)</span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> 函数名(参数<span class="number">1</span>, 参数<span class="number">2</span>,...)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2. 构造函数"></a>2. 构造函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> 函数名(<span class="params">参数<span class="number">1</span>, 参数<span class="number">2</span>,...</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.属性<span class="number">1</span> = 参数<span class="number">1</span>,</span><br><span class="line">  <span class="keyword">this</span>.属性<span class="number">2</span> = 参数<span class="number">2</span>,</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">this</span>.方法<span class="number">1</span> = <span class="function"><span class="keyword">function</span> (<span class="params">参数</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> ...</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//new是一个用于构造函数的关键字</span></span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> 函数名(参数<span class="number">1</span>, 参数<span class="number">2</span>,...)</span><br><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> 函数名(参数<span class="number">1</span>, 参数<span class="number">2</span>,...)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>this</code>就指代<strong>当前这个对象</strong>，可以用<code>this</code>来获取当前对象的属性、方法</li>
 <li><code>this</code> 不是变量，是关键词，所以<strong>无法改变 <code>this</code> 的值</strong></li>
 </ul>
 <h3 id="3-箭头函数"><a href="#3-箭头函数" class="headerlink" title="3. 箭头函数"></a>3. 箭头函数</h3><ul>
 <li>箭头函数允许使用简短的语法来编写函数表达式</li>
-<li>不需要 function 关键字、return 关键字和花括号<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x * y;</span><br></pre></td></tr></table></figure>
+<li>不需要 function 关键字、return 关键字和花括号<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="function">(<span class="params">x, y</span>) =&gt;</span> x * y;</span><br></pre></td></tr></table></figure>
 Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 </ul>
 <h3 id="4-函数参数"><a href="#4-函数参数" class="headerlink" title="4. 函数参数"></a>4. 函数参数</h3><h4 id="4-1-参数默认"><a href="#4-1-参数默认" class="headerlink" title="4.1 参数默认"></a>4.1 参数默认</h4><p>如果调用参数时省略了参数（少于被声明的数量），则<strong>丢失的值被设置为：<code>undefined</code></strong></p>
@@ -100,9 +196,10 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 <li>如果函数改变了对象属性，它也<strong>改变了原始值</strong></li>
 <li>对象属性的改变在函数之外是<strong>可见</strong>的。</li>
 </ul>
-<h2 id="六-对象"><a href="#六-对象" class="headerlink" title="六. 对象"></a>六. 对象</h2><h3 id="1-对象定义"><a href="#1-对象定义" class="headerlink" title="1. 对象定义"></a>1. 对象定义</h3><h4 id="1-1-对象文字"><a href="#1-1-对象文字" class="headerlink" title="1.1 对象文字"></a>1.1 对象文字</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名 = &#123;</span><br><span class="line">    属性: 属性值，<span class="comment">//不同的属性用逗号分隔</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//声明方法省略'function'</span></span><br><span class="line">    函数名()&#123; </span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="六-对象"><a href="#六-对象" class="headerlink" title="六. 对象"></a>六. 对象</h2><h3 id="1-对象定义"><a href="#1-对象定义" class="headerlink" title="1. 对象定义"></a>1. 对象定义</h3><h4 id="1-1-对象文字"><a href="#1-1-对象文字" class="headerlink" title="1.1 对象文字"></a>1.1 对象文字</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> 变量名 = &#123;</span><br><span class="line">    属性: 属性值，<span class="comment">//不同的属性用逗号分隔</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">//声明方法省略'function'</span></span><br><span class="line">    函数名()&#123; </span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-关键词-new"><a href="#1-2-关键词-new" class="headerlink" title="1.2 关键词 new"></a>1.2 关键词 new</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.firstName = <span class="string">"Bill"</span>;</span><br><span class="line">person.lastName = <span class="string">"Gates"</span>;</span><br><span class="line">person.age = <span class="number">50</span>;</span><br><span class="line">person.eyeColor = <span class="string">"blue"</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-关键词-new"><a href="#1-2-关键词-new" class="headerlink" title="1.2 关键词 new"></a>1.2 关键词 new</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.firstName = <span class="string">"Bill"</span>;</span><br><span class="line">person.lastName = <span class="string">"Gates"</span>;</span><br><span class="line">person.age = <span class="number">50</span>;</span><br><span class="line">person.eyeColor = <span class="string">"blue"</span>;</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-调用函数的属性"><a href="#2-调用函数的属性" class="headerlink" title="2. 调用函数的属性"></a>2. 调用函数的属性</h3><p><strong><code>对象.属性 or 对象[属性]</code></strong></p>
 <h3 id="3-调用函数的方法"><a href="#3-调用函数的方法" class="headerlink" title="3. 调用函数的方法"></a>3. 调用函数的方法</h3><p><strong><code>对象.函数名()</code></strong></p>
@@ -110,7 +207,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/JS-3/" data-id="ck7ondzjf0006qstjcew05x29" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-3/" data-id="ck7rg6j62000elktj60m93m4a" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -151,7 +248,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
         <!--<h2 id="三-条件判断"><a href="#三-条件判断" class="headerlink" title="三. 条件判断"></a>三. 条件判断</h2><h3 id="1-if"><a href="#1-if" class="headerlink" title="1. if"></a>1. if</h3><ul>
 <li>使用 <strong><code>if</code></strong> 来规定要执行的代码块，如果指定条件为 <strong><code>true</code></strong></li>
 <li>使用 <strong><code>else if</code></strong> 来规定要测试的新条件，如果第一个条件为 <strong><code>false</code></strong></li>
-<li>使用 <strong><code>else</code></strong> 来规定要执行的代码块，如果相同的条件为 <strong><code>false</code></strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (条件 <span class="number">1</span>) &#123;</span><br><span class="line">    条件 <span class="number">1</span> 为 <span class="literal">true</span> 时执行的代码块</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (条件 <span class="number">2</span>) &#123;</span><br><span class="line">    条件 <span class="number">1</span> 为 <span class="literal">false</span> 而条件 <span class="number">2</span> 为 <span class="literal">true</span> 时执行的代码块</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    条件 <span class="number">1</span> 和条件 <span class="number">2</span> 同时为 <span class="literal">false</span> 时执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>使用 <strong><code>else</code></strong> 来规定要执行的代码块，如果相同的条件为 <strong><code>false</code></strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">if</span> (条件 <span class="number">1</span>) &#123;</span><br><span class="line">    条件 <span class="number">1</span> 为 <span class="literal">true</span> 时执行的代码块</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (条件 <span class="number">2</span>) &#123;</span><br><span class="line">    条件 <span class="number">1</span> 为 <span class="literal">false</span> 而条件 <span class="number">2</span> 为 <span class="literal">true</span> 时执行的代码块</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    条件 <span class="number">1</span> 和条件 <span class="number">2</span> 同时为 <span class="literal">false</span> 时执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -159,36 +256,37 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 <li>使用 <strong><code>switch</code></strong> 来规定多个被执行的备选代码块</li>
 <li>计算一次 <strong><code>switch</code> 表达式</strong></li>
 <li>把表达式的值与<strong>每个 <code>case</code> 的值</strong>进行对比</li>
-<li>如果存在匹配，则<strong>执行关联代码</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(表达式) &#123;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">default</span>:</span><br><span class="line">        默认代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>如果存在匹配，则<strong>执行关联代码</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">switch</span>(表达式) &#123;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">case</span> n:</span><br><span class="line">        代码块</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">     <span class="keyword">default</span>:</span><br><span class="line">        默认代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
+<hr>
 <h2 id="四-循环"><a href="#四-循环" class="headerlink" title="四. 循环"></a>四. 循环</h2><h3 id="1-For-循环"><a href="#1-For-循环" class="headerlink" title="1. For 循环"></a>1. For 循环</h3><ul>
 <li>语句 1 在循环（代码块）<strong>开始之前</strong>执行</li>
 <li>语句 2 定义运行循环（代码块）的<strong>条件</strong></li>
-<li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (语句 <span class="number">1</span>; 语句 <span class="number">2</span>; 语句 <span class="number">3</span>) &#123;</span><br><span class="line">     要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">for</span> (语句 <span class="number">1</span>; 语句 <span class="number">2</span>; 语句 <span class="number">3</span>) &#123;</span><br><span class="line">     要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h3 id="2-For-In-循环"><a href="#2-For-In-循环" class="headerlink" title="2. For/In 循环"></a>2. For/In 循环</h3><ul>
-<li><strong>遍历对象属性</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;<span class="attr">fname</span>:<span class="string">"Bill"</span>, <span class="attr">lname</span>:<span class="string">"Gates"</span>, <span class="attr">age</span>:<span class="number">62</span>&#125;; </span><br><span class="line"><span class="keyword">var</span> text = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> person) &#123;</span><br><span class="line">    text += person[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><strong>遍历对象属性</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">var</span> person = &#123;<span class="attr">fname</span>:<span class="string">"Bill"</span>, <span class="attr">lname</span>:<span class="string">"Gates"</span>, <span class="attr">age</span>:<span class="number">62</span>&#125;; </span><br><span class="line"><span class="keyword">var</span> text = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="keyword">for</span> (x <span class="keyword">in</span> person) &#123;</span><br><span class="line">    text += person[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h3 id="3-While-循环"><a href="#3-While-循环" class="headerlink" title="3. While 循环"></a>3. While 循环</h3><ul>
-<li>while 循环会<strong>一直循环</strong>代码块，<strong>只要指定的条件为 <code>true</code></strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (条件) &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>while 循环会<strong>一直循环</strong>代码块，<strong>只要指定的条件为 <code>true</code></strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">while</span> (条件) &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h3 id="4-Do-While-循环"><a href="#4-Do-While-循环" class="headerlink" title="4. Do/While 循环"></a>4. Do/While 循环</h3><ul>
 <li><strong><code>do/while</code> 循环</strong>是 <code>while</code> 循环的<strong>变体</strong></li>
-<li>在检查<strong>条件是否为真之前</strong>，这种循环会执行一次代码块，然后只要条件为真就会<strong>重复循环</strong>。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (条件);</span><br></pre></td></tr></table></figure></li>
+<li>在检查<strong>条件是否为真之前</strong>，这种循环会执行一次代码块，然后只要条件为真就会<strong>重复循环</strong>。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    要执行的代码块</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (条件);</span><br></pre></td></tr></table></figure></li>
 </ul>
 -->
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7ondzja0004qstj01v6h4tj" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7rg6j5h0005lktj1czbgecv" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -245,6 +343,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 <p><strong>判断一个数字是不是<code>NAN</code>还要用 <code>Number.isNaN()</code> 来判断</strong></p>
 <h4 id="1-2-操作"><a href="#1-2-操作" class="headerlink" title="1.2 操作"></a>1.2 操作</h4><h5 id="①-字符串拼接-“-”"><a href="#①-字符串拼接-“-”" class="headerlink" title="① 字符串拼接 “+”"></a>① 字符串拼接 “<code>+</code>”</h5><p>所有数据类型都会被转为<strong>字符串类型</strong></p>
 <h5 id="②-数学运算-“-”、“-”、“-”、“-”、“-”"><a href="#②-数学运算-“-”、“-”、“-”、“-”、“-”" class="headerlink" title="② 数学运算 “+”、“-”、“*”、“/”、“%”"></a>② 数学运算 “<code>+</code>”、“<code>-</code>”、“<code>*</code>”、“<code>/</code>”、“<code>%</code>”</h5><p>所有数据都会被转换成<strong>数字类型</strong></p>
+<hr>
 <h2 id="二-逻辑"><a href="#二-逻辑" class="headerlink" title="二. 逻辑"></a>二. 逻辑</h2><ul>
 <li>大于 <strong><code>&gt;</code></strong></li>
 <li>小于 <strong><code>&lt;</code></strong></li>
@@ -261,7 +360,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/JS-1/" data-id="ck7ondzj10001qstj1zl9cqve" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-1/" data-id="ck7rg6j520001lktj9hfuf9bp" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -340,7 +439,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/html+css-3/" data-id="ck7ondzjq000gqstjacvbefdc" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/html+css-3/" data-id="ck7rg6j5w000alktj9f5ecoxx" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -454,7 +553,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/15/ChemicalElements/" data-id="ck7ondzit0000qstjd8buf64s" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/15/ChemicalElements/" data-id="ck7rg6j4h0000lktjgptjedak" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -525,7 +624,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/14/hexo_markdown_image/" data-id="ck7ondzjj000aqstjaj0zhxua" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/14/hexo_markdown_image/" data-id="ck7rg6j5t0009lktj57sy31r1" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
@@ -581,14 +680,14 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 <li>宽度就是绿色+蓝色+红色部分(内容+内边距+边框)</li>
 </ul>
 <h3 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4. 使用方式"></a>4. 使用方式</h3><h4 id="4-1-内联样式"><a href="#4-1-内联样式" class="headerlink" title="4.1 内联样式"></a>4.1 内联样式</h4><ul>
-<li>每个标签是有一个<code>style</code>属性的，这个<code>style</code>属性可以直接作用于标签的样式  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"    </span></span></span><br><span class="line"><span class="tag"><span class="string">width: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">padding: 10px 10px 10px 10px;</span></span></span><br><span class="line"><span class="tag"><span class="string">background-color: #3385ff;</span></span></span><br><span class="line"><span class="tag"><span class="string">color: white;</span></span></span><br><span class="line"><span class="tag"><span class="string">margin: 100px 100px 100px 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距</span></span><br><span class="line"><span class="comment">padding-top，padding-right，padding-bottom,padding-left</span></span><br><span class="line"><span class="comment">style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></span><br></pre></td></tr></table></figure>
+<li>每个标签是有一个<code>style</code>属性的，这个<code>style</code>属性可以直接作用于标签的样式  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"    </span></span></span><br><span class="line"><span class="tag"><span class="string">width: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">padding: 10px 10px 10px 10px;</span></span></span><br><span class="line"><span class="tag"><span class="string">background-color: #3385ff;</span></span></span><br><span class="line"><span class="tag"><span class="string">color: white;</span></span></span><br><span class="line"><span class="tag"><span class="string">margin: 100px 100px 100px 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距</span></span><br><span class="line"><span class="comment">padding-top，padding-right，padding-bottom,padding-left</span></span><br><span class="line"><span class="comment">style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 </li>
 </ul>
 <h4 id="4-2-嵌入方式"><a href="#4-2-嵌入方式" class="headerlink" title="4.2 嵌入方式"></a>4.2 嵌入方式</h4><ul>
 <li><p>把<code>style</code>属性里写的css全部放到一起</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.search-btn</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    padding: 10px 10px 10px 10px;</span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#3385ff</span>;</span></span><br><span class="line">    color: white;</span><br><span class="line">    margin: 100px 100px 100px 100px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-btn"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.search-btn</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    padding: 10px 10px 10px 10px;</span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#3385ff</span>;</span></span><br><span class="line">    color: white;</span><br><span class="line">    margin: 100px 100px 100px 100px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-btn"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>  多了一个<code>style</code>标签，浏览器会解析<code>style</code>标签里的所有规则，然后应用到页面的元素里面，<br>  为了让浏览器知道这些样式要用到哪个标签，就需要<strong>选择器选择标签</strong></p>
   <img src="/2020/01/13/html+css-2/img5.jpg" width="50%" align="left/">
 
@@ -596,16 +695,16 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 </li>
 </ul>
 <h4 id="4-3-链接方式"><a href="#4-3-链接方式" class="headerlink" title="4.3 链接方式"></a>4.3 链接方式</h4><ul>
-<li>使用link标签，就可以让浏览器解析其他地方的css样式，或者放在本地，或者放在网上  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"base.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>使用link标签，就可以让浏览器解析其他地方的css样式，或者放在本地，或者放在网上  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"base.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<p>Tips：浏览器默认会给<code>body</code>带上一点的<code>margin</code>和<code>paddding</code></p>
+<p><strong>Tips：浏览器默认会给<code>body</code>带上一点的<code>margin</code>和<code>paddding</code></strong></p>
 -->
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-2/" data-id="ck7ondzjv000kqstj5107bw02" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-2/" data-id="ck7rg6j65000glktj7swackf1" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -647,7 +746,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 <li>HTML不是一种编程语言，而是一种标记语言</li>
 <li>HTML是一种用标签来描述网页的标记语言</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的第一个标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我的第一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我的第一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的第一个标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我的第一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我的第一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>最外层的这个<code>html</code>，就代表网页本身</li>
@@ -667,13 +766,13 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 <li>每一个标签需要有自己的<strong>属性</strong><br>比如<code>src</code>就是<code>img</code>的一个属性，用来存放<strong>图片链接</strong></li>
 <li><strong>只需记常用的，其他会查即可</strong></li>
 </ul>
-<h4 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>新闻<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>hao123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>地图<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>视频<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>贴吧<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>学术<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>设置<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>更多产品<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://www.baidu.com/img/bd_logo1.png"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>把百度设置为首页<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>关于百度<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>about百度<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>百度推广<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Tips：本地文件是<code>/xxxx/xxxx.png</code>；远程文件是<code>http://xxx/xxx.png</code></p>
+<h4 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>新闻<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>hao123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>地图<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>视频<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>贴吧<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>学术<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span> &gt;</span>设置<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>更多产品<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://www.baidu.com/img/bd_logo1.png"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>把百度设置为首页<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>关于百度<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>about百度<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>百度推广<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Tips：本地文件是<code>/xxxx/xxxx.png</code>；远程文件是<code>http://xxx/xxx.png</code></strong></p>
 -->
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-1/" data-id="ck7ondzjo000eqstj9kby4czx" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-1/" data-id="ck7rg6j5j0006lktj2y48730v" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
@@ -770,56 +869,7 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/12/google/" data-id="ck7ondzjd0005qstjaunhdo7a" class="article-share-link">Share</a>-->
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/11/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <a href="/2020/01/11/hello-world/" class="article-date">
-  <time datetime="2020-01-11T04:56:42.498Z" itemprop="datePublished">2020-01-11</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/11/hello-world/" data-id="ck7ondzjh0009qstjhsoc2s6d" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/01/12/google/" data-id="ck7rg6j6b000mlktj5mrj9om9" class="article-share-link">Share</a>-->
       
       
     </footer>
@@ -830,6 +880,11 @@ Tips: <strong>箭头函数没有自己的 <code>this</code></strong></li>
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
       </div>
