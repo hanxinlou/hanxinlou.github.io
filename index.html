@@ -51,6 +51,263 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-VR_AntiDistortion" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/">踩坑笔记</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/%E7%95%B8%E5%8F%98%E6%A0%A1%E6%AD%A3/">畸变校正</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/20/VR_AntiDistortion/">毕设——VR视频反畸变系统设计</a>
+    </h1>
+  
+
+        <a href="/2020/05/20/VR_AntiDistortion/" class="article-date">
+  <time datetime="2020-05-20T11:00:00.000Z" itemprop="datePublished">2020-05-20</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<p>记录一下自己写毕设时学习的知识和遇到的一些问题（踩过的坑）</p>
+<h2 id="VR视频反畸变校正演示系统"><a href="#VR视频反畸变校正演示系统" class="headerlink" title="VR视频反畸变校正演示系统"></a>VR视频反畸变校正演示系统</h2><blockquote>
+<p>用于研究VR设备中存在的图像畸变和畸变校正算法,可展示畸变矫正算法的效果</p>
+</blockquote>
+<h4 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h4><ul>
+<li>Electron</li>
+<li>Vue.js</li>
+<li>Node.js</li>
+</ul>
+<h3 id="一、相关概念和算法"><a href="#一、相关概念和算法" class="headerlink" title="一、相关概念和算法"></a>一、相关概念和算法</h3><h4 id="1-失真"><a href="#1-失真" class="headerlink" title="1.失真"></a>1.<a href="https://en.wikipedia.org/wiki/Distortion_(optics)" target="_blank" rel="noopener">失真</a></h4><ul>
+<li>在VR设备中存在的畸变主要是图像畸变中的径向畸变，其他畸变占比不大，故纳入考虑范围。</li>
+<li>径向畸变分为枕形畸变和桶形畸变，如图。<img src="/2020/05/20/VR_AntiDistortion/img1.png">
+
+</li>
+</ul>
+<h4 id="2-遗传算法"><a href="#2-遗传算法" class="headerlink" title="2.遗传算法"></a>2.<a href="https://en.wikipedia.org/wiki/Genetic_algorithm" target="_blank" rel="noopener">遗传算法</a></h4><h4 id="3-轮盘选择法"><a href="#3-轮盘选择法" class="headerlink" title="3.轮盘选择法"></a>3.<a href="https://zhuanlan.zhihu.com/p/62666777" target="_blank" rel="noopener">轮盘选择法</a></h4><h4 id="4-模拟退火算法"><a href="#4-模拟退火算法" class="headerlink" title="4.模拟退火算法"></a>4.<a href="https://www.cnblogs.com/ranjiewen/p/6084052.html" target="_blank" rel="noopener">模拟退火算法</a></h4><h3 id="二、系统功能-算法效果可视化"><a href="#二、系统功能-算法效果可视化" class="headerlink" title="二、系统功能(算法效果可视化)"></a>二、系统功能(算法效果可视化)</h3><h4 id="1-图像处理"><a href="#1-图像处理" class="headerlink" title="1.图像处理"></a>1.图像处理</h4><ul>
+<li>根据所给图像和可交互基础参数实时输出畸变图像和畸变对比图(用于研究图像畸变原理)</li>
+<li>根据所给畸变图像和可交互参数输出矫正过程和反畸变对比图(矫正算法可视化)<h4 id="2-视频处理"><a href="#2-视频处理" class="headerlink" title="2.视频处理"></a>2.视频处理</h4></li>
+<li>根据所给视频采样点和可交互参数输出矫正过程和反畸变对比图(矫正算法可视化)</li>
+<li>根据所给视频和可交互参数输出矫正视频和对比视频(矫正算法可视化)</li>
+<li>预设功能,方便用户载入上次所调参数数据</li>
+</ul>
+<h3 id="三、遇到的问题和相关解决方案"><a href="#三、遇到的问题和相关解决方案" class="headerlink" title="三、遇到的问题和相关解决方案"></a>三、遇到的问题和相关解决方案</h3><h4 id="1-如何实现两张图像的对比图"><a href="#1-如何实现两张图像的对比图" class="headerlink" title="1.如何实现两张图像的对比图"></a>1.如何实现两张图像的对比图</h4><h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h5><ul>
+<li>利用 <code>canvas</code> 自带的 <code>Web API</code>–<code>getimagedata()</code> 获取图片的像素数据</li>
+<li>将两张图像的像素数据相减的绝对值添加到原图像素数据的 <code>R</code> 通道</li>
+<li>利用 <code>canvas</code> 自带的 <code>Web API</code>–<code>putimagedata()</code> 将新数据画入 <code>canvas</code></li>
+<li>用 <code>canvas</code> 标签将对比图渲染出来</li>
+</ul>
+<h4 id="2-如何实现读取本地文件-涉及-Electron-跨域"><a href="#2-如何实现读取本地文件-涉及-Electron-跨域" class="headerlink" title="2.如何实现读取本地文件(涉及 Electron 跨域)"></a>2.如何实现读取本地文件(涉及 <code>Electron</code> 跨域)</h4><h5 id="解决方案A-针对于利用-upload-组件上传的文件"><a href="#解决方案A-针对于利用-upload-组件上传的文件" class="headerlink" title="解决方案A 针对于利用 upload 组件上传的文件"></a>解决方案A 针对于利用 <code>upload</code> 组件上传的文件</h5><ul>
+<li>根据 <code>upload</code> 组件在文件状态改变时会调用 <code>on-change</code> 钩子，其中函数的默认参数包括文件数据 <code>file</code> </li>
+<li>在定义 <code>on-change</code> 钩子的函数中通过 <code>file</code> 获得本地路径 <code>file.raw.path</code> 和 <code>file.raw</code> 对象</li>
+<li>利用 <code>URL.createObjectURL(file.raw)</code> 获得图片/视频的 <code>URL</code> ( <code>Blob</code> 对象)</li>
+<li>将获得的 <code>URL</code> 赋给 <code>img</code> 或 <code>canvas</code> 标签的 <code>src</code><h5 id="解决方案B-针对只有本地路径的文件"><a href="#解决方案B-针对只有本地路径的文件" class="headerlink" title="解决方案B 针对只有本地路径的文件"></a>解决方案B 针对只有本地路径的文件</h5></li>
+<li>利用 <code>Node.js</code> 的<a href="https://javascript.ruanyifeng.com/nodejs/fs.html" target="_blank" rel="noopener"> <code>fs</code> 模块</a>中异步读取文件方法 <code>fs.readFile</code> 读取文件，回调函数中返回 <code>data</code> 实例</li>
+<li>利用 <code>new File(data)</code> 获得文件流 <code>file</code></li>
+<li>利用  <code>URL.createObjectURL(file)</code> 获得图片/视频的 <code>URL</code></li>
+</ul>
+<h4 id="3-Electron主进程与渲染进程之间的通信"><a href="#3-Electron主进程与渲染进程之间的通信" class="headerlink" title="3.Electron主进程与渲染进程之间的通信"></a>3.Electron主进程与渲染进程之间的通信</h4><h5 id="渲染进程向主进程发送消息"><a href="#渲染进程向主进程发送消息" class="headerlink" title="渲染进程向主进程发送消息"></a>渲染进程向主进程发送消息</h5><ul>
+<li>渲染进程引入 <code>ipcRenderer</code>, 利用 <code>ipcRenderer.send(&#39;message&#39;, data)</code>向主进程发送消息</li>
+<li>主进程引入 <code>ipcMain</code> , 利用 <code>ipcMain.on(&#39;message&#39;, (e, f) =&gt; {})</code> 监听渲染进程发送消息的事件<h5 id="主进程向渲染进程发送消息"><a href="#主进程向渲染进程发送消息" class="headerlink" title="主进程向渲染进程发送消息"></a>主进程向渲染进程发送消息</h5></li>
+<li>主进程利用 <code>mainWindow.webContents.send(&#39;message&#39;, data)</code> 向渲染进程发送消息</li>
+<li>渲染进程引入 <code>ipcRenderer</code>, 利用 <code>ipcRenderer.on(&#39;message&#39;, data)</code>监听主进程发送消息的事件</li>
+</ul>
+<h4 id="4-异步同步问题"><a href="#4-异步同步问题" class="headerlink" title="4.异步同步问题"></a>4.异步同步问题</h4><p>由于算法运行需要一定的时间, 考虑异步操作会更符合需求</p>
+<h4 id="5-this-实例指向问题"><a href="#5-this-实例指向问题" class="headerlink" title="5. this 实例指向问题"></a>5. <code>this</code> 实例指向问题</h4><p><code>this</code> 指向当前作用域的实例而不是指向 <code>Vue</code> 实例, 写代码时若要用 <code>this</code> 则需要仔细考虑 <code>this</code> 指向的实例</p>
+<h3 id="6-如何存储预设数据-下次启动客户端-数据仍存在"><a href="#6-如何存储预设数据-下次启动客户端-数据仍存在" class="headerlink" title="6.如何存储预设数据(下次启动客户端 数据仍存在)"></a>6.如何存储预设数据(下次启动客户端 数据仍存在)</h3><h5 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案:"></a>解决方案:</h5><ul>
+<li>采用 <code>windows</code> 自带的 <code>localStorge</code> 字典存储 键值一一对应</li>
+<li>localStorage是html5提供的一种本地存储的方法，可以把数据存储在本地浏览器，下次打开后仍然可以获取到存储的数据，如果在存储的数据 量小的时候可以起到代替数据库的功能，比cookies更有优越性。</li>
+<li>localStorage只能存储字符串的数据，对于JS中常用的数组或对象却不能直接存储</li>
+<li>可以通过JSON对象提供的parse和stringify进行对象和字符串的转换，进行数据存取</li>
+<li>加载数据是先判断获取的数据是否为空（不能排除你可能一不小心清理了一下你的浏览器）<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 存储数据</span></span><br><span class="line"><span class="built_in">window</span>.localStorage.setItem(<span class="string">'name'</span>, data)</span><br><span class="line"><span class="comment">// 读取数据</span></span><br><span class="line"><span class="built_in">window</span>.localStorage.getItem(<span class="string">'name'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="四、待优化"><a href="#四、待优化" class="headerlink" title="四、待优化"></a>四、待优化</h3></li>
+<li><input disabled type="checkbox"> 图片加载过慢 <code>img</code> 标签读取图片像素数据的方式 或许可以用 <code>canvas</code> 标签</li>
+<li><input disabled type="checkbox"> 视频同步卡顿  暂时没有想法</li>
+<li><input disabled type="checkbox"> 加载中的交互逻辑 可以添加 <code>loading</code> 组件</li>
+</ul>
+<p>项目地址：<a href="https://github.com/hanxinlou/AntiDistortionSystem" target="_blank" rel="noopener">毕设——VR反畸变系统设计</a></p>
+-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/05/20/VR_AntiDistortion/" data-id="ckahrheif0000t4tjavy28vzd" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Electron/" rel="tag">Electron</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/17/JS-5/">JavaScript学习笔记（五）DOM&amp;BOM</a>
+    </h1>
+  
+
+        <a href="/2020/03/17/JS-5/" class="article-date">
+  <time datetime="2020-03-17T09:12:00.000Z" itemprop="datePublished">2020-03-17</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!---->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/03/17/JS-5/" data-id="ck7ugclcx0007k8tjag1d3y28" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-chatbot_2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DEMO/">DEMO</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/chatbot_2/">简易聊天机器人（二）</a>
+    </h1>
+  
+
+        <a href="/2020/03/16/chatbot_2/" class="article-date">
+  <time datetime="2020-03-16T12:13:29.999Z" itemprop="datePublished">2020-03-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="实现一个简易聊天机器人"><a href="#实现一个简易聊天机器人" class="headerlink" title="实现一个简易聊天机器人"></a>实现一个简易聊天机器人</h2><h3 id="二-实现工作流程"><a href="#二-实现工作流程" class="headerlink" title="二. 实现工作流程"></a>二. 实现工作流程</h3>-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/03/16/chatbot_2/" data-id="ck7ugcldk000ck8tjaa1uchuh" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-chatbot_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DEMO/">DEMO</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/chatbot_1/">简易聊天机器人（一）实现界面</a>
+    </h1>
+  
+
+        <a href="/2020/03/16/chatbot_1/" class="article-date">
+  <time datetime="2020-03-16T11:46:00.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+      </header>
+    
+    <div class="article-entry-abstract" itemprop="articleBody">
+      
+        <!--<h2 id="实现一个简易聊天机器人"><a href="#实现一个简易聊天机器人" class="headerlink" title="实现一个简易聊天机器人"></a>实现一个简易聊天机器人</h2><h3 id="一-画出聊天机器人的界面"><a href="#一-画出聊天机器人的界面" class="headerlink" title="一. 画出聊天机器人的界面"></a>一. 画出聊天机器人的界面</h3><h4 id="1-拆解网页（HTML）"><a href="#1-拆解网页（HTML）" class="headerlink" title="1. 拆解网页（HTML）"></a>1. 拆解网页（HTML）</h4><img src="/2020/03/16/chatbot_1/img_1.jpg" alt="效果图" width="50%">
+
+<ul>
+<li>标题区是一个大的块元素包含一个题目</li>
+<li>对话区是一个列表的展现形式</li>
+<li>输入区是一个输入框加一个按钮</li>
+</ul>
+<h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Chatbot<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"chatbot"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- &lt;header&gt; 元素用于展示介绍性内容，通常包含一组介绍性的或是辅助导航的实用元素。 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h2</span>&gt;</span>聊天机器人小二黑<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"message-list"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"message-list__item message-list__item-chatbot"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span>&gt;</span>您好，小主人，我是聊天机器人小二黑，赶快和我聊天试试吧！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            ...</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"message-list__item message-list__item-chatbot"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span>&gt;</span>真棒，吃的好快呀<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-area"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 这个输入框需要输入多行文本，普通的输入框是不能换行的，所以用textarea这个元素 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">textarea</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span>&gt;</span>发送<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h5><img src="/2020/03/16/chatbot_1/img_2.jpg" alt="效果图" width="50%"> 
+
+<h4 id="2-布局（CSS）"><a href="#2-布局（CSS）" class="headerlink" title="2. 布局（CSS）"></a>2. 布局（CSS）</h4><h5 id="2-1-整体区域"><a href="#2-1-整体区域" class="headerlink" title="2.1 整体区域"></a>2.1 整体区域</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: white;</span><br><span class="line">    <span class="comment">/* 设定下全部元素的 padding 和 margin，这样做的目的是清楚元素的   默认 padding 和 margin，方便布局 */</span></span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.chatbot</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">480px</span>;</span><br><span class="line">    <span class="comment">/* 整体区域居中 */</span></span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2-标题区"><a href="#2-2-标题区" class="headerlink" title="2.2 标题区"></a>2.2 标题区</h5><ul>
+<li><code>flex</code>布局，<code>justify-content、align-items</code>均设置为<code>center</code> </li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">header</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">header</span> <span class="selector-tag">h2</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-对话区"><a href="#2-3-对话区" class="headerlink" title="2.3 对话区"></a>2.3 对话区</h5><ul>
+<li>机器人和用户的对话列表元素均采用<code>flex</code>布局</li>
+<li>设置用户的对话列表元素的<code>flex-direction</code>为<code>row-reverse</code>使得用户的对话靠右</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.message-list</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.message-list__item-chatbot</span>,</span><br><span class="line"><span class="selector-class">.message-list__item-user</span> &#123;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.message-list__item-user</span> &#123;</span><br><span class="line">    <span class="comment">/* flex-direction 属性指定了内部元素是如何在 flex 容器中布局的，定义了主轴的方向(正方向或反方向)。</span></span><br><span class="line"><span class="comment">    row-reverse表现和row相同，但是置换了主轴起点和主轴终点 */</span></span><br><span class="line">    <span class="attribute">flex-direction</span>: row-reverse;</span><br><span class="line">    <span class="comment">/* justify-content:flex-end也可以实现同样的效果，但只有一个子元素的时候表现一样</span></span><br><span class="line"><span class="comment">    row-reverse不仅会将子元素的位置全部靠向右边，还会将子元素的排列顺序反转*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-输入区"><a href="#2-3-输入区" class="headerlink" title="2.3 输入区"></a>2.3 输入区</h5><ul>
+<li>布局设置为<code>flex</code>，且设置输入框的<code>flex-grow</code>为<code>1</code></li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.input-area</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.input-area</span> <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="comment">/* flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。 */</span></span><br><span class="line">    <span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/03/16/chatbot_1/img_3.png" alt="实现效果" width="50%">
+
+<h4 id="3-样式美化（CSS）"><a href="#3-样式美化（CSS）" class="headerlink" title="3. 样式美化（CSS）"></a>3. 样式美化（CSS）</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.message-list</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: white;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="comment">/* 默认的列表标签是有样式的，这个属性就是把列表标签的默认样式给去除掉*/</span></span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.message-list__item-robot</span> <span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-class">.message-list__item-user</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="comment">/* word-break属性指定了怎样在单词内断行。 */</span></span><br><span class="line">    <span class="attribute">word-break</span>: break-all;</span><br><span class="line">    <span class="comment">/* word-wrap属性允许将长单词打断并包装到下一行。 */</span></span><br><span class="line">    <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.input-area</span> <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="comment">/* 去除轮廓属性，一般输入框聚焦，按钮点击，都会有默认的轮廓*/</span></span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">flex-grow</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* 去除边框属性 */</span></span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">border-bottom-left-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.input-area</span> <span class="selector-tag">button</span> &#123;</span><br><span class="line">    <span class="comment">/* cursor属性定义鼠标指针悬浮在元素上方显示的鼠标光标 */</span></span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#008cee</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">border-bottom-right-radius</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/2020/03/16/chatbot_1/img_4.jpg" alt="实现效果" width="50%">-->
+      
+    </div>
+    <footer class="article-footer">
+      <!--<a data-url="http://yoursite.com/2020/03/16/chatbot_1/" data-id="ck7ugcldm000dk8tj56ik57vz" class="article-share-link">Share</a>-->
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-md_Invisible_local_imgs" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     
@@ -96,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/14/md_Invisible_local_imgs/" data-id="ck7rj6jos001qostj99rq6ycb" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/14/md_Invisible_local_imgs/" data-id="ck7ugcleh000zk8tjbl1adiix" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
@@ -192,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/14/JS-4/" data-id="ck7rj6jmb0006ostjgr8khq5x" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/14/JS-4/" data-id="ck7ugcldh000bk8tj9gkgaop1" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -266,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/JS-3/" data-id="ck7rj6jm40004ostjhm266uy9" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-3/" data-id="ck7ugcldu000hk8tj0980gk57" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -345,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7rj6jma0005ostjce2i8ia0" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-2/" data-id="ck7ugcle8000rk8tj5csahyjf" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -419,7 +676,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/JS-1/" data-id="ck7rj6jlr0001ostjaj3waves" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/JS-1/" data-id="ck7ugcld30008k8tjf4nz3n84" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
@@ -498,340 +755,7 @@
       
     </div>
     <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/03/12/html+css-3/" data-id="ck7rj6jnc000mostjei2r42c0" class="article-share-link">Share</a>-->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ChemicalElements" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DEMO/">DEMO</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/15/ChemicalElements/">HTML+CSS实现元素周期表</a>
-    </h1>
-  
-
-        <a href="/2020/01/15/ChemicalElements/" class="article-date">
-  <time datetime="2020-01-15T04:07:00.000Z" itemprop="datePublished">2020-01-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<p>逛B站的时候看到一个视频<a href="https://www.bilibili.com/video/av80244004" target="_blank" rel="noopener">「CSS 案例」元素周期表</a><br>这不是2030年Adobe全家桶嘛<br>有点好看嘿嘿嘿<br>于是跟着Up主自己写了一份元素周期表<br>记录下自己写的时候的思路</p>
-<h3 id="实现效果图"><a href="#实现效果图" class="headerlink" title="实现效果图"></a>实现效果图</h3><img src="/2020/01/15/ChemicalElements/image.png">
-
-<h3 id="1-拆解网页"><a href="#1-拆解网页" class="headerlink" title="1.拆解网页"></a>1.拆解网页</h3><ul>
-<li><p>首先将整个页面拆成顶部(<code>element-top</code>)和底部(<code>element-bottom</code>)两部分，如图</p>
-<img src="/2020/01/15/ChemicalElements/image1.png">
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>元素周期表<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element-top"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element-bottom"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>顶部可以拆分成18列(<code>col</code>)，如图</p>
-<img src="/2020/01/15/ChemicalElements/image2.png">
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element-top"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--总共18个&lt;div&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>底部可以拆分成2行(<code>line</code>)，如图</p>
-<img src="/2020/01/15/ChemicalElements/image3.png">
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element-bottom"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>顶部每一列都可以拆分成对应的元素(<code>element</code>)，如图</p>
-<img src="/2020/01/15/ChemicalElements/image4.png">
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element"</span>&gt;</span>H<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element"</span>&gt;</span>Fr<span class="tag">&lt;/<span class="name">div</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>底部每一行也都可以拆分成对应的元素(<code>element</code>)，如图</p>
-<img src="/2020/01/15/ChemicalElements/image5.png">
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element"</span>&gt;</span>La<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"element"</span>&gt;</span>Lu<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><ul>
-<li><p>顶部采用<code>flex</code>布局并设置<code>justify-content</code>为<code>center</code>使得<code>col</code>位于父布局的中心</p>
-<img src="/2020/01/15/ChemicalElements/image6.png">
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element-top</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>顶部的每一列采用顶部采用<code>flex</code>布局、设置<code>flex-direction</code>为<code>column</code>、<code>justify-content</code>为<code>flex-end</code>使得<code>element</code>纵向排列并位于父布局的底部</p>
-<img src="/2020/01/15/ChemicalElements/image7.png">
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.col</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">    <span class="attribute">justify-content</span>: flex-end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>底部的每一行采用<code>flex</code>布局并设置<code>justify-content</code>为<code>center</code>使得<code>element</code>位于父布局的中心</p>
-<img src="/2020/01/15/ChemicalElements/image8.png">
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.line</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="设置盒模型属性"><a href="#设置盒模型属性" class="headerlink" title="设置盒模型属性"></a>设置盒模型属性</h3><ul>
-<li><p>选择所有元素设置共同属性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">    <span class="comment">/* *就是选择所有元素 */</span></span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/* border-box:width 和 height 属性包括内容，内边距和边框，但不包括外边距 */</span></span><br><span class="line">    <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置顶部盒模型属性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element-top</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80rem</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">25rem</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">5rem</span> <span class="number">8rem</span> <span class="number">3rem</span> <span class="number">8rem</span>;</span><br><span class="line">    <span class="attribute">background </span>: lightblue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><strong>Tip:</strong> 为了更好地观察布局和盒模型可以添加<code>background</code>属性，完成所有盒模型之后再删除即可</p>
-<ul>
-<li><p>设置顶部每一列盒模型属性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.col</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">4rem</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0rem</span> <span class="number">0.2rem</span>;</span><br><span class="line">    <span class="attribute">background </span>: lightgray</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置底部部盒模型属性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element-bottom</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80rem</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">25rem</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">3rem</span> <span class="number">8rem</span> <span class="number">3rem</span> <span class="number">7.5rem</span>;</span><br><span class="line">    <span class="attribute">background </span>: lightgreen</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置底部每一行盒模型属性</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.line</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">4rem</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0.5rem</span>;</span><br><span class="line">    <span class="attribute">background </span>: lightgray</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="设置盒模型颜色"><a href="#设置盒模型颜色" class="headerlink" title="设置盒模型颜色"></a>设置盒模型颜色</h3><p>根据效果图发现不同类别的元素其配色是不同的，所以新建颜色的类选择器来区分这些配色不同的元素<br>比如<strong>氢</strong>一类的元素其颜色的类选择器如下</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.base-color</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">0</span>, <span class="number">33</span>, <span class="number">63</span>);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">154</span>, <span class="number">206</span>, <span class="number">255</span>);</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">4px</span> solid <span class="built_in">rgb</span>(<span class="number">154</span>, <span class="number">206</span>, <span class="number">255</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以此新建<code>color-1、color-2...</code>共10个类选择器来区分</p>
-<h3 id="字体大小问题"><a href="#字体大小问题" class="headerlink" title="字体大小问题"></a>字体大小问题</h3><p>做到这一步其实已经算是完成了但是一看效果图这个字体怎么这么小？！！！<br><img src="/2020/01/15/ChemicalElements/image10.png"><br>噢我忘了设置字体大小<br>新建2个字体大小的类选择器<code>font-size1、font-size2</code></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fontsize-1</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">30px</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.fontsize-2</span>&#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">27px</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果没有设置两个选择器你可能因为某些元素是三个英文字母所以越过边界而抓狂<br><img src="/2020/01/15/ChemicalElements/image9.png"></p>
-<p>所以还是乖乖建两个来区分吧</p>
-<p>到这里就画完<del>2030Adobe全家桶</del>元素周期表了<br>原Up主还做了点击的特效，我有空研究下再更新23333<br>源码已经放在<a href="https://github.com/hanxinlou/ChemicalElements" target="_blank" rel="noopener">github</a>上了</p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/15/ChemicalElements/" data-id="ck7rj6jla0000ostja70w6of7" class="article-share-link">Share</a>-->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo_markdown_image" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/">踩坑笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/hexo_markdown_image/">Hexo+Markdown修改图片样式</a>
-    </h1>
-  
-
-        <a href="/2020/01/14/hexo_markdown_image/" class="article-date">
-  <time datetime="2020-01-14T09:00:00.000Z" itemprop="datePublished">2020-01-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<p>记录一下Hexo+Markdown中添加图片遇到的问题</p>
-<h3 id="1-Markdown中添加图片的方式"><a href="#1-Markdown中添加图片的方式" class="headerlink" title="1.Markdown中添加图片的方式"></a>1.Markdown中添加图片的方式</h3><ul>
-<li><p>自带插入语句 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片名称](url)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用HTML标签<code>&lt;img&gt;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src &#x3D; &quot;url&quot; alt&#x3D;&quot;图片名称&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>Tips:<code>url</code>可以是本地图片的路径也可以网上图片的<code>url</code>;图片名称可不写</p>
-</li>
-</ul>
-<h3 id="2-如何修改图片大小"><a href="#2-如何修改图片大小" class="headerlink" title="2.如何修改图片大小"></a>2.如何修改图片大小</h3><ul>
-<li>利用HTML标签<code>&lt;img&gt;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;&#x2F;day1-4&#x2F;day2_3.jpg&quot; width &#x3D; &quot;50&quot; height &#x3D; &quot;50&quot; &gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="3-图片居中问题"><a href="#3-图片居中问题" class="headerlink" title="3.图片居中问题"></a>3.图片居中问题</h3><ul>
-<li><p>在第二步<code>&lt;img&gt;</code>标签里加上<code>align = &quot;center&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src&#x3D;&quot;&#x2F;day1-4&#x2F;day2_3.jpg&quot; width &#x3D; &quot;50&quot; height &#x3D; &quot;50&quot; align &#x3D; &quot;center&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>图片外围添加<code>&lt;div&gt;</code>标签，标签里加上<code>align = &quot;center&quot;</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div  align&#x3D;&quot;center&quot;&gt;    </span><br><span class="line">    &lt;img src&#x3D;&quot;&#x2F;day1-4&#x2F;day2_3.jpg&quot; width &#x3D; &quot;50&quot; height &#x3D; &quot;50&quot; &gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<p>Tip: Markdown 中图片默认居左</p>
-</li>
-</ul>
-<h3 id="4-Hexo图片布局与Markdown中图片布局不一样"><a href="#4-Hexo图片布局与Markdown中图片布局不一样" class="headerlink" title="4.Hexo图片布局与Markdown中图片布局不一样"></a>4.Hexo图片布局与Markdown中图片布局不一样</h3><p>首先Markdown文件部署到Hexo博客上图片是默认填充左右两端的<br>如果Markdown中设置图片是居左但是在Hexo上发现图片并没有居左<br>应该是选择的博客主题里默认设置了图片的<code>margin</code><br>解决办法</p>
-<ul>
-<li><code>/themes/你的主题/source/css/_partial</code>目录下找到<code>article.styl</code>文件</li>
-<li>找到<code>img, video</code>下的<code>margin</code>进行修改即可</li>
-</ul>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/14/hexo_markdown_image/" data-id="ck7rj6jn4000eostjgrsz5m1d" class="article-share-link">Share</a>-->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-html+css-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/html+css-2/">HTML、CSS学习笔记（二）CSS&amp;盒模型</a>
-    </h1>
-  
-
-        <a href="/2020/01/13/html+css-2/" class="article-date">
-  <time datetime="2020-01-13T10:00:00.000Z" itemprop="datePublished">2020-01-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-介绍CSS"><a href="#1-介绍CSS" class="headerlink" title="1. 介绍CSS"></a>1. 介绍CSS</h3><ul>
-<li>HTML是用来描述页面骨架的，CSS就是把页面变好看，写页面CSS样式的</li>
-</ul>
-<h3 id="2-行内元素和块元素"><a href="#2-行内元素和块元素" class="headerlink" title="2. 行内元素和块元素"></a>2. 行内元素和块元素</h3><ul>
-<li>行内元素就是<strong>不换行</strong>的元素，常见的有<code>span，strong</code>这种,一般都是一些<strong>设置文本</strong>的元素</li>
-<li>块元素（盒模型），这种元素都<strong>有自己的大小，宽高</strong>，方便在页面上布局<br>每个块元素都有自己的盒模型</li>
-<li>行内块元素，同时具备<strong>宽高和不换行</strong>两个属性</li>
-</ul>
-<h3 id="3-盒模型"><a href="#3-盒模型" class="headerlink" title="3. 盒模型"></a>3. 盒模型</h3><div style="display: flex; justify-cntent: flex-start">
-<img src="/2020/01/13/html+css-2/img3.jpg" width="50%">
-<img src="/2020/01/13/html+css-2/img4.jpg" width="50%">
-</div>
-
-<ul>
-<li>红色是内容；蓝色区域是内边距；绿色是边框；棕色是外边距</li>
-<li>宽度就是绿色+蓝色+红色部分(内容+内边距+边框)</li>
-</ul>
-<h3 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4. 使用方式"></a>4. 使用方式</h3><h4 id="4-1-内联样式"><a href="#4-1-内联样式" class="headerlink" title="4.1 内联样式"></a>4.1 内联样式</h4><ul>
-<li>每个标签是有一个<code>style</code>属性的，这个<code>style</code>属性可以直接作用于标签的样式  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"    </span></span></span><br><span class="line"><span class="tag"><span class="string">width: 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">padding: 10px 10px 10px 10px;</span></span></span><br><span class="line"><span class="tag"><span class="string">background-color: #3385ff;</span></span></span><br><span class="line"><span class="tag"><span class="string">color: white;</span></span></span><br><span class="line"><span class="tag"><span class="string">margin: 100px 100px 100px 100px;</span></span></span><br><span class="line"><span class="tag"><span class="string">"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距</span></span><br><span class="line"><span class="comment">padding-top，padding-right，padding-bottom,padding-left</span></span><br><span class="line"><span class="comment">style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h4 id="4-2-嵌入方式"><a href="#4-2-嵌入方式" class="headerlink" title="4.2 嵌入方式"></a>4.2 嵌入方式</h4><ul>
-<li><p>把<code>style</code>属性里写的css全部放到一起</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.search-btn</span> &#123;</span></span><br><span class="line">    width: 100px;</span><br><span class="line">    padding: 10px 10px 10px 10px;</span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#3385ff</span>;</span></span><br><span class="line">    color: white;</span><br><span class="line">    margin: 100px 100px 100px 100px;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-btn"</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>  多了一个<code>style</code>标签，浏览器会解析<code>style</code>标签里的所有规则，然后应用到页面的元素里面，<br>  为了让浏览器知道这些样式要用到哪个标签，就需要<strong>选择器选择标签</strong></p>
-  <img src="/2020/01/13/html+css-2/img5.jpg" width="50%" align="left/">
-
-<p>  这个<code>.search-btn</code>就表示选中所有class名字为<code>search-btn</code>的标签应用大括号里的所有规则</p>
-</li>
-</ul>
-<h4 id="4-3-链接方式"><a href="#4-3-链接方式" class="headerlink" title="4.3 链接方式"></a>4.3 链接方式</h4><ul>
-<li>使用link标签，就可以让浏览器解析其他地方的css样式，或者放在本地，或者放在网上  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"base.css"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><strong>Tips：浏览器默认会给<code>body</code>带上一点的<code>margin</code>和<code>paddding</code></strong></p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-2/" data-id="ck7rj6jn9000kostjdifo6l4d" class="article-share-link">Share</a>-->
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-html+css-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>►<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/html+css-1/">HTML、CSS学习笔记（一）HTML&amp;标签</a>
-    </h1>
-  
-
-        <a href="/2020/01/13/html+css-1/" class="article-date">
-  <time datetime="2020-01-13T09:56:00.000Z" itemprop="datePublished">2020-01-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry-abstract" itemprop="articleBody">
-      
-        <!--<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="1-HTML是什么"><a href="#1-HTML是什么" class="headerlink" title="1. HTML是什么"></a>1. HTML是什么</h3><ul>
-<li>HTML不是一种编程语言，而是一种标记语言</li>
-<li>HTML是一种用标签来描述网页的标记语言</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>我的第一个标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我的第一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>我的第一个段落<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>最外层的这个<code>html</code>，就代表网页本身</li>
-<li><code>body</code>里就是我们平时主要需要编写的内容</li>
-</ul>
-<h3 id="2-最常用的标签"><a href="#2-最常用的标签" class="headerlink" title="2. 最常用的标签"></a>2. 最常用的标签</h3><ul>
-<li><code>div</code></li>
-<li>图片标签（在页面上画图用的，<code>img</code>）</li>
-<li>输入框标签（<code>input</code>）</li>
-<li>常见的标签和属性表<img src="/2020/01/13/html+css-1/img1.jpg" width="50%" align="left/">
-
-</li>
-</ul>
-<h3 id="3-画一个百度首页"><a href="#3-画一个百度首页" class="headerlink" title="3. 画一个百度首页"></a>3. 画一个百度首页</h3><img src="/2020/01/13/html+css-1/img2.jpg" width="50%" align="left/">
-
-<ul>
-<li>每一个标签需要有自己的<strong>属性</strong><br>比如<code>src</code>就是<code>img</code>的一个属性，用来存放<strong>图片链接</strong></li>
-<li><strong>只需记常用的，其他会查即可</strong></li>
-</ul>
-<h4 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>新闻<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>hao123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>地图<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>视频<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>贴吧<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>学术<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"www.baidu.com"</span>&gt;</span>设置<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>更多产品<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://www.baidu.com/img/bd_logo1.png"</span>&gt;</span><span class="tag">&lt;/<span class="name">img</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>百度一下<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>把百度设置为首页<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>关于百度<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>about百度<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>百度推广<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>Tips：本地文件是<code>/xxxx/xxxx.png</code>；远程文件是<code>http://xxx/xxx.png</code></strong></p>
--->
-      
-    </div>
-    <footer class="article-footer">
-      <!--<a data-url="http://yoursite.com/2020/01/13/html+css-1/" data-id="ck7rj6jn6000gostj9fbh5ug0" class="article-share-link">Share</a>-->
+      <!--<a data-url="http://yoursite.com/2020/03/12/html+css-3/" data-id="ck7ugclel0012k8tj6dty7gxn" class="article-share-link">Share</a>-->
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li></ul>
