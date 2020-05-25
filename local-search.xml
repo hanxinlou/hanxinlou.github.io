@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>npx create-react-app my-app 安装报错</title>
+    <link href="/2020/05/23/error_create_react_app/"/>
+    <url>/2020/05/23/error_create_react_app/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>记录一下入门<code>React</code>时遇到的坑</p></blockquote><p>首先当然是打开<a href="https://react.docschina.org/docs/create-a-new-react-app.html" target="_blank" rel="noopener">React官网</a>，跟着文档和入门教程先跑一个app试试</p><img src="/2020/05/23/error_create_react_app/img1.jpg" srcset="/img/loading.gif"><p>创建app的命令行语句居然和我们平时敲的<code>npm</code>不一样，官网用的<code>npx</code><br>官方文档还贴心的提示了这不是拼写错误,而是<code>npm 5.2+</code> 附带的 <code>package</code> 运行工具</p><p>所以<code>npx</code>到底是啥？？<br>可以参考<a href="https://www.ruanyifeng.com/blog/2019/02/npx.html" target="_blank" rel="noopener">阮一峰大大的教程</a></p><p>教程中提到了<code>React</code>为啥用<code>npx</code>，是为了<strong>避免全局安装模块</strong></p><img src="/2020/05/23/error_create_react_app/img2.jpg" srcset="/img/loading.gif"><p>虽然<code>Node</code>自带<code>npm</code>模块，可以直接使用 <code>npx</code> 命令。但是我怕万一不能用，那我就先手动安装一下</p><pre><code class="hljs shell">cnpm install -g npx</code></pre><p>如图即安装完成</p><img src="/2020/05/23/error_create_react_app/img3.jpg" srcset="/img/loading.gif"><p>然后跟着官方文档敲下了命令</p><pre><code class="hljs shell">npx create-react-app my-app</code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><img src="/2020/05/23/error_create_react_app/img4.jpg" srcset="/img/loading.gif"><p>敲下后就报错了<br>仔细一看似乎是因为我安装<code>node</code>的路径中存在空格，安装路径是默认的，安装在<code>C:\Program Files\nodejs</code>,从报错中可以看到是因为<strong>不识别空格</strong>所以路径在<code>Files</code>被截断了导致路径错误。</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="一是参考网上有个大佬的解决方案windows下create-react-app-升级至3-3-1版本踩坑记"><a href="#一是参考网上有个大佬的解决方案windows下create-react-app-升级至3-3-1版本踩坑记" class="headerlink" title="一是参考网上有个大佬的解决方案windows下create-react-app 升级至3.3.1版本踩坑记"></a>一是参考网上有个大佬的解决方案<a href="https://segmentfault.com/a/1190000021730681" target="_blank" rel="noopener">windows下create-react-app 升级至3.3.1版本踩坑记</a></h3><img src="/2020/05/23/error_create_react_app/img6.jpg" srcset="/img/loading.gif"><h3 id="二是重装node-js，安装路径换成没有空格的即可"><a href="#二是重装node-js，安装路径换成没有空格的即可" class="headerlink" title="二是重装node.js，安装路径换成没有空格的即可"></a>二是重装<code>node.js</code>，安装路径换成没有空格的即可</h3><p>我选择了第二种，因为本来自己<code>node</code>默认装在C盘后续添加全局模块可能会导致C盘越来越满，重装<code>node</code>虽然麻烦点，但是对我来说还行（反正总是要重装的）。<br>顺便附上一篇<a href="https://zhuanlan.zhihu.com/p/86241466" target="_blank" rel="noopener"><strong>nodejs安装及环境变量配置教程</strong></a>，算是比较全的啦</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑笔记</category>
+      
+      <category>前端</category>
+      
+      <category>React</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Node.js</tag>
+      
+      <tag>React</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>毕设——VR视频反畸变系统设计</title>
+    <link href="/2020/05/20/VR_AntiDistortion/"/>
+    <url>/2020/05/20/VR_AntiDistortion/</url>
+    
+    <content type="html"><![CDATA[<p>记录一下自己写毕设时学习的知识和遇到的一些问题（踩过的坑）</p><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>用于研究VR设备中存在的图像畸变和畸变校正算法,可展示畸变矫正算法的效果</p></blockquote><h4 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h4><ul><li>Electron</li><li>Vue.js</li><li>Node.js</li></ul><h2 id="一、相关概念和算法"><a href="#一、相关概念和算法" class="headerlink" title="一、相关概念和算法"></a>一、相关概念和算法</h2><h3 id="1-失真"><a href="#1-失真" class="headerlink" title="1.失真"></a>1.<a href="https://en.wikipedia.org/wiki/Distortion_(optics)" target="_blank" rel="noopener">失真</a></h3><ul><li>在VR设备中存在的畸变主要是图像畸变中的径向畸变，其他畸变占比不大，故纳入考虑范围。</li><li>径向畸变分为枕形畸变和桶形畸变，如图。<img src="/2020/05/20/VR_AntiDistortion/img1.png" srcset="/img/loading.gif"></li></ul><h3 id="2-遗传算法"><a href="#2-遗传算法" class="headerlink" title="2.遗传算法"></a>2.<a href="https://en.wikipedia.org/wiki/Genetic_algorithm" target="_blank" rel="noopener">遗传算法</a></h3><h3 id="3-轮盘选择法"><a href="#3-轮盘选择法" class="headerlink" title="3.轮盘选择法"></a>3.<a href="https://zhuanlan.zhihu.com/p/62666777" target="_blank" rel="noopener">轮盘选择法</a></h3><h3 id="4-模拟退火算法"><a href="#4-模拟退火算法" class="headerlink" title="4.模拟退火算法"></a>4.<a href="https://www.cnblogs.com/ranjiewen/p/6084052.html" target="_blank" rel="noopener">模拟退火算法</a></h3><h2 id="二、系统功能-算法效果可视化"><a href="#二、系统功能-算法效果可视化" class="headerlink" title="二、系统功能(算法效果可视化)"></a>二、系统功能(算法效果可视化)</h2><h3 id="1-图像处理"><a href="#1-图像处理" class="headerlink" title="1.图像处理"></a>1.图像处理</h3><ul><li>根据所给图像和可交互基础参数实时输出畸变图像和畸变对比图(用于研究图像畸变原理)</li><li>根据所给畸变图像和可交互参数输出矫正过程和反畸变对比图(矫正算法可视化)</li></ul><h3 id="2-视频处理"><a href="#2-视频处理" class="headerlink" title="2.视频处理"></a>2.视频处理</h3><ul><li>根据所给视频采样点和可交互参数输出矫正过程和反畸变对比图(矫正算法可视化)</li><li>根据所给视频和可交互参数输出矫正视频和对比视频(矫正算法可视化)</li><li>预设功能,方便用户载入上次所调参数数据</li></ul><h2 id="三、遇到的问题和相关解决方案"><a href="#三、遇到的问题和相关解决方案" class="headerlink" title="三、遇到的问题和相关解决方案"></a>三、遇到的问题和相关解决方案</h2><h3 id="1-如何实现两张图像的对比图"><a href="#1-如何实现两张图像的对比图" class="headerlink" title="1.如何实现两张图像的对比图"></a>1.如何实现两张图像的对比图</h3><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案:"></a>解决方案:</h4><ul><li>利用 <code>canvas</code> 自带的 <code>Web API</code>–<code>getimagedata()</code> 获取图片的像素数据</li><li>将两张图像的像素数据相减的绝对值添加到原图像素数据的 <code>R</code> 通道</li><li>利用 <code>canvas</code> 自带的 <code>Web API</code>–<code>putimagedata()</code> 将新数据画入 <code>canvas</code></li><li>用 <code>canvas</code> 标签将对比图渲染出来</li></ul><h3 id="2-如何实现读取本地文件-涉及-Electron-跨域"><a href="#2-如何实现读取本地文件-涉及-Electron-跨域" class="headerlink" title="2.如何实现读取本地文件(涉及 Electron 跨域)"></a>2.如何实现读取本地文件(涉及 <code>Electron</code> 跨域)</h3><h4 id="解决方案A-针对于利用-upload-组件上传的文件"><a href="#解决方案A-针对于利用-upload-组件上传的文件" class="headerlink" title="解决方案A (针对于利用 upload 组件上传的文件)"></a>解决方案A (针对于利用 <code>upload</code> 组件上传的文件)</h4><ul><li>根据 <code>upload</code> 组件在文件状态改变时会调用 <code>on-change</code> 钩子，其中函数的默认参数包括文件数据 <code>file</code> </li><li>在定义 <code>on-change</code> 钩子的函数中通过 <code>file</code> 获得本地路径 <code>file.raw.path</code> 和 <code>file.raw</code> 对象</li><li>利用 <code>URL.createObjectURL(file.raw)</code> 获得图片/视频的 <code>URL</code> ( <code>Blob</code> 对象)</li><li>将获得的 <code>URL</code> 赋给 <code>img</code> 或 <code>canvas</code> 标签的 <code>src</code></li></ul><h4 id="解决方案B-针对只有本地路径的文件"><a href="#解决方案B-针对只有本地路径的文件" class="headerlink" title="解决方案B (针对只有本地路径的文件)"></a>解决方案B (针对只有本地路径的文件)</h4><ul><li>利用 <code>Node.js</code> 的<a href="https://javascript.ruanyifeng.com/nodejs/fs.html" target="_blank" rel="noopener"> <code>fs</code> 模块</a>中异步读取文件方法 <code>fs.readFile</code> 读取文件，回调函数中返回 <code>data</code> 实例</li><li>利用 <code>new File(data)</code> 获得文件流 <code>file</code></li><li>利用  <code>URL.createObjectURL(file)</code> 获得图片/视频的 <code>URL</code></li></ul><h3 id="3-Electron主进程与渲染进程之间的通信"><a href="#3-Electron主进程与渲染进程之间的通信" class="headerlink" title="3.Electron主进程与渲染进程之间的通信"></a>3.Electron主进程与渲染进程之间的通信</h3><h4 id="渲染进程向主进程发送消息"><a href="#渲染进程向主进程发送消息" class="headerlink" title="渲染进程向主进程发送消息"></a>渲染进程向主进程发送消息</h4><ul><li>渲染进程引入 <code>ipcRenderer</code>, 利用 <code>ipcRenderer.send(&#39;message&#39;, data)</code>向主进程发送消息</li><li>主进程引入 <code>ipcMain</code> , 利用 <code>ipcMain.on(&#39;message&#39;, (e, f) =&gt; {})</code> 监听渲染进程发送消息的事件</li></ul><h4 id="主进程向渲染进程发送消息"><a href="#主进程向渲染进程发送消息" class="headerlink" title="主进程向渲染进程发送消息"></a>主进程向渲染进程发送消息</h4><ul><li>主进程利用 <code>mainWindow.webContents.send(&#39;message&#39;, data)</code> 向渲染进程发送消息</li><li>渲染进程引入 <code>ipcRenderer</code>, 利用 <code>ipcRenderer.on(&#39;message&#39;, data)</code>监听主进程发送消息的事件</li></ul><h3 id="4-异步同步问题"><a href="#4-异步同步问题" class="headerlink" title="4.异步同步问题"></a>4.异步同步问题</h3><p>由于算法运行需要一定的时间, 考虑异步操作会更符合需求</p><h3 id="5-this-实例指向问题"><a href="#5-this-实例指向问题" class="headerlink" title="5. this 实例指向问题"></a>5. <code>this</code> 实例指向问题</h3><p><code>this</code> 指向当前作用域的实例而不是指向 <code>Vue</code> 实例, 写代码时若要用 <code>this</code> 则需要仔细考虑 <code>this</code> 指向的实例</p><h3 id="6-如何存储预设数据-下次启动客户端-数据仍存在"><a href="#6-如何存储预设数据-下次启动客户端-数据仍存在" class="headerlink" title="6.如何存储预设数据(下次启动客户端 数据仍存在)"></a>6.如何存储预设数据(下次启动客户端 数据仍存在)</h3><h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案:"></a>解决方案:</h4><ul><li>采用 <code>windows</code> 自带的 <code>localStorge</code> 字典存储 键值一一对应</li><li>localStorage是html5提供的一种本地存储的方法，可以把数据存储在本地浏览器，下次打开后仍然可以获取到存储的数据，如果在存储的数据 量小的时候可以起到代替数据库的功能，比cookies更有优越性。</li><li>localStorage只能存储字符串的数据，对于JS中常用的数组或对象却不能直接存储</li><li>可以通过JSON对象提供的parse和stringify进行对象和字符串的转换，进行数据存取</li><li>加载数据是先判断获取的数据是否为空，万一你可能一不小心清理了一下你的浏览器（狗头.jpg)<pre><code class="hljs js"><span class="hljs-comment">// 存储数据</span><span class="hljs-built_in">window</span>.localStorage.setItem(<span class="hljs-string">'name'</span>, data)<span class="hljs-comment">// 读取数据</span><span class="hljs-built_in">window</span>.localStorage.getItem(<span class="hljs-string">'name'</span>)</code></pre><h3 id="四、待优化-或许会优化吧"><a href="#四、待优化-或许会优化吧" class="headerlink" title="四、待优化(或许会优化吧)"></a>四、待优化(或许会优化吧)</h3></li><li><input disabled type="checkbox"> 图片加载过慢 <code>img</code> 标签读取图片像素数据的方式 或许可以用 <code>canvas</code> 标签</li><li><input disabled type="checkbox"> 视频同步卡顿  暂时没有想法</li><li><input disabled type="checkbox"> 加载中的交互逻辑 可以添加 <code>loading</code> 组件</li></ul><p>项目地址：<a href="https://github.com/hanxinlou/AntiDistortionSystem" target="_blank" rel="noopener">毕设——VR反畸变系统设计</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑笔记</category>
+      
+      <category>前端</category>
+      
+      <category>Electron</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DEMO</tag>
+      
+      <tag>Electron</tag>
+      
+      <tag>Vue</tag>
+      
+      <tag>Node.js</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript学习笔记（五）DOM&amp;BOM</title>
+    <link href="/2020/03/17/JS-5/"/>
+    <url>/2020/03/17/JS-5/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>简易聊天机器人（二）</title>
+    <link href="/2020/03/16/chatbot_2/"/>
+    <url>/2020/03/16/chatbot_2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="实现一个简易聊天机器人"><a href="#实现一个简易聊天机器人" class="headerlink" title="实现一个简易聊天机器人"></a>实现一个简易聊天机器人</h2><h3 id="二-实现工作流程"><a href="#二-实现工作流程" class="headerlink" title="二. 实现工作流程"></a>二. 实现工作流程</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>DEMO</tag>
+      
+      <tag>CSS</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>简易聊天机器人（一）实现界面</title>
+    <link href="/2020/03/16/chatbot_1/"/>
+    <url>/2020/03/16/chatbot_1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="实现一个简易聊天机器人"><a href="#实现一个简易聊天机器人" class="headerlink" title="实现一个简易聊天机器人"></a>实现一个简易聊天机器人</h2><h3 id="一-画出聊天机器人的界面"><a href="#一-画出聊天机器人的界面" class="headerlink" title="一. 画出聊天机器人的界面"></a>一. 画出聊天机器人的界面</h3><h4 id="1-拆解网页（HTML）"><a href="#1-拆解网页（HTML）" class="headerlink" title="1. 拆解网页（HTML）"></a>1. 拆解网页（HTML）</h4><img src="/2020/03/16/chatbot_1/img_1.jpg" alt="效果图" width="50%"><ul><li>标题区是一个大的块元素包含一个题目</li><li>对话区是一个列表的展现形式</li><li>输入区是一个输入框加一个按钮</li></ul><h5 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h5><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Chatbot<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"chatbot"</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>            <span class="hljs-comment">&lt;!-- &lt;header&gt; 元素用于展示介绍性内容，通常包含一组介绍性的或是辅助导航的实用元素。 --&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>聊天机器人小二黑<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>        <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"message-list"</span>&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"message-list__item message-list__item-chatbot"</span>&gt;</span>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>您好，小主人，我是聊天机器人小二黑，赶快和我聊天试试吧！<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>            <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>            ...            <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"message-list__item message-list__item-chatbot"</span>&gt;</span>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>真棒，吃的好快呀<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>            <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"input-area"</span>&gt;</span>            <span class="hljs-comment">&lt;!-- 这个输入框需要输入多行文本，普通的输入框是不能换行的，所以用textarea这个元素 --&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>发送<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><h5 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h5><img src="/2020/03/16/chatbot_1/img_2.jpg" alt="效果图" width="50%"> <h4 id="2-布局（CSS）"><a href="#2-布局（CSS）" class="headerlink" title="2. 布局（CSS）"></a>2. 布局（CSS）</h4><h5 id="2-1-整体区域"><a href="#2-1-整体区域" class="headerlink" title="2.1 整体区域"></a>2.1 整体区域</h5><pre><code class="hljs css">* &#123;    <span class="hljs-attribute">background-color</span>: white;    <span class="hljs-comment">/* 设定下全部元素的 padding 和 margin，这样做的目的是清楚元素的   默认 padding 和 margin，方便布局 */</span>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;&#125;<span class="hljs-selector-class">.chatbot</span> &#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">480px</span>;    <span class="hljs-comment">/* 整体区域居中 */</span>    <span class="hljs-attribute">margin</span>: auto;&#125;</code></pre><h5 id="2-2-标题区"><a href="#2-2-标题区" class="headerlink" title="2.2 标题区"></a>2.2 标题区</h5><ul><li><code>flex</code>布局，<code>justify-content、align-items</code>均设置为<code>center</code> </li></ul><pre><code class="hljs css"><span class="hljs-selector-tag">header</span> &#123;    <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;&#125;<span class="hljs-selector-tag">header</span> <span class="hljs-selector-tag">h2</span> &#123;    <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;    <span class="hljs-attribute">justify-content</span>: center;    <span class="hljs-attribute">align-items</span>: center;&#125;</code></pre><h5 id="2-3-对话区"><a href="#2-3-对话区" class="headerlink" title="2.3 对话区"></a>2.3 对话区</h5><ul><li>机器人和用户的对话列表元素均采用<code>flex</code>布局</li><li>设置用户的对话列表元素的<code>flex-direction</code>为<code>row-reverse</code>使得用户的对话靠右</li></ul><pre><code class="hljs css"><span class="hljs-selector-class">.message-list</span> &#123;    <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;&#125;<span class="hljs-selector-class">.message-list__item-chatbot</span>,<span class="hljs-selector-class">.message-list__item-user</span> &#123;    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;    <span class="hljs-attribute">display</span>: flex;&#125;<span class="hljs-selector-class">.message-list__item-user</span> &#123;    <span class="hljs-comment">/* flex-direction 属性指定了内部元素是如何在 flex 容器中布局的，定义了主轴的方向(正方向或反方向)。</span><span class="hljs-comment">    row-reverse表现和row相同，但是置换了主轴起点和主轴终点 */</span>    <span class="hljs-attribute">flex-direction</span>: row-reverse;    <span class="hljs-comment">/* justify-content:flex-end也可以实现同样的效果，但只有一个子元素的时候表现一样</span><span class="hljs-comment">    row-reverse不仅会将子元素的位置全部靠向右边，还会将子元素的排列顺序反转*/</span>&#125;</code></pre><h5 id="2-3-输入区"><a href="#2-3-输入区" class="headerlink" title="2.3 输入区"></a>2.3 输入区</h5><ul><li>布局设置为<code>flex</code>，且设置输入框的<code>flex-grow</code>为<code>1</code></li></ul><pre><code class="hljs css"><span class="hljs-selector-class">.input-area</span> &#123;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;&#125;<span class="hljs-selector-class">.input-area</span> <span class="hljs-selector-tag">textarea</span> &#123;    <span class="hljs-comment">/* flex-grow 属性定义弹性盒子项（flex item）的拉伸因子。 */</span>    <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;&#125;</code></pre><img src="/2020/03/16/chatbot_1/img_3.png" alt="实现效果" width="50%"><h4 id="3-样式美化（CSS）"><a href="#3-样式美化（CSS）" class="headerlink" title="3. 样式美化（CSS）"></a>3. 样式美化（CSS）</h4><pre><code class="hljs css">...<span class="hljs-selector-class">.message-list</span> &#123;    <span class="hljs-attribute">background-color</span>: white;    <span class="hljs-attribute">height</span>: <span class="hljs-number">400px</span>;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;    <span class="hljs-comment">/* 默认的列表标签是有样式的，这个属性就是把列表标签的默认样式给去除掉*/</span>    <span class="hljs-attribute">list-style</span>: none;    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;&#125;<span class="hljs-selector-class">.message-list__item-robot</span> <span class="hljs-selector-tag">div</span>,<span class="hljs-selector-class">.message-list__item-user</span> <span class="hljs-selector-tag">div</span> &#123;    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">20px</span>;    <span class="hljs-comment">/* word-break属性指定了怎样在单词内断行。 */</span>    <span class="hljs-attribute">word-break</span>: break-all;    <span class="hljs-comment">/* word-wrap属性允许将长单词打断并包装到下一行。 */</span>    <span class="hljs-attribute">word-wrap</span>: break-word;    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;    <span class="hljs-attribute">max-width</span>: <span class="hljs-number">200px</span>;&#125;...<span class="hljs-selector-class">.input-area</span> <span class="hljs-selector-tag">textarea</span> &#123;    <span class="hljs-comment">/* 去除轮廓属性，一般输入框聚焦，按钮点击，都会有默认的轮廓*/</span>    <span class="hljs-attribute">outline</span>: none;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">6px</span>;    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">20px</span>;    <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;    <span class="hljs-comment">/* 去除边框属性 */</span>    <span class="hljs-attribute">border</span>: none;    <span class="hljs-attribute">border-bottom-left-radius</span>: <span class="hljs-number">3px</span>;    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">16px</span>;&#125;<span class="hljs-selector-class">.input-area</span> <span class="hljs-selector-tag">button</span> &#123;    <span class="hljs-comment">/* cursor属性定义鼠标指针悬浮在元素上方显示的鼠标光标 */</span>    <span class="hljs-attribute">cursor</span>: pointer;    <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;    <span class="hljs-attribute">border</span>: none;    <span class="hljs-attribute">outline</span>: none;    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#008cee</span>;    <span class="hljs-attribute">color</span>: white;    <span class="hljs-attribute">border-bottom-right-radius</span>: <span class="hljs-number">3px</span>;&#125;</code></pre><img src="/2020/03/16/chatbot_1/img_4.jpg" alt="实现效果" width="50%">]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>DEMO</tag>
+      
+      <tag>CSS</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hexo+Markdown 本地图片不显示问题解决方案</title>
+    <link href="/2020/03/14/md_Invisible_local_imgs/"/>
+    <url>/2020/03/14/md_Invisible_local_imgs/</url>
+    
+    <content type="html"><![CDATA[<p>记录一下Hexo+Markdown中添加图片遇到的问题</p><h3 id="问题情况"><a href="#问题情况" class="headerlink" title="问题情况"></a>问题情况</h3><h4 id="Markdown文件预览图片可以显示但是部署到博客上后图片加载失败"><a href="#Markdown文件预览图片可以显示但是部署到博客上后图片加载失败" class="headerlink" title="Markdown文件预览图片可以显示但是部署到博客上后图片加载失败"></a>Markdown文件预览图片可以显示但是部署到博客上后图片加载失败</h4><img src="/2020/03/14/md_Invisible_local_imgs/img1.jpg" srcset="/img/loading.gif"><img src="/2020/03/14/md_Invisible_local_imgs/img3.jpg" srcset="/img/loading.gif"><hr><h3 id="错误原因"><a href="#错误原因" class="headerlink" title="错误原因"></a>错误原因</h3><h4 id="因为是直接在-Hexoblog-source-posts-目录下创建Markdown文件，且图片文件夹和Markdown文件不同名导致出错"><a href="#因为是直接在-Hexoblog-source-posts-目录下创建Markdown文件，且图片文件夹和Markdown文件不同名导致出错" class="headerlink" title="因为是直接在 /Hexoblog/source/_posts 目录下创建Markdown文件，且图片文件夹和Markdown文件不同名导致出错"></a>因为是直接在 <strong><code>/Hexoblog/source/_posts</code></strong> 目录下创建Markdown文件，且<strong>图片文件夹和Markdown文件不同名</strong>导致出错</h4><img src="/2020/03/14/md_Invisible_local_imgs/img2.jpg" srcset="/img/loading.gif"><hr><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul><li><p><code>hexo</code>命令创建博客：检查 <strong><code>_config.yml</code></strong> 中 <strong><code>post_asset_folder</code></strong> 是否为 <strong><code>true</code></strong> </p>  <img src="/2020/03/14/md_Invisible_local_imgs/img4.jpg" srcset="/img/loading.gif"></li><li><p>直接在 <strong><code>/Hexoblog/source/_posts</code></strong> 目录下创建Markdown文件：注意Markdown文件和图片所在文件夹是否是同名，不同名就会加载失败</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript学习笔记（四）DOM&amp;BOM</title>
+    <link href="/2020/03/14/JS-4/"/>
+    <url>/2020/03/14/JS-4/</url>
+    
+    <content type="html"><![CDATA[<h2 id="七-HTML文档树"><a href="#七-HTML文档树" class="headerlink" title="七. HTML文档树"></a>七. HTML文档树</h2><h3 id="1-HTML树"><a href="#1-HTML树" class="headerlink" title="1. HTML树"></a>1. HTML树</h3><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1'</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-1'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-21'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-3'</span>&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-3-1'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-3-2'</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><img src="/2020/03/14/JS-4/img1.jpg" srcset="/img/loading.gif" width="50%"><ul><li>最上面的节点，叫做<strong>根节点</strong></li><li>这种嵌套关系，就被叫做<strong>父子节点</strong></li></ul><hr><h2 id="八-DOM（Document-Object-Model）文档对象模型"><a href="#八-DOM（Document-Object-Model）文档对象模型" class="headerlink" title="八. DOM（Document Object Model）文档对象模型"></a>八. DOM（Document Object Model）文档对象模型</h2><h3 id="1-DOM是什么"><a href="#1-DOM是什么" class="headerlink" title="1. DOM是什么"></a>1. DOM是什么</h3><ul><li>DOM就是一个<strong>文档树</strong>的对象</li><li>文档树对象的属性,包含了HTML，CSS的结构和内容</li></ul><h3 id="2-节点的操作"><a href="#2-节点的操作" class="headerlink" title="2. 节点的操作"></a>2. 节点的操作</h3><ul><li><strong>创建节点：<code>document.createElement</code></strong></li><li><strong>添加节点：<code>element.appendChild</code></strong></li><li><strong>删除节点：<code>element.removeChild</code></strong></li><li><strong>查找节点：<code>document.getElementById、document.getElementsByClassName、document.querySelector、document.querySelectorAll</code></strong></li></ul><h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1'</span>&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-1'</span>&gt;</span> div1-1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">'div1-2'</span>&gt;</span> div1-2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><pre><code class="hljs css"><span class="hljs-comment">/* CSS */</span>* &#123;    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;&#125;<span class="hljs-selector-id">#div1</span> &#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">justify-content</span>: space-around;    <span class="hljs-attribute">align-items</span>: center;    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">122</span>, <span class="hljs-number">204</span>, <span class="hljs-number">0.7</span>);&#125;<span class="hljs-selector-id">#div1-1</span>, <span class="hljs-selector-id">#div1-2</span>, <span class="hljs-selector-id">#div1-3</span> &#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">justify-content</span>: center;    <span class="hljs-attribute">align-items</span>: center;    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">122</span>, <span class="hljs-number">204</span>);&#125;</code></pre><h4 id="2-1-修改某个节点的内容"><a href="#2-1-修改某个节点的内容" class="headerlink" title="2.1 修改某个节点的内容"></a>2.1 修改某个节点的内容</h4><p>①找到这个节点<br>②改变这个节点的内容</p><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-comment">//找到id为div1-1的这个节点，然后把它放到element这个变量里面</span><span class="hljs-keyword">var</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1-1'</span>)<span class="hljs-comment">//修改innerText属性</span>element.innerText = <span class="hljs-string">'汪小黑'</span></code></pre><ul><li><code>document</code>就是<code>dom</code>对象，整个页面的全部信息都在这个对象里面</li><li>得到的节点(<code>element</code>)是一个 <strong>DOM节点对象</strong> ，这个节点的文本就存储在这个节点的 <strong><code>innerText</code>属性</strong> 里面</li></ul><h4 id="2-2-删掉某个子节点"><a href="#2-2-删掉某个子节点" class="headerlink" title="2.2 删掉某个子节点"></a>2.2 删掉某个子节点</h4><p>①找到要删除的子节点<br>②找到子节点节点的父节点<br>③删除子节点</p><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">var</span> childElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1-2'</span>)<span class="hljs-keyword">var</span> ParentElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1'</span>)ParentElement.removeChild(childElement)</code></pre><h4 id="2-3-增加子节点"><a href="#2-3-增加子节点" class="headerlink" title="2.3 增加子节点"></a>2.3 增加子节点</h4><p>①找到要增加子节点的节点<br>②创建一个节点<br>③给节点增加子节点</p><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">var</span> parentElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1'</span>)<span class="hljs-keyword">var</span> childElement = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'div'</span>)parentElement.appendChild(childElement)</code></pre><h3 id="3-DOM事件"><a href="#3-DOM事件" class="headerlink" title="3. DOM事件"></a>3. DOM事件</h3><ul><li>每个节点都可以<strong>监听</strong>发生在自己身上的<strong>事件</strong></li><li>事件包括<strong>单击,双击，键盘，滚轮，鼠标移入,移出</strong>等等</li></ul><h4 id="3-1-流程"><a href="#3-1-流程" class="headerlink" title="3.1 流程"></a>3.1 流程</h4><ul><li>找到需要写DOM事件的节点</li><li>监听节点上的某个事件</li><li>写触发某个事件之后的逻辑</li></ul><h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><p><strong>点击div1-1，div1变黄</strong></p><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">var</span> element = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1-1'</span>)element.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;    <span class="hljs-keyword">var</span> parentEle = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'div1'</span>)    parentEle.style.backgroundColor = <span class="hljs-string">'yellow'</span>&#125;</code></pre><p><strong>Tips：每个节点的CSS，存储在这个节点的style中</strong></p><hr><h2 id="九-BOM"><a href="#九-BOM" class="headerlink" title="九. BOM"></a>九. BOM</h2><h3 id="1-BOM是什么"><a href="#1-BOM是什么" class="headerlink" title="1. BOM是什么"></a>1. BOM是什么</h3><ul><li>BOM（Browser Object Model），即<strong>浏览器对象模型</strong></li><li>BOM核心对象是<strong>window</strong></li><li>六大模块：</li></ul><p><strong>①document：文档对象</strong><br><strong>②frames：窗口中所有命名的框架</strong><br><strong>③history：当前页面历史记录</strong><br><strong>④location：当前页面地址信息</strong><br><strong>⑤navigator：浏览器相关信息</strong><br><strong>⑥screen：用户显示屏幕相关属性</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript学习笔记（三）函数&amp;对象</title>
+    <link href="/2020/03/12/JS-3/"/>
+    <url>/2020/03/12/JS-3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="五-函数"><a href="#五-函数" class="headerlink" title="五. 函数"></a>五. 函数</h2><h3 id="1-函数定义：关键字-函数名"><a href="#1-函数定义：关键字-函数名" class="headerlink" title="1. 函数定义：关键字+函数名"></a>1. 函数定义：关键字+函数名</h3><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-function"><span class="hljs-keyword">function</span> 函数名(<span class="hljs-params">参数</span>) </span>&#123;    ...    <span class="hljs-keyword">return</span> ... <span class="hljs-comment">//如果没有`return`，函数返回值就是`undefined`</span>&#125;</code></pre><h3 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2. 构造函数"></a>2. 构造函数</h3><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-function"><span class="hljs-keyword">function</span> 函数名(<span class="hljs-params">参数<span class="hljs-number">1</span>, 参数<span class="hljs-number">2</span>, ...</span>) </span>&#123;    <span class="hljs-keyword">this</span>.属性<span class="hljs-number">1</span> = 参数<span class="hljs-number">1</span>,        <span class="hljs-keyword">this</span>.属性<span class="hljs-number">2</span> = 参数<span class="hljs-number">2</span>,    ...    <span class="hljs-keyword">this</span>.方法<span class="hljs-number">1</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">参数</span>) </span>&#123;      ...        <span class="hljs-keyword">return</span> ...    &#125;    ...&#125;<span class="hljs-comment">//new是一个用于构造函数的关键字</span><span class="hljs-keyword">var</span> example1 = <span class="hljs-keyword">new</span> 函数名(参数<span class="hljs-number">1</span>, 参数<span class="hljs-number">2</span>, ...)<span class="hljs-keyword">var</span> example1 = <span class="hljs-keyword">new</span> 函数名(参数<span class="hljs-number">1</span>, 参数<span class="hljs-number">2</span>, ...)...</code></pre><ul><li><code>this</code>就指代<strong>当前这个对象</strong>，可以用<code>this</code>来获取当前对象的属性、方法</li><li><code>this</code> 不是变量，是关键词，所以<strong>无法改变 <code>this</code> 的值</strong></li></ul><h3 id="3-箭头函数"><a href="#3-箭头函数" class="headerlink" title="3. 箭头函数"></a>3. 箭头函数</h3><ul><li>箭头函数允许使用简短的语法来编写函数表达式</li><li>不需要 function 关键字、return 关键字和花括号</li></ul><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-comment">// ES5</span><span class="hljs-keyword">var</span> x = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, y</span>) </span>&#123;    <span class="hljs-keyword">return</span> x * y;&#125;<span class="hljs-comment">// ES6</span><span class="hljs-keyword">const</span> x = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x * y;</code></pre><p>Tips: <strong>箭头函数没有自己的 <code>this</code></strong></p><h3 id="4-函数参数"><a href="#4-函数参数" class="headerlink" title="4. 函数参数"></a>4. 函数参数</h3><h4 id="4-1-参数默认"><a href="#4-1-参数默认" class="headerlink" title="4.1 参数默认"></a>4.1 参数默认</h4><p>如果调用参数时省略了参数（少于被声明的数量），则<strong>丢失的值被设置为：<code>undefined</code></strong></p><h4 id="4-2-arguments-对象"><a href="#4-2-arguments-对象" class="headerlink" title="4.2 arguments 对象"></a>4.2 arguments 对象</h4><ul><li>如果函数调用的参数太多（超过声明），则可以使用 <strong><code>arguments</code> 对象</strong>来获得这些参数</li><li><strong><code>arguments</code></strong> 对象包含函数调用时使用的<strong>参数数组</strong></li></ul><h4 id="4-3-参数通过值传递-amp-对象是由引用传递的"><a href="#4-3-参数通过值传递-amp-对象是由引用传递的" class="headerlink" title="4.3 参数通过值传递&amp;对象是由引用传递的"></a>4.3 参数通过值传递&amp;对象是由引用传递的</h4><ul><li>如果函数改变了参数的值，它<strong>不会改变参数的原始值</strong></li><li>参数的改变在函数之外是<strong>不可见</strong>的</li><li>如果函数改变了对象属性，它也<strong>改变了原始值</strong></li><li>对象属性的改变在函数之外是<strong>可见</strong>的。</li></ul><hr><h2 id="六-对象"><a href="#六-对象" class="headerlink" title="六. 对象"></a>六. 对象</h2><h3 id="1-对象定义"><a href="#1-对象定义" class="headerlink" title="1. 对象定义"></a>1. 对象定义</h3><h4 id="1-1-对象文字"><a href="#1-1-对象文字" class="headerlink" title="1.1 对象文字"></a>1.1 对象文字</h4><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">var</span> 变量名 = &#123;    属性: 属性值，<span class="hljs-comment">//不同的属性用逗号分隔</span>    ...    <span class="hljs-comment">//声明方法省略'function'</span>    函数名()&#123;        ...    &#125;&#125;</code></pre><h4 id="1-2-关键词-new"><a href="#1-2-关键词-new" class="headerlink" title="1.2 关键词 new"></a>1.2 关键词 new</h4><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">var</span> person = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();person.firstName = <span class="hljs-string">"Bill"</span>;person.lastName = <span class="hljs-string">"Gates"</span>;person.age = <span class="hljs-number">50</span>;person.eyeColor = <span class="hljs-string">"blue"</span>;</code></pre><h3 id="2-调用函数的属性"><a href="#2-调用函数的属性" class="headerlink" title="2. 调用函数的属性"></a>2. 调用函数的属性</h3><p><strong><code>对象.属性 or 对象[属性]</code></strong></p><h3 id="3-调用函数的方法"><a href="#3-调用函数的方法" class="headerlink" title="3. 调用函数的方法"></a>3. 调用函数的方法</h3><p><strong><code>对象.函数名()</code></strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript学习笔记（二）条件判断&amp;循环</title>
+    <link href="/2020/03/12/JS-2/"/>
+    <url>/2020/03/12/JS-2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="三-条件判断"><a href="#三-条件判断" class="headerlink" title="三. 条件判断"></a>三. 条件判断</h2><h3 id="1-if"><a href="#1-if" class="headerlink" title="1. if"></a>1. if</h3><ul><li>使用 <strong><code>if</code></strong> 来规定要执行的代码块，如果指定条件为 <strong><code>true</code></strong></li><li>使用 <strong><code>else if</code></strong> 来规定要测试的新条件，如果第一个条件为 <strong><code>false</code></strong></li><li>使用 <strong><code>else</code></strong> 来规定要执行的代码块，如果相同的条件为 <strong><code>false</code></strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">if</span> (条件 <span class="hljs-number">1</span>) &#123;    条件 <span class="hljs-number">1</span> 为 <span class="hljs-literal">true</span> 时执行的代码块&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (条件 <span class="hljs-number">2</span>) &#123;    条件 <span class="hljs-number">1</span> 为 <span class="hljs-literal">false</span> 而条件 <span class="hljs-number">2</span> 为 <span class="hljs-literal">true</span> 时执行的代码块&#125; <span class="hljs-keyword">else</span> &#123;    条件 <span class="hljs-number">1</span> 和条件 <span class="hljs-number">2</span> 同时为 <span class="hljs-literal">false</span> 时执行的代码块&#125;</code></pre></li></ul><h3 id="2-switch"><a href="#2-switch" class="headerlink" title="2. switch"></a>2. switch</h3><ul><li>使用 <strong><code>switch</code></strong> 来规定多个被执行的备选代码块</li><li>计算一次 <strong><code>switch</code> 表达式</strong></li><li>把表达式的值与<strong>每个 <code>case</code> 的值</strong>进行对比</li><li>如果存在匹配，则<strong>执行关联代码</strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">switch</span> (表达式) &#123;    <span class="hljs-keyword">case</span> n:        代码块        <span class="hljs-keyword">break</span>;    <span class="hljs-keyword">case</span> n:        代码块        <span class="hljs-keyword">break</span>;    <span class="hljs-keyword">default</span>:        默认代码块&#125;</code></pre></li></ul><hr><h2 id="四-循环"><a href="#四-循环" class="headerlink" title="四. 循环"></a>四. 循环</h2><h3 id="1-For-循环"><a href="#1-For-循环" class="headerlink" title="1. For 循环"></a>1. For 循环</h3><ul><li>语句 1 在循环（代码块）<strong>开始之前</strong>执行</li><li>语句 2 定义运行循环（代码块）的<strong>条件</strong></li><li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">for</span> (语句 <span class="hljs-number">1</span>; 语句 <span class="hljs-number">2</span>; 语句 <span class="hljs-number">3</span>) &#123;    要执行的代码块&#125;</code></pre></li></ul><h3 id="2-For-In-循环"><a href="#2-For-In-循环" class="headerlink" title="2. For/In 循环"></a>2. For/In 循环</h3><ul><li><strong>遍历对象属性</strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">var</span> person = &#123; <span class="hljs-attr">fname</span>: <span class="hljs-string">"Bill"</span>, <span class="hljs-attr">lname</span>: <span class="hljs-string">"Gates"</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">62</span> &#125;;<span class="hljs-keyword">var</span> text = <span class="hljs-string">""</span>;<span class="hljs-keyword">var</span> x;<span class="hljs-keyword">for</span> (x <span class="hljs-keyword">in</span> person) &#123;    text += person[x];&#125;</code></pre></li></ul><h3 id="3-While-循环"><a href="#3-While-循环" class="headerlink" title="3. While 循环"></a>3. While 循环</h3><ul><li>while 循环会<strong>一直循环</strong>代码块，<strong>只要指定的条件为 <code>true</code></strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">while</span> (条件) &#123;    要执行的代码块&#125;</code></pre></li></ul><h3 id="4-Do-While-循环"><a href="#4-Do-While-循环" class="headerlink" title="4. Do/While 循环"></a>4. Do/While 循环</h3><ul><li><strong><code>do/while</code> 循环</strong>是 <code>while</code> 循环的<strong>变体</strong></li><li>在检查<strong>条件是否为真之前</strong>，这种循环会执行一次代码块，然后只要条件为真就会<strong>重复循环</strong>。<pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span><span class="hljs-keyword">do</span> &#123;    要执行的代码块&#125;<span class="hljs-keyword">while</span> (条件);</code></pre></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript学习笔记（一）变量&amp;逻辑</title>
+    <link href="/2020/03/12/JS-1/"/>
+    <url>/2020/03/12/JS-1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一. 变量"></a>一. 变量</h2><h3 id="1-数据类型及操作"><a href="#1-数据类型及操作" class="headerlink" title="1. 数据类型及操作"></a>1. 数据类型及操作</h3><h4 id="1-1-类型"><a href="#1-1-类型" class="headerlink" title="1.1 类型"></a>1.1 类型</h4><ul><li><strong>字符串</strong></li><li><strong>数字</strong></li><li><strong>布尔值</strong></li><li><strong><code>undefined</code></strong></li><li><strong><code>null</code></strong></li></ul><h5 id="null和undefined的区别"><a href="#null和undefined的区别" class="headerlink" title="null和undefined的区别"></a><code>null</code>和<code>undefined</code>的区别</h5><ul><li><code>null</code>是一个表示 <strong>“无”的对象</strong>，<strong>转为数值时为<code>0</code></strong>；<code>undefined</code>是一个表示 <strong>“无”的原始值</strong>，<strong>转为数值时为<code>NaN</code></strong>。</li><li><code>null</code>的使用场合：</li></ul><p>1.给对象赋值的时候使用。<br>2.作为函数的参数，表示该函数的参数不是对象。<br>3.作为对象原型链的终点。<br>4.<code>Object.getPrototypeOf(Object.prototype)</code>// null</p><ul><li><code>undefined</code>的使用场合：</li></ul><p>1.变量被声明了，但没有赋值时，就等于<code>undefined</code>。<br>2.调用函数时，应该提供的参数没有提供，该参数等于<code>undefined</code>。<br>3.对象没有赋值的属性，该属性的值为<code>undefined</code>。<br>4.函数没有返回值时，默认返回<code>undefined</code>。</p><p><strong>判断一个数字是不是<code>NAN</code>还要用 <code>Number.isNaN()</code> 来判断</strong></p><h4 id="1-2-操作"><a href="#1-2-操作" class="headerlink" title="1.2 操作"></a>1.2 操作</h4><h5 id="①-字符串拼接-“-”"><a href="#①-字符串拼接-“-”" class="headerlink" title="① 字符串拼接 “+”"></a>① 字符串拼接 “<code>+</code>”</h5><p>所有数据类型都会被转为<strong>字符串类型</strong></p><h5 id="②-数学运算-“-”、“-”、“-”、“-”、“-”"><a href="#②-数学运算-“-”、“-”、“-”、“-”、“-”" class="headerlink" title="② 数学运算 “+”、“-”、“*”、“/”、“%”"></a>② 数学运算 “<code>+</code>”、“<code>-</code>”、“<code>*</code>”、“<code>/</code>”、“<code>%</code>”</h5><p>所有数据都会被转换成<strong>数字类型</strong></p><hr><h2 id="二-逻辑"><a href="#二-逻辑" class="headerlink" title="二. 逻辑"></a>二. 逻辑</h2><ul><li>大于 <strong><code>&gt;</code></strong></li><li>小于 <strong><code>&lt;</code></strong></li><li>大于等于 <strong><code>&gt;=</code></strong></li><li>小于等于 <strong><code>&lt;=</code></strong></li><li>等于 <strong><code>===</code></strong> or <strong><code>==</code></strong></li></ul><h3 id="Tips-区分-和"><a href="#Tips-区分-和" class="headerlink" title="Tips: 区分 === 和 =="></a>Tips: 区分 <code>===</code> 和 <code>==</code></h3><ul><li><code>===</code> 如果数据类型<strong>不同</strong>，直接 <strong><code>false</code></strong>；</li><li><code>==</code> 如果数据类型<strong>不同</strong>，先<strong>转换成相同的数据类型</strong>，再比较</li><li><strong>在js里最好用<code>===</code></strong></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>JavaScript</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HTML、CSS学习笔记（三）布局</title>
+    <link href="/2020/03/12/html+css-3/"/>
+    <url>/2020/03/12/html+css-3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><ul><li>在做前端的过程中，主要操控的就是<strong>块元素</strong>，块元素才是影响布局的关键</li></ul><h3 id="1-position（★★★★）"><a href="#1-position（★★★★）" class="headerlink" title="1. position（★★★★）"></a>1. position（★★★★）</h3><p><code>position</code>默认值是<code>static</code></p><h4 id="重要属性"><a href="#重要属性" class="headerlink" title="重要属性"></a>重要属性</h4><ul><li><p>1.<code>position：absolute</code>绝对定位<br>设置了<code>position</code>属性之后,会激活4个属性——<code>top，left，bottom，right</code>，这四个属性相对于它的<strong>第一个<code>position</code>不为<code>static</code>的父元素</strong></p></li><li><p>2.<code>position：relative</code> 相对定位<br>在相对定位的情况下，色块原来的位置不会被其他元素挤占</p></li><li><p>3.<code>position：fixed</code> 对于浏览器窗口定位<br>无论页面怎么滚动，<code>fixed</code>的元素，相对于屏幕的位置都不变</p></li></ul><h3 id="2-flex布局"><a href="#2-flex布局" class="headerlink" title="2. flex布局"></a>2. flex布局</h3><ul><li><code>flex</code>它可以把「<strong>块</strong>」元素变得有弹性，可伸缩</li><li><code>flex</code>布局的父元素会把一级的子元素变成<strong>可以伸缩，易排列</strong>的盒子,极大的提高了布局的效率</li><li>遇到布局问题，先考虑能不能用<code>flex</code>解决,再想其他的</li></ul><h3 id="3-如何实现常见的页面布局"><a href="#3-如何实现常见的页面布局" class="headerlink" title="3. 如何实现常见的页面布局"></a>3. 如何实现常见的页面布局</h3><h4 id="3-1-设置flex布局"><a href="#3-1-设置flex布局" class="headerlink" title="3.1 设置flex布局"></a>3.1 设置<code>flex</code>布局</h4><h4 id="3-2-设置justify-content延展方向-横向"><a href="#3-2-设置justify-content延展方向-横向" class="headerlink" title="3.2 设置justify-content延展方向(横向)"></a>3.2 设置<code>justify-content</code>延展方向(横向)</h4><ul><li><p><code>flex-start</code></p><img src="/2020/03/12/html+css-3/img6.jpg" srcset="/img/loading.gif" width="50%" align="left/"></li><li><p><code>flex-end</code></p><img src="/2020/03/12/html+css-3/img7.jpg" srcset="/img/loading.gif" width="50%" align="left/"></li><li><p><code>center</code></p><img src="/2020/03/12/html+css-3/img8.jpg" srcset="/img/loading.gif" width="50%" align="left/"></li><li><p><code>space-between &amp; space-around</code></p><img src="/2020/03/12/html+css-3/img9.jpg" srcset="/img/loading.gif" width="50%" align="left/"></li></ul><h4 id="3-3-设置align-items"><a href="#3-3-设置align-items" class="headerlink" title="3.3 设置align-items"></a>3.3 设置<code>align-items</code></h4><ul><li><code>flex-start &amp; flex-end &amp; center</code><img src="/2020/03/12/html+css-3/img10.jpg" srcset="/img/loading.gif" width="50%" align="left/"></li></ul><h4 id="3-4-微调子元素的位置"><a href="#3-4-微调子元素的位置" class="headerlink" title="3.4 微调子元素的位置"></a>3.4 微调子元素的位置</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CSS</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HTML+CSS实现元素周期表</title>
+    <link href="/2020/01/15/ChemicalElements/"/>
+    <url>/2020/01/15/ChemicalElements/</url>
+    
+    <content type="html"><![CDATA[<p>逛B站的时候看到一个视频<a href="https://www.bilibili.com/video/av80244004" target="_blank" rel="noopener">「CSS 案例」元素周期表</a><br>这不是2030年Adobe全家桶嘛<br>有点好看嘿嘿嘿<br>于是跟着Up主自己写了一份元素周期表<br>记录下自己写的时候的思路</p><h3 id="实现效果图"><a href="#实现效果图" class="headerlink" title="实现效果图"></a>实现效果图</h3><img src="/2020/01/15/ChemicalElements/image.png" srcset="/img/loading.gif"><h3 id="1-拆解网页"><a href="#1-拆解网页" class="headerlink" title="1.拆解网页"></a>1.拆解网页</h3><ul><li><p>首先将整个页面拆成顶部(<code>element-top</code>)和底部(<code>element-bottom</code>)两部分，如图</p><img src="/2020/01/15/ChemicalElements/image1.png" srcset="/img/loading.gif"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>元素周期表<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element-top"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element-bottom"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre></li><li><p>顶部可以拆分成18列(<code>col</code>)，如图</p><img src="/2020/01/15/ChemicalElements/image2.png" srcset="/img/loading.gif"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element-top"</span>&gt;</span>    <span class="hljs-comment">&lt;!--总共18个&lt;div&gt; --&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    ...    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></li><li><p>底部可以拆分成2行(<code>line</code>)，如图</p><img src="/2020/01/15/ChemicalElements/image3.png" srcset="/img/loading.gif"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element-bottom"</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"line"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"line"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></li><li><p>顶部每一列都可以拆分成对应的元素(<code>element</code>)，如图</p><img src="/2020/01/15/ChemicalElements/image4.png" srcset="/img/loading.gif"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col"</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element"</span>&gt;</span>H<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    ...    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element"</span>&gt;</span>Fr<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></li><li><p>底部每一行也都可以拆分成对应的元素(<code>element</code>)，如图</p><img src="/2020/01/15/ChemicalElements/image5.png" srcset="/img/loading.gif"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"line"</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element"</span>&gt;</span>La<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>    ...    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"element"</span>&gt;</span>Lu<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></li></ul><h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><ul><li><p>顶部采用<code>flex</code>布局并设置<code>justify-content</code>为<code>center</code>使得<code>col</code>位于父布局的中心</p><img src="/2020/01/15/ChemicalElements/image6.png" srcset="/img/loading.gif"><pre><code class="hljs css"><span class="hljs-selector-class">.element-top</span>&#123;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">justify-content</span>: center;&#125;</code></pre></li><li><p>顶部的每一列采用顶部采用<code>flex</code>布局、设置<code>flex-direction</code>为<code>column</code>、<code>justify-content</code>为<code>flex-end</code>使得<code>element</code>纵向排列并位于父布局的底部</p><img src="/2020/01/15/ChemicalElements/image7.png" srcset="/img/loading.gif"><pre><code class="hljs css"><span class="hljs-selector-class">.col</span>&#123;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">flex-direction</span>: column;    <span class="hljs-attribute">justify-content</span>: flex-end;&#125;</code></pre></li><li><p>底部的每一行采用<code>flex</code>布局并设置<code>justify-content</code>为<code>center</code>使得<code>element</code>位于父布局的中心</p><img src="/2020/01/15/ChemicalElements/image8.png" srcset="/img/loading.gif"><pre><code class="hljs css"><span class="hljs-selector-class">.line</span>&#123;    <span class="hljs-attribute">display</span>: flex;    <span class="hljs-attribute">justify-content</span>: center;&#125;</code></pre></li></ul><h3 id="设置盒模型属性"><a href="#设置盒模型属性" class="headerlink" title="设置盒模型属性"></a>设置盒模型属性</h3><ul><li><p>选择所有元素设置共同属性</p><pre><code class="hljs css">*&#123;    <span class="hljs-comment">/* *就是选择所有元素 */</span>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;    <span class="hljs-comment">/* border-box:width 和 height 属性包括内容，内边距和边框，但不包括外边距 */</span>    <span class="hljs-attribute">box-sizing</span>:border-box;&#125;</code></pre></li><li><p>设置顶部盒模型属性</p><pre><code class="hljs css"><span class="hljs-selector-class">.element-top</span>&#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">80rem</span>;    <span class="hljs-attribute">height</span>: <span class="hljs-number">25rem</span>;    <span class="hljs-attribute">margin</span>: <span class="hljs-number">5rem</span> <span class="hljs-number">8rem</span> <span class="hljs-number">3rem</span> <span class="hljs-number">8rem</span>;    <span class="hljs-attribute">background </span>: lightblue&#125;</code></pre></li></ul><p><strong>Tip:</strong> 为了更好地观察布局和盒模型可以添加<code>background</code>属性，完成所有盒模型之后再删除即可</p><ul><li><p>设置顶部每一列盒模型属性</p><pre><code class="hljs css"><span class="hljs-selector-class">.col</span>&#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">4rem</span>;    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0rem</span> <span class="hljs-number">0.2rem</span>;    <span class="hljs-attribute">background </span>: lightgray&#125;</code></pre></li><li><p>设置底部部盒模型属性</p><pre><code class="hljs css"><span class="hljs-selector-class">.element-bottom</span>&#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">80rem</span>;    <span class="hljs-attribute">height</span>: <span class="hljs-number">25rem</span>;    <span class="hljs-attribute">margin</span>: <span class="hljs-number">3rem</span> <span class="hljs-number">8rem</span> <span class="hljs-number">3rem</span> <span class="hljs-number">7.5rem</span>;    <span class="hljs-attribute">background </span>: lightgreen&#125;</code></pre></li><li><p>设置底部每一行盒模型属性</p><pre><code class="hljs css"><span class="hljs-selector-class">.line</span>&#123;    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;    <span class="hljs-attribute">height</span>: <span class="hljs-number">4rem</span>;    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0.5rem</span>;    <span class="hljs-attribute">background </span>: lightgray&#125;</code></pre></li></ul><h3 id="设置盒模型颜色"><a href="#设置盒模型颜色" class="headerlink" title="设置盒模型颜色"></a>设置盒模型颜色</h3><p>根据效果图发现不同类别的元素其配色是不同的，所以新建颜色的类选择器来区分这些配色不同的元素<br>比如<strong>氢</strong>一类的元素其颜色的类选择器如下</p><pre><code class="hljs css"><span class="hljs-selector-class">.base-color</span>&#123;    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">0</span>, <span class="hljs-number">33</span>, <span class="hljs-number">63</span>);    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">154</span>, <span class="hljs-number">206</span>, <span class="hljs-number">255</span>);    <span class="hljs-attribute">border</span>: <span class="hljs-number">4px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">154</span>, <span class="hljs-number">206</span>, <span class="hljs-number">255</span>);&#125;</code></pre><p>以此新建<code>color-1、color-2...</code>共10个类选择器来区分</p><h3 id="字体大小问题"><a href="#字体大小问题" class="headerlink" title="字体大小问题"></a>字体大小问题</h3><p>做到这一步其实已经算是完成了但是一看效果图这个字体怎么这么小？！！！<br><img src="/2020/01/15/ChemicalElements/image10.png" srcset="/img/loading.gif"><br>噢我忘了设置字体大小<br>新建2个字体大小的类选择器<code>font-size1、font-size2</code></p><pre><code class="hljs css"><span class="hljs-selector-class">.fontsize-1</span>&#123;    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">30px</span> ;&#125;<span class="hljs-selector-class">.fontsize-2</span>&#123;    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">27px</span> ;&#125;</code></pre><p>如果没有设置两个选择器你可能因为某些元素是三个英文字母所以越过边界而抓狂<br><img src="/2020/01/15/ChemicalElements/image9.png" srcset="/img/loading.gif"></p><p>所以还是乖乖建两个来区分吧</p><p>到这里就画完<del>2030Adobe全家桶</del>元素周期表了<br>原Up主还做了点击的特效，我有空研究下再更新23333<br>源码已经放在<a href="https://github.com/hanxinlou/ChemicalElements" target="_blank" rel="noopener">github</a>上了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DEMO</tag>
+      
+      <tag>CSS</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hexo+Markdown修改图片样式</title>
+    <link href="/2020/01/14/hexo_markdown_image/"/>
+    <url>/2020/01/14/hexo_markdown_image/</url>
+    
+    <content type="html"><![CDATA[<p>记录一下Hexo+Markdown中添加图片遇到的问题</p><h3 id="1-Markdown中添加图片的方式"><a href="#1-Markdown中添加图片的方式" class="headerlink" title="1.Markdown中添加图片的方式"></a>1.Markdown中添加图片的方式</h3><ul><li><p>自带插入语句 </p><pre><code class="hljs plain">![图片名称](url)</code></pre></li><li><p>利用HTML标签<code>&lt;img&gt;</code></p><pre><code class="hljs plain">&lt;img src &#x3D; &quot;url&quot; alt&#x3D;&quot;图片名称&quot;&gt;</code></pre><p>Tips:<code>url</code>可以是本地图片的路径也可以网上图片的<code>url</code>;图片名称可不写</p></li></ul><h3 id="2-如何修改图片大小"><a href="#2-如何修改图片大小" class="headerlink" title="2.如何修改图片大小"></a>2.如何修改图片大小</h3><ul><li>利用HTML标签<code>&lt;img&gt;</code><pre><code class="hljs plain">&lt;img src&#x3D;&quot;&#x2F;day1-4&#x2F;day2_3.jpg&quot; width &#x3D; &quot;50&quot; height &#x3D; &quot;50&quot; &gt;</code></pre></li></ul><h3 id="3-图片居中问题"><a href="#3-图片居中问题" class="headerlink" title="3.图片居中问题"></a>3.图片居中问题</h3><ul><li><p>在第二步<code>&lt;img&gt;</code>标签里加上<code>align = &quot;center&quot;</code></p><pre><code class="hljs plain">&lt;img src&#x3D;&quot;&#x2F;day1-4&#x2F;day2_3.jpg&quot; width &#x3D; &quot;50&quot; height &#x3D; &quot;50&quot; align &#x3D; &quot;center&quot;&gt;</code></pre></li><li><p>图片外围添加<code>&lt;div&gt;</code>标签，标签里加上<code>align = &quot;center&quot;</code></p><pre><code class="hljs plain">&lt;div  align&#x3D;&quot;center&quot;&gt;        &lt;img src&#x3D;&quot;&#x2F;day1-4&#x2F;day2_3.jpg&quot; width &#x3D; &quot;50&quot; height &#x3D; &quot;50&quot; &gt;&lt;&#x2F;div&gt;</code></pre><p>Tip: Markdown 中图片默认居左</p></li></ul><h3 id="4-Hexo图片布局与Markdown中图片布局不一样"><a href="#4-Hexo图片布局与Markdown中图片布局不一样" class="headerlink" title="4.Hexo图片布局与Markdown中图片布局不一样"></a>4.Hexo图片布局与Markdown中图片布局不一样</h3><p>首先Markdown文件部署到Hexo博客上图片是默认填充左右两端的<br>如果Markdown中设置图片是居左但是在Hexo上发现图片并没有居左<br>应该是选择的博客主题里默认设置了图片的<code>margin</code><br>解决办法</p><ul><li><code>/themes/你的主题/source/css/_partial</code>目录下找到<code>article.styl</code>文件</li><li>找到<code>img, video</code>下的<code>margin</code>进行修改即可</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HTML、CSS学习笔记（二）CSS&amp;盒模型</title>
+    <link href="/2020/01/13/html+css-2/"/>
+    <url>/2020/01/13/html+css-2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="1-介绍CSS"><a href="#1-介绍CSS" class="headerlink" title="1. 介绍CSS"></a>1. 介绍CSS</h3><ul><li>HTML是用来描述页面骨架的，CSS就是把页面变好看，写页面CSS样式的</li></ul><h3 id="2-行内元素和块元素"><a href="#2-行内元素和块元素" class="headerlink" title="2. 行内元素和块元素"></a>2. 行内元素和块元素</h3><ul><li>行内元素就是<strong>不换行</strong>的元素，常见的有<code>span，strong</code>这种,一般都是一些<strong>设置文本</strong>的元素</li><li>块元素（盒模型），这种元素都<strong>有自己的大小，宽高</strong>，方便在页面上布局<br>每个块元素都有自己的盒模型</li><li>行内块元素，同时具备<strong>宽高和不换行</strong>两个属性</li></ul><h3 id="3-盒模型"><a href="#3-盒模型" class="headerlink" title="3. 盒模型"></a>3. 盒模型</h3><div style="display: flex; justify-cntent: flex-start"><img src="/2020/01/13/html+css-2/img3.jpg" srcset="/img/loading.gif" width="50%"><img src="/2020/01/13/html+css-2/img4.jpg" srcset="/img/loading.gif" width="50%"></div><ul><li>红色是内容；蓝色区域是内边距；绿色是边框；棕色是外边距</li><li>宽度就是绿色+蓝色+红色部分(内容+内边距+边框)</li></ul><h3 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4. 使用方式"></a>4. 使用方式</h3><h4 id="4-1-内联样式"><a href="#4-1-内联样式" class="headerlink" title="4.1 内联样式"></a>4.1 内联样式</h4><ul><li>每个标签是有一个<code>style</code>属性的，这个<code>style</code>属性可以直接作用于标签的样式  <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"    </span></span><span class="hljs-tag"><span class="hljs-string">width: 100px;</span></span><span class="hljs-tag"><span class="hljs-string">padding: 10px 10px 10px 10px;</span></span><span class="hljs-tag"><span class="hljs-string">background-color: #3385ff;</span></span><span class="hljs-tag"><span class="hljs-string">color: white;</span></span><span class="hljs-tag"><span class="hljs-string">margin: 100px 100px 100px 100px;</span></span><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距</span><span class="hljs-comment">padding-top，padding-right，padding-bottom,padding-left</span><span class="hljs-comment">style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></code></pre></li></ul><h4 id="4-2-嵌入方式"><a href="#4-2-嵌入方式" class="headerlink" title="4.2 嵌入方式"></a>4.2 嵌入方式</h4><ul><li><p>把<code>style</code>属性里写的css全部放到一起</p>  <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css"><span class="hljs-selector-class">.search-btn</span> &#123;</span>    width: 100px;    padding: 10px 10px 10px 10px;<span class="css">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#3385ff</span>;</span>    color: white;    margin: 100px 100px 100px 100px;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"search-btn"</span>&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p>  多了一个<code>style</code>标签，浏览器会解析<code>style</code>标签里的所有规则，然后应用到页面的元素里面，<br>  为了让浏览器知道这些样式要用到哪个标签，就需要<strong>选择器选择标签</strong></p>  <img src="/2020/01/13/html+css-2/img5.jpg" srcset="/img/loading.gif" width="50%" align="left/"><p>  这个<code>.search-btn</code>就表示选中所有class名字为<code>search-btn</code>的标签应用大括号里的所有规则</p></li></ul><h4 id="4-3-链接方式"><a href="#4-3-链接方式" class="headerlink" title="4.3 链接方式"></a>4.3 链接方式</h4><ul><li>使用link标签，就可以让浏览器解析其他地方的css样式，或者放在本地，或者放在网上  <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"base.css"</span>&gt;</span></code></pre></li></ul><p><strong>Tips：浏览器默认会给<code>body</code>带上一点的<code>margin</code>和<code>paddding</code></strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CSS</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HTML、CSS学习笔记（一）HTML&amp;标签</title>
+    <link href="/2020/01/13/html+css-1/"/>
+    <url>/2020/01/13/html+css-1/</url>
+    
+    <content type="html"><![CDATA[<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="1-HTML是什么"><a href="#1-HTML是什么" class="headerlink" title="1. HTML是什么"></a>1. HTML是什么</h3><ul><li>HTML不是一种编程语言，而是一种标记语言</li><li>HTML是一种用标签来描述网页的标记语言</li></ul><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>我的第一个标题<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我的第一个标题<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我的第一个段落<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><ul><li>最外层的这个<code>html</code>，就代表网页本身</li><li><code>body</code>里就是我们平时主要需要编写的内容</li></ul><h3 id="2-最常用的标签"><a href="#2-最常用的标签" class="headerlink" title="2. 最常用的标签"></a>2. 最常用的标签</h3><ul><li><code>div</code></li><li>图片标签（在页面上画图用的，<code>img</code>）</li><li>输入框标签（<code>input</code>）</li><li>常见的标签和属性表<img src="/2020/01/13/html+css-1/img1.jpg" srcset="/img/loading.gif" width="50%" align="left/"></li></ul><h3 id="3-画一个百度首页"><a href="#3-画一个百度首页" class="headerlink" title="3. 画一个百度首页"></a>3. 画一个百度首页</h3><img src="/2020/01/13/html+css-1/img2.jpg" srcset="/img/loading.gif" width="50%" align="left/"><ul><li>每一个标签需要有自己的<strong>属性</strong><br>比如<code>src</code>就是<code>img</code>的一个属性，用来存放<strong>图片链接</strong></li><li><strong>只需记常用的，其他会查即可</strong></li></ul><h4 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h4><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>新闻<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>hao123<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>地图<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>视频<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>贴吧<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>学术<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"www.baidu.com"</span>&gt;</span>设置<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>更多产品<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://www.baidu.com/img/bd_logo1.png"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">img</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">input</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>把百度设置为首页<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>关于百度<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>about百度<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>百度推广<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre><p><strong>Tips：本地文件是<code>/xxxx/xxxx.png</code>；远程文件是<code>http://xxx/xxx.png</code></strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CSS</tag>
+      
+      <tag>HTML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Vultr+Shadowsocks+Proxy SwitchAyOmega实现自由上网</title>
+    <link href="/2020/01/12/google/"/>
+    <url>/2020/01/12/google/</url>
+    
+    <content type="html"><![CDATA[<p>记录下自己如何实现科学上网</p><h3 id="1-购买VPS服务器"><a href="#1-购买VPS服务器" class="headerlink" title="1.购买VPS服务器"></a>1.购买VPS服务器</h3><ul><li><a href="https://www.vultr.com/" target="_blank" rel="noopener">Vultr</a></li><li>Server: Cloud Computer</li><li>Server Location: Los Angeles</li><li>Server Type: Ubuntu 16.04 x64</li><li>Server Size: 55GB SSD $10/month</li></ul><hr><h3 id="2-部署VPS服务器"><a href="#2-部署VPS服务器" class="headerlink" title="2.部署VPS服务器"></a>2.部署VPS服务器</h3><ul><li>安装Putty <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank" rel="noopener">下载地址</a></li><li>输入服务器IP地址、端口(22)、连接类型(SSH)</li><li>save，load，open</li><li>输入用户名(root)、密码(登录Vultr查看服务器密码)</li><li>登陆成功</li><li>安装wget <pre><code class="hljs bash">apt-get install -y wget</code></pre></li><li>安装一键部署SSR脚本(脚本来自于<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">自建ss服务器教程</a>) <pre><code class="hljs bash">wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh</code></pre></li><li>管理脚本命令<pre><code class="hljs bash">bash ssr.sh</code></pre></li><li>选择 - 1.安装 ShadowsocksR</li><li>设置端口和密码</li><li>设置加密方式 - 10.aes-256-cfb</li><li>选择协议插件 - 2.auth_shal_v4</li><li>选择混淆插件 - 1.plain</li><li>部署完成</li></ul><hr><h3 id="3-一键加速VPS服务器"><a href="#3-一键加速VPS服务器" class="headerlink" title="3.一键加速VPS服务器"></a>3.一键加速VPS服务器</h3><ul><li>Google BBR加速<pre><code class="hljs bash">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.shchmod +x bbr.sh./bbr.sh</code></pre></li><li>安装成功后reboot重启服务器</li></ul><hr><h3 id="4-Shadowsocks设置"><a href="#4-Shadowsocks设置" class="headerlink" title="4.Shadowsocks设置"></a>4.Shadowsocks设置</h3><ul><li>安装Shadowsocks </li><li>输入服务器地址、端口、密码</li><li>选择加密方式 - aes-256-cfb</li><li>代理端口 - 1080</li><li>右键系统代理 - PAC模式</li><li>右键PAC - 使用本地在线PAC</li><li>右键开机启动</li></ul><hr><h3 id="5-Google浏览器设置"><a href="#5-Google浏览器设置" class="headerlink" title="5.Google浏览器设置"></a>5.Google浏览器设置</h3><ul><li>安装扩展程序 <strong>Proxy SwitchAyOmega</strong></li><li>添加情景模式</li><li>输入名称 - SSR</li><li>选择类型 - 代理服务器</li><li>代理协议 - HTTP</li><li>代理服务器 - 127.0.0.1</li><li>代理端口 - 1080</li><li>Google浏览器右上角 SwitchAyOmega - Auto switch</li></ul><p>参考：<a href="https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B" target="_blank" rel="noopener">自建ss服务器教程</a></p><h3 id="6-无法连接问题"><a href="#6-无法连接问题" class="headerlink" title="6.无法连接问题"></a>6.无法连接问题</h3><ul><li>ping服务器IP，若ping不通，大概率被封，建议重新部署服务器</li><li>若ping通，则IP没有被封，但是无法连接，有可能是端口被封（ping 走的是 ICMP，SSH 走的是 TCP）</li><li>检查端口是否被封去<a href="http://tool.chinaz.com/port/" target="_blank" rel="noopener">站长工具</a>检测，输入服务器IP和端口即可</li><li>若是端口被封，可以尝试<code>bash ssr.sh</code>修改服务器端口（事实证明并没有什么用）</li><li>最好的解决方案就是重新部署服务器</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2020/01/11/hello-world/"/>
+    <url>/2020/01/11/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
