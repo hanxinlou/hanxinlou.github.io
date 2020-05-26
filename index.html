@@ -312,13 +312,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
               <a href="/tags/DEMO/">DEMO</a>
             
               <a href="/tags/CSS/">CSS</a>
             
               <a href="/tags/HTML/">HTML</a>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -360,13 +360,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/JavaScript/">JavaScript</a>
-            
               <a href="/tags/DEMO/">DEMO</a>
             
               <a href="/tags/CSS/">CSS</a>
             
               <a href="/tags/HTML/">HTML</a>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
             
           </div>
         
@@ -635,6 +635,29 @@
   </div>
 </div>
   
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'true' === 'true',
+      loop: 'one',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"Eutopia","artist":"Yoohsic Roomz","url":"/songs/Yoohsic Roomz - Eutopia.mp3","cover":"/img/Eutopia.jpg"}]
+    });
+  }
+</script>
 
   
 
