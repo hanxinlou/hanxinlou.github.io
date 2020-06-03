@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>electron-vue build 报错</title>
+    <link href="/2020/06/02/error_electron_build/"/>
+    <url>/2020/06/02/error_electron_build/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>记录一下<code>electron-vue build</code>时遇到的坑</p></blockquote><h2 id="1-electron-v2-0-18-win32-x64-zip下载失败"><a href="#1-electron-v2-0-18-win32-x64-zip下载失败" class="headerlink" title="1.electron-v2.0.18-win32-x64.zip下载失败"></a>1.<code>electron-v2.0.18-win32-x64.zip</code>下载失败</h2><p>执行<code>npm run build</code>报错如下</p><img src="/2020/06/02/error_electron_build/img1.jpg" srcset="/img/loading.gif"><p>可以看到是在下载<code>electron-v2.0.18-win32-x64.zip</code>时报错<br>查询资料发现应该是受限于墙或者网络环境等原因没有完成下载</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ul><li><strong>根据错误信息去<a href="https://npm.taobao.org/mirrors/electron/" target="_blank" rel="noopener"><code>electron</code>淘宝镜像网站</a>下载相应版本</strong><br>比如我的报错是<code>electron-v2.0.18-win32-x64.zip</code><br>则是找到<code>2.0.18</code>版本下载相关文件：<code>electron-v2.0.18-win32-x64.zip</code>和<code>SHASUMS256.txt</code></li></ul><img src="/2020/06/02/error_electron_build/img3.jpg" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/02/error_electron_build/img4.jpg" srcset="/img/loading.gif">  &nbsp;<ul><li><strong>将两份文件安装至<code>C:\Users\windows用户\AppData\Local\electron\Cache</code>目录下,并且在<code>SHASUMS256.txt</code>后附上版本号改为<code>SHASUMS256.txt-2.0.18</code></strong><br>&nbsp;</li></ul><img src="/2020/06/02/error_electron_build/img5.jpg" srcset="/img/loading.gif">  &nbsp;<ul><li><strong>复制以上两份文件至<code>C:\Users\windows用户\.electron</code></strong><br>&nbsp;<img src="/2020/06/02/error_electron_build/img6.jpg" srcset="/img/loading.gif">  </li></ul><h2 id="2-winCodeSign-2-4-0下载失败"><a href="#2-winCodeSign-2-4-0下载失败" class="headerlink" title="2.winCodeSign-2.4.0下载失败"></a>2.<code>winCodeSign-2.4.0</code>下载失败</h2><p>此报错在本次<code>build</code>中并未遇到，但是查阅资料是发现也有可能会遇到，故一起记录</p><p>继续执行<code>npm run build</code>可能会报错<code>winCodeSign-2.4.0</code>下载失败</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ul><li><strong>在<a href="https://github.com/electron-userland/electron-builder-binaries/releases/tag/winCodeSign-2.4.0" target="_blank" rel="noopener">此处</a>下载<code>winCodeSign-2.4.0</code></strong><br>&nbsp;</li></ul><img src="/2020/06/02/error_electron_build/img7.jpg" srcset="/img/loading.gif">  &nbsp;<ul><li><strong>解压后安装至<code>C:\Users\windows用户\AppData\Local\electron-builder\Cache\winCodeSign</code>目录下</strong><br>&nbsp;</li></ul><img src="/2020/06/02/error_electron_build/img8.jpg" srcset="/img/loading.gif">  <h2 id="3-nsis-3-0-3-2-7z下载失败"><a href="#3-nsis-3-0-3-2-7z下载失败" class="headerlink" title="3.nsis-3.0.3.2.7z下载失败"></a>3.<code>nsis-3.0.3.2.7z</code>下载失败</h2><p>继续执行<code>npm run build</code>报错如下</p><img src="/2020/06/02/error_electron_build/img2.jpg" srcset="/img/loading.gif">  <h3 id="解决办法-1"><a href="#解决办法-1" class="headerlink" title="解决办法"></a>解决办法</h3><ul><li><strong>在<a href="https://github.com/electron-userland/electron-builder-binaries/releases/tag/nsis-3.0.3.2" target="_blank" rel="noopener">此处</a>下载<code>nsis-3.0.3.2.7z</code></strong><br>&nbsp;</li></ul><img src="/2020/06/02/error_electron_build/img9.jpg" srcset="/img/loading.gif">  &nbsp;<ul><li><strong>解压后安装至<code>C:\Users\windows用户\AppData\Local\electron-builder\Cache\nsis</code>目录下</strong><br>&nbsp;</li></ul><img src="/2020/06/02/error_electron_build/img10.jpg" srcset="/img/loading.gif"> <h2 id="4-nsis-resources-3-3-0下载失败"><a href="#4-nsis-resources-3-3-0下载失败" class="headerlink" title="4.nsis-resources-3.3.0下载失败"></a>4.<code>nsis-resources-3.3.0</code>下载失败</h2><p>继续执行<code>npm run build</code>会报错<code>nsis-resources-3.3.0</code>下载失败</p><h3 id="解决办法-2"><a href="#解决办法-2" class="headerlink" title="解决办法"></a>解决办法</h3><ul><li><p><strong>在<a href="https://github.com/electron-userland/electron-builder-binaries/releases/tag/nsis-resources-3.3.0" target="_blank" rel="noopener">此处</a>下载<code>nsis-3.0.3.2.7z</code></strong><br>&nbsp;</p><img src="/2020/06/02/error_electron_build/img11.jpg" srcset="/img/loading.gif"> &nbsp;</li><li><p><strong>解压后安装至<code>C:\Users\windows用户\AppData\Local\electron-builder\Cache\nsis</code>目录下</strong><br>&nbsp;</p></li></ul><img src="/2020/06/02/error_electron_build/img12.jpg" srcset="/img/loading.gif"> &nbsp;<p><strong>安装完以上四个依赖包之后在运行<code>npm run build</code>就打包完成啦</strong></p><p>参考资料：<a href="https://juejin.im/post/5d102497e51d4556be5b3a74" target="_blank" rel="noopener">国内electron-vue build报错解决方法</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑笔记</category>
+      
+      <category>前端</category>
+      
+      <category>Electron</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Electron</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>npx create-react-app my-app 安装报错</title>
     <link href="/2020/05/23/error_create_react_app/"/>
     <url>/2020/05/23/error_create_react_app/</url>
