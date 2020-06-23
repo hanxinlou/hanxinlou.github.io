@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>安装CentOS虚拟机以及图形化界面</title>
+    <link href="/2020/06/23/CentOS/"/>
+    <url>/2020/06/23/CentOS/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>记录一下自己在安装使用CentOS系统时遇到的坑</p></blockquote><h2 id="1-安装virtual-BOX"><a href="#1-安装virtual-BOX" class="headerlink" title="1.安装virtual BOX"></a>1.安装virtual BOX</h2><ul><li><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener">官网</a>下载对应版本并安装</li><li>一路默认安装即可</li><li>中间会警告安装网络功能时会暂时中断网络，选是即可<br>&nbsp;<img src="/2020/06/23/CentOS/img1.png" srcset="/img/loading.gif"></li></ul><h2 id="2-创建CentOS虚拟机"><a href="#2-创建CentOS虚拟机" class="headerlink" title="2.创建CentOS虚拟机"></a>2.创建CentOS虚拟机</h2><ul><li><a href="https://www.centos.org/download/" target="_blank" rel="noopener">官网</a>下载CentOS的磁盘映像文件，然后双击加载到电脑</li><li>打开 virtual Box，点击新建<br>&nbsp;<img src="/2020/06/23/CentOS/img2.png" srcset="/img/loading.gif">&nbsp;</li><li>输入虚拟机名称（自己命名）、选择安装文件夹和操作系统类型和版本—— <strong>linux Red Hat (64-bit)</strong><br>&nbsp;<img src="/2020/06/23/CentOS/img3.png" srcset="/img/loading.gif">&nbsp;</li><li>内存大小：一般默认 1024MB 或者根据自己需求设置</li><li>虚拟硬盘：选择现在创建虚拟硬盘，点击创建</li><li>虚拟硬盘文件类型：选择 VDI</li><li>动态分配</li><li>设置虚拟硬盘文件位置和大小，一般默认 8G 或者根据自己需求设置</li><li>点击创建</li></ul><h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>如果选择版本时里面只能选择 32bit ，大概率原因是<strong>未开启cpu虚拟化</strong><br><strong>进入bios系统开启</strong>即可</p><h2 id="3-启动虚拟机并配置"><a href="#3-启动虚拟机并配置" class="headerlink" title="3.启动虚拟机并配置"></a>3.启动虚拟机并配置</h2><ul><li>启动虚拟机后选择启动盘，即之前下载并加载到电脑的物理盘，点击启动<br>&nbsp;<img src="/2020/06/23/CentOS/img4.png" srcset="/img/loading.gif">&nbsp;</li><li>选择 <code>Install CentOS 7</code> 回车<br>&nbsp;<img src="/2020/06/23/CentOS/img5.png" srcset="/img/loading.gif">&nbsp;</li><li>安装完成后选择中文语言</li><li>安装分区-我要配置分区-完成<br>&nbsp;<img src="/2020/06/23/CentOS/img6.jpg" srcset="/img/loading.gif">&nbsp;</li><li>手动分区：点这里自动创建他们-完成-接受更改<br>&nbsp;<img src="/2020/06/23/CentOS/img7.png" srcset="/img/loading.gif">&nbsp;</li><li>网络与主机名：以太网开启-配置<br>&nbsp;<img src="/2020/06/23/CentOS/img8.png" srcset="/img/loading.gif">&nbsp;</li><li>IPv4 设置-方法-手动- ADD -填写 IP 、子网掩码、网关、 DNS -保存<br>&nbsp;<img src="/2020/06/23/CentOS/img9.png" srcset="/img/loading.gif">&nbsp;</li><li>完成后点击开始安装</li><li>在安装过程中设置 ROOT 密码和创建用户</li><li>安装后点击重启后输入 root 和密码即可</li></ul><h2 id="4-设置中文语言"><a href="#4-设置中文语言" class="headerlink" title="4.设置中文语言"></a>4.设置中文语言</h2><p>以下命令建议在其他终端利用 ssh 连接虚拟机进行（比如 Putty）<br>虚拟机里直接运行似乎无效果，原因未知（如果有空我会去研究下的）</p><pre><code class="hljs plain">locale &#x2F;&#x2F;查看系统语言locale -a &#x2F;&#x2F;查看系统语言包yum install kde-l10n-Chinese &#x2F;&#x2F;如果没有中文包则安装localectl  set-locale LANG&#x3D;zh_CN.UTF8 &#x2F;&#x2F;设置为中文reboot &#x2F;&#x2F;重启生效</code></pre><h2 id="5-安装图形化桌面"><a href="#5-安装图形化桌面" class="headerlink" title="5.安装图形化桌面"></a>5.安装图形化桌面</h2><pre><code class="hljs plain">yum -y groupinstall &quot;X Window System&quot;yum grouplistyum -y groupinstall &quot;GNOME Desktop&quot;startx</code></pre><p>&nbsp;<br><img src="/2020/06/23/CentOS/img10.jpg" srcset="/img/loading.gif"><br>&nbsp;</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>踩坑笔记</category>
+      
+      <category>虚拟机</category>
+      
+      <category>CentOS</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CentOS</tag>
+      
+      <tag>cpu虚拟化</tag>
+      
+      <tag>GNOME Desktop</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>electron-vue build 报错</title>
     <link href="/2020/06/02/error_electron_build/"/>
     <url>/2020/06/02/error_electron_build/</url>
@@ -148,13 +181,13 @@
     
     <tags>
       
-      <tag>JavaScript</tag>
-      
       <tag>DEMO</tag>
       
       <tag>CSS</tag>
       
       <tag>HTML</tag>
+      
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -183,13 +216,13 @@
     
     <tags>
       
-      <tag>JavaScript</tag>
-      
       <tag>DEMO</tag>
       
       <tag>CSS</tag>
       
       <tag>HTML</tag>
+      
+      <tag>JavaScript</tag>
       
     </tags>
     
