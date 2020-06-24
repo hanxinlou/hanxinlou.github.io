@@ -18,7 +18,7 @@
   <meta name="author" content="guihanhan">
   <meta name="keywords" content="">
   <meta name="baidu-site-verification" content="xXvXTVjbBL" />
-  <title>Categories - 踩坑笔记 - Guihanhan</title>
+  <title>CentOS 虚拟机上安装 Pycharm 教程 - Guihanhan</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -65,7 +65,7 @@
 <meta name="generator" content="Hexo 4.2.1"></head>
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -139,6 +139,38 @@
             </span>
 
             
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-06-24 15:41">
+                    June 24, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    270 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    3
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
           </div>
 
           
@@ -149,79 +181,141 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-<!--  <p class="h4">8 posts in total.</p>-->
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/06/24/CentOS_Pycharm/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CentOS 虚拟机上安装 Pycharm 教程</span>
-      <span style="float: right;">06-24</span>
-    </a>
-  
-    
-    <a href="/2020/06/24/CentOS_VScode/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CentOS 虚拟机上安装 VScode 教程</span>
-      <span style="float: right;">06-24</span>
-    </a>
-  
-    
-    <a href="/2020/06/23/CentOS/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">安装CentOS虚拟机以及图形化界面</span>
-      <span style="float: right;">06-23</span>
-    </a>
-  
-    
-    <a href="/2020/06/02/error_electron_build/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">electron-vue build 报错</span>
-      <span style="float: right;">06-02</span>
-    </a>
-  
-    
-    <a href="/2020/05/23/error_create_react_app/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">npx create-react-app my-app 安装报错</span>
-      <span style="float: right;">05-23</span>
-    </a>
-  
-    
-    <a href="/2020/05/20/VR_AntiDistortion/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">毕设——VR视频反畸变系统设计</span>
-      <span style="float: right;">05-20</span>
-    </a>
-  
-    
-    <a href="/2020/03/14/md_Invisible_local_imgs/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo+Markdown 本地图片不显示问题解决方案</span>
-      <span style="float: right;">03-14</span>
-    </a>
-  
-    
-    <a href="/2020/01/14/hexo_markdown_image/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo+Markdown修改图片样式</span>
-      <span style="float: right;">01-14</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>记录一下怎么在 CentOS 虚拟机上安装 Pycharm</p>
+</blockquote>
+<h2 id="1-安装包下载"><a href="#1-安装包下载" class="headerlink" title="1.安装包下载"></a>1.安装包下载</h2><p><a href="https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions" target="_blank" rel="noopener">Download PyCharm</a><br>选择社区版下载<br>&nbsp;<br><img src="/2020/06/24/CentOS_Pycharm/img1.png" srcset="/img/loading.gif"><br>&nbsp;<br>文件名为 <code>pycharm-community-2020.1.2.tar.gz</code></p>
+<h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h2><ul>
+<li>利用 winSCP 将安装包传输至虚拟机上</li>
+<li>打开 Terminal 进入安装包所在目录<br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img2.png" srcset="/img/loading.gif">
+&nbsp;</li>
+<li>解压安装包 <code>tar zxf pycharm-community-2020.1.2.tar.gz</code></li>
+<li>进入解压后的 bin 目录 <code>cd pycharm-community-2020.1.2/bin/</code></li>
+<li>运行安装程序 <code>./pycharm.sh</code><br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img3.png" srcset="/img/loading.gif">
+&nbsp;</li>
+<li>一路默认即可，可选界面颜色，如图<br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img4.png" srcset="/img/loading.gif">
+&nbsp;
+<img src="/2020/06/24/CentOS_Pycharm/img5.png" srcset="/img/loading.gif">
+&nbsp;
+<img src="/2020/06/24/CentOS_Pycharm/img6.png" srcset="/img/loading.gif">
+&nbsp;
+<img src="/2020/06/24/CentOS_Pycharm/img7.png" srcset="/img/loading.gif">
+&nbsp;
+<img src="/2020/06/24/CentOS_Pycharm/img8.png" srcset="/img/loading.gif">
+&nbsp;
+至此，安装完成
 
+</li>
+</ul>
+<h2 id="3-设置启动图标"><a href="#3-设置启动图标" class="headerlink" title="3.设置启动图标"></a>3.设置启动图标</h2><ul>
+<li><p>进入 <code>.local/share/appications</code></p>
+</li>
+<li><p>输入命令 <code>vim pycahrm.desktop</code> </p>
+</li>
+<li><p>输入命令 i 将以下内容写入文件</p>
+<pre><code class="hljs bash">[Desktoktop Entry]
+Type=Application
+Name=Pycharm
+GenericName=Pycharm3
+Comment=Pycharm3:The Python IDE
+Exec=/root/pycharm-community-2020.1.2/bin/pycharm.sh 
+Icon=/root/pycharm-community-2020.1.2/bin/pycharm.png
+Terminal=pycharm
+Categories=Pycharm;</code></pre>
+<p>&nbsp;</p>
+<img src="/2020/06/24/CentOS_Pycharm/img9.png" srcset="/img/loading.gif">
+&nbsp;
+</li>
+<li><p>其中，Exec 和 Icon 部分需根据自己的安装目录进行修改</p>
+</li>
+<li><p>输入命令 <code>esc+: wq!</code>保存退出</p>
+</li>
+<li><p>可以在 applications – 其他目录下看到Pycharm的启动图标了</p>
+</li>
+</ul>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/134173595" target="_blank" rel="noopener">Linux CentOS7中安装使用PyCharm</a></p>
 
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/">踩坑笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/%E8%99%9A%E6%8B%9F%E6%9C%BA/CentOS/">CentOS</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CentOS/">CentOS</a>
+                    
+                      <a class="hover-with-bg" href="/tags/VScoode/">VScoode</a>
+                    
+                  </div>
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/24/CentOS_VScode/">
+                        <span class="hidden-mobile">CentOS 虚拟机上安装 VScode 教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -325,6 +419,34 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -346,7 +468,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Category - 踩坑笔记&nbsp;",
+        "CentOS 虚拟机上安装 Pycharm 教程&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -389,6 +511,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

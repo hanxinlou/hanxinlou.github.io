@@ -153,7 +153,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    579 字
+                    564 字
                   </span>
                 
 
@@ -235,14 +235,14 @@
 <li>安装后点击重启后输入 root 和密码即可</li>
 </ul>
 <h2 id="4-设置中文语言"><a href="#4-设置中文语言" class="headerlink" title="4.设置中文语言"></a>4.设置中文语言</h2><p>以下命令建议在其他终端利用 ssh 连接虚拟机进行（比如 Putty）<br>虚拟机里直接运行似乎无效果，原因未知（如果有空我会去研究下的）</p>
-<pre><code class="hljs plain">locale &#x2F;&#x2F;查看系统语言
-locale -a &#x2F;&#x2F;查看系统语言包
-yum install kde-l10n-Chinese &#x2F;&#x2F;如果没有中文包则安装
-localectl  set-locale LANG&#x3D;zh_CN.UTF8 &#x2F;&#x2F;设置为中文
-reboot &#x2F;&#x2F;重启生效</code></pre>
-<h2 id="5-安装图形化桌面"><a href="#5-安装图形化桌面" class="headerlink" title="5.安装图形化桌面"></a>5.安装图形化桌面</h2><pre><code class="hljs plain">yum -y groupinstall &quot;X Window System&quot;
+<pre><code class="hljs bash">locale //查看系统语言
+locale -a //查看系统语言包
+yum install kde-l10n-Chinese //如果没有中文包则安装
+localectl  <span class="hljs-built_in">set</span>-locale LANG=zh_CN.UTF8 //设置为中文
+reboot //重启生效</code></pre>
+<h2 id="5-安装图形化桌面"><a href="#5-安装图形化桌面" class="headerlink" title="5.安装图形化桌面"></a>5.安装图形化桌面</h2><pre><code class="hljs bash">yum -y groupinstall <span class="hljs-string">"X Window System"</span>
 yum grouplist
-yum -y groupinstall &quot;GNOME Desktop&quot;
+yum -y groupinstall <span class="hljs-string">"GNOME Desktop"</span>
 startx</code></pre>
 <p>&nbsp;<br><img src="/2020/06/23/CentOS/img10.jpg" srcset="/img/loading.gif"><br>&nbsp;</p>
 
@@ -282,6 +282,12 @@ startx</code></pre>
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/24/CentOS_VScode/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CentOS 虚拟机上安装 VScode 教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
