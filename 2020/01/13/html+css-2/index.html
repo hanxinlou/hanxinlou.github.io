@@ -62,7 +62,7 @@
     gtag('config', 'UA-170487446-1');
   </script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
   <header style="height: 70vh;">
@@ -211,16 +211,16 @@
 </ul>
 <h3 id="4-使用方式"><a href="#4-使用方式" class="headerlink" title="4. 使用方式"></a>4. 使用方式</h3><h4 id="4-1-内联样式"><a href="#4-1-内联样式" class="headerlink" title="4.1 内联样式"></a>4.1 内联样式</h4><ul>
 <li>每个标签是有一个<code>style</code>属性的，这个<code>style</code>属性可以直接作用于标签的样式  <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"    </span></span>
-<span class="hljs-tag"><span class="hljs-string">width: 100px;</span></span>
-<span class="hljs-tag"><span class="hljs-string">padding: 10px 10px 10px 10px;</span></span>
-<span class="hljs-tag"><span class="hljs-string">background-color: #3385ff;</span></span>
-<span class="hljs-tag"><span class="hljs-string">color: white;</span></span>
-<span class="hljs-tag"><span class="hljs-string">margin: 100px 100px 100px 100px;</span></span>
-<span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距</span>
-<span class="hljs-comment">padding-top，padding-right，padding-bottom,padding-left</span>
-<span class="hljs-comment">style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"    
+width: 100px;
+padding: 10px 10px 10px 10px;
+background-color: #3385ff;
+color: white;
+margin: 100px 100px 100px 100px;
+"</span>&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-comment">&lt;!--width:宽度，height:高度，padding:内边距，margin:外边距
+padding-top，padding-right，padding-bottom,padding-left
+style标签里面可以写多条规则，每条规则用分号结尾--&gt;</span></code></pre>
 
 
 </li>
@@ -228,15 +228,15 @@
 <h4 id="4-2-嵌入方式"><a href="#4-2-嵌入方式" class="headerlink" title="4.2 嵌入方式"></a>4.2 嵌入方式</h4><ul>
 <li><p>把<code>style</code>属性里写的css全部放到一起</p>
   <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- HTML --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
-<span class="css"><span class="hljs-selector-class">.search-btn</span> &#123;</span>
-    width: 100px;
-    padding: 10px 10px 10px 10px;
-<span class="css">    <span class="hljs-selector-tag">background-color</span>: <span class="hljs-selector-id">#3385ff</span>;</span>
-    color: white;
-    margin: 100px 100px 100px 100px;
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.search-btn</span> &#123;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">10px</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#3385ff</span>;
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;
 &#125;
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"search-btn"</span>&gt;</span>百度一下<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 <p>  多了一个<code>style</code>标签，浏览器会解析<code>style</code>标签里的所有规则，然后应用到页面的元素里面，<br>  为了让浏览器知道这些样式要用到哪个标签，就需要<strong>选择器选择标签</strong></p>
   <img src="/2020/01/13/html+css-2/img5.jpg" srcset="/img/loading.gif" width="50%" align="left/">
