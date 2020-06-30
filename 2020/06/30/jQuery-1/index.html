@@ -18,7 +18,7 @@
   <meta name="author" content="guihanhan">
   <meta name="keywords" content="">
   <meta name="baidu-site-verification" content="xXvXTVjbBL" />
-  <title>JavaScript学习笔记（二）条件判断&amp;循环 - Guihanhan</title>
+  <title>jQuery学习笔记（一）语法&amp;选择器&amp;事件 - Guihanhan</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -142,8 +142,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-03-12 18:15">
-                    March 12, 2020 pm
+                  <time datetime="2020-06-30 17:12">
+                    June 30, 2020 pm
                   </time>
                 </div>
               
@@ -153,7 +153,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    433 字
+                    293 字
                   </span>
                 
 
@@ -163,7 +163,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    5
+                    4
                      分钟
                   </span>
                 
@@ -192,77 +192,97 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="三-条件判断"><a href="#三-条件判断" class="headerlink" title="三. 条件判断"></a>三. 条件判断</h2><h3 id="1-if"><a href="#1-if" class="headerlink" title="1. if"></a>1. if</h3><ul>
-<li>使用 <strong><code>if</code></strong> 来规定要执行的代码块，如果指定条件为 <strong><code>true</code></strong></li>
-<li>使用 <strong><code>else if</code></strong> 来规定要测试的新条件，如果第一个条件为 <strong><code>false</code></strong></li>
-<li>使用 <strong><code>else</code></strong> 来规定要执行的代码块，如果相同的条件为 <strong><code>false</code></strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span>
-<span class="hljs-keyword">if</span> (条件 <span class="hljs-number">1</span>) &#123;
-    条件 <span class="hljs-number">1</span> 为 <span class="hljs-literal">true</span> 时执行的代码块
-&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (条件 <span class="hljs-number">2</span>) &#123;
-    条件 <span class="hljs-number">1</span> 为 <span class="hljs-literal">false</span> 而条件 <span class="hljs-number">2</span> 为 <span class="hljs-literal">true</span> 时执行的代码块
-&#125; <span class="hljs-keyword">else</span> &#123;
-    条件 <span class="hljs-number">1</span> 和条件 <span class="hljs-number">2</span> 同时为 <span class="hljs-literal">false</span> 时执行的代码块
-&#125;</code></pre>
-
-</li>
+              <h2 id="一-语法"><a href="#一-语法" class="headerlink" title="一.语法"></a>一.语法</h2><h3 id="1-selector-action"><a href="#1-selector-action" class="headerlink" title="1. $(selector).action()"></a>1. <code>$(selector).action()</code></h3><ul>
+<li>美元符号定义 <code>jQuery</code></li>
+<li>选择符（<code>selector</code>）”查询”和”查找” <code>HTML</code> 元素</li>
+<li><code>jQuery</code> 的 <code>action()</code> 执行对元素的操作</li>
 </ul>
-<h3 id="2-switch"><a href="#2-switch" class="headerlink" title="2. switch"></a>2. switch</h3><ul>
-<li>使用 <strong><code>switch</code></strong> 来规定多个被执行的备选代码块</li>
-<li>计算一次 <strong><code>switch</code> 表达式</strong></li>
-<li>把表达式的值与<strong>每个 <code>case</code> 的值</strong>进行对比</li>
-<li>如果存在匹配，则<strong>执行关联代码</strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span>
-<span class="hljs-keyword">switch</span> (表达式) &#123;
-    <span class="hljs-keyword">case</span> n:
-        代码块
-        <span class="hljs-keyword">break</span>;
-    <span class="hljs-keyword">case</span> n:
-        代码块
-        <span class="hljs-keyword">break</span>;
-    <span class="hljs-keyword">default</span>:
-        默认代码块
-&#125;</code></pre>
+<h2 id="二-选择器"><a href="#二-选择器" class="headerlink" title="二.选择器"></a>二.选择器</h2><h3 id="1-元素选择器"><a href="#1-元素选择器" class="headerlink" title="1.元素选择器"></a>1.元素选择器</h3><p><code>$(&quot;p&quot;)</code> :在页面内选取所有 <code>&lt;p&gt;</code> 元素</p>
+<h3 id="2-id-选择器"><a href="#2-id-选择器" class="headerlink" title="2. #id 选择器"></a>2. #id 选择器</h3><p><code>$(&quot;#test&quot;)</code> :在页面内选取所有 <code>id=&quot;test&quot;</code> 的元素</p>
+<h3 id="3-class-选择器"><a href="#3-class-选择器" class="headerlink" title="3. .class 选择器"></a>3. .class 选择器</h3><p><code>$(&quot;.test&quot;)</code> :在页面内选取所有 <code>class=&quot;test&quot;</code> 的元素</p>
+<h2 id="三-事件"><a href="#三-事件" class="headerlink" title="三.事件"></a>三.事件</h2><table>
+<thead>
+<tr>
+<th>鼠标事件</th>
+<th>键盘事件</th>
+<th>表单事件</th>
+<th>文档/窗口事件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>click</td>
+<td>keypress</td>
+<td>submit</td>
+<td>load</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>keydown</td>
+<td>change</td>
+<td>resize</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>keyup</td>
+<td>focus</td>
+<td>scroll</td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td></td>
+<td>blur</td>
+<td>unload</td>
+</tr>
+<tr>
+<td>hover</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="1-click-点击事件"><a href="#1-click-点击事件" class="headerlink" title="1. click() 点击事件"></a>1. <code>click()</code> 点击事件</h3><pre><code class="hljs js">$(selector).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  ...
+&#125;);</code></pre>
 
-</li>
-</ul>
-<hr>
-<h2 id="四-循环"><a href="#四-循环" class="headerlink" title="四. 循环"></a>四. 循环</h2><h3 id="1-For-循环"><a href="#1-For-循环" class="headerlink" title="1. For 循环"></a>1. For 循环</h3><ul>
-<li>语句 1 在循环（代码块）<strong>开始之前</strong>执行</li>
-<li>语句 2 定义运行循环（代码块）的<strong>条件</strong></li>
-<li>语句 3 会在循环（代码块）每次<strong>被执行后执行</strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span>
-<span class="hljs-keyword">for</span> (语句 <span class="hljs-number">1</span>; 语句 <span class="hljs-number">2</span>; 语句 <span class="hljs-number">3</span>) &#123;
-    要执行的代码块
-&#125;</code></pre>
+<h3 id="2-dblclick-双击事件"><a href="#2-dblclick-双击事件" class="headerlink" title="2. dblclick() 双击事件"></a>2. <code>dblclick()</code> 双击事件</h3><pre><code class="hljs js">$(selector).dblclick(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  ...
+&#125;);</code></pre>
 
-</li>
-</ul>
-<h3 id="2-For-In-循环"><a href="#2-For-In-循环" class="headerlink" title="2. For/In 循环"></a>2. For/In 循环</h3><ul>
-<li><strong>遍历对象属性</strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span>
-<span class="hljs-keyword">var</span> person = &#123; <span class="hljs-attr">fname</span>: <span class="hljs-string">"Bill"</span>, <span class="hljs-attr">lname</span>: <span class="hljs-string">"Gates"</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">62</span> &#125;;
-<span class="hljs-keyword">var</span> text = <span class="hljs-string">""</span>;
-<span class="hljs-keyword">var</span> x;
-<span class="hljs-keyword">for</span> (x <span class="hljs-keyword">in</span> person) &#123;
-    text += person[x];
-&#125;</code></pre>
+<h3 id="3-mouseenter-鼠标指针穿过元素"><a href="#3-mouseenter-鼠标指针穿过元素" class="headerlink" title="3. mouseenter() 鼠标指针穿过元素"></a>3. <code>mouseenter()</code> 鼠标指针穿过元素</h3><pre><code class="hljs js">$(selector).mouseenter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    ...
+&#125;);</code></pre>
 
-</li>
-</ul>
-<h3 id="3-While-循环"><a href="#3-While-循环" class="headerlink" title="3. While 循环"></a>3. While 循环</h3><ul>
-<li>while 循环会<strong>一直循环</strong>代码块，<strong>只要指定的条件为 <code>true</code></strong><pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span>
-<span class="hljs-keyword">while</span> (条件) &#123;
-    要执行的代码块
-&#125;</code></pre>
+<h3 id="4-mouseleave-鼠标指针离开元素"><a href="#4-mouseleave-鼠标指针离开元素" class="headerlink" title="4. mouseleave() 鼠标指针离开元素"></a>4. <code>mouseleave()</code> 鼠标指针离开元素</h3><pre><code class="hljs js">$(selector).mouseleave(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  ...
+&#125;);</code></pre>
 
-</li>
-</ul>
-<h3 id="4-Do-While-循环"><a href="#4-Do-While-循环" class="headerlink" title="4. Do/While 循环"></a>4. Do/While 循环</h3><ul>
-<li><strong><code>do/while</code> 循环</strong>是 <code>while</code> 循环的<strong>变体</strong></li>
-<li>在检查<strong>条件是否为真之前</strong>，这种循环会执行一次代码块，然后只要条件为真就会<strong>重复循环</strong>。<pre><code class="hljs js"><span class="hljs-comment">// JavaScript</span>
-<span class="hljs-keyword">do</span> &#123;
-    要执行的代码块
-&#125;
+<h3 id="5-mousedown-鼠标指针移动到元素上方并按下鼠标按键"><a href="#5-mousedown-鼠标指针移动到元素上方并按下鼠标按键" class="headerlink" title="5. mousedown() 鼠标指针移动到元素上方并按下鼠标按键"></a>5. <code>mousedown()</code> 鼠标指针移动到元素上方并按下鼠标按键</h3><pre><code class="hljs js">$(selector).mousedown(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+   ...
+&#125;);</code></pre>
 
-<span class="hljs-keyword">while</span> (条件);</code></pre></li>
-</ul>
+<h3 id="6-mouseup-在元素上松开鼠标按钮"><a href="#6-mouseup-在元素上松开鼠标按钮" class="headerlink" title="6. mouseup() 在元素上松开鼠标按钮"></a>6. <code>mouseup()</code> 在元素上松开鼠标按钮</h3><pre><code class="hljs js">$(selector).mouseup(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    ...
+&#125;);</code></pre>
+
+<h3 id="7-hover-光标悬停事件"><a href="#7-hover-光标悬停事件" class="headerlink" title="7. hover() 光标悬停事件"></a>7. <code>hover()</code> 光标悬停事件</h3><pre><code class="hljs js">$(selector).hover(
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+        ...
+    &#125;,
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+        ...
+    &#125;
+);</code></pre>
+
+<h3 id="8-focus-元素获得焦点"><a href="#8-focus-元素获得焦点" class="headerlink" title="8. focus() 元素获得焦点"></a>8. <code>focus()</code> 元素获得焦点</h3><pre><code class="hljs js">$(selector).focus(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  ...
+&#125;);</code></pre>
+
+<h3 id="9-blur-元素失去焦点"><a href="#9-blur-元素失去焦点" class="headerlink" title="9. blur() 元素失去焦点"></a>9. <code>blur()</code> 元素失去焦点</h3><pre><code class="hljs js">$(selector).blur(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  ...
+&#125;);</code></pre>
+
+
+<p>参考资料：<a href="https://www.runoob.com/jquery/jquery-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/jquery/jquery-tutorial.html</a></p>
 
             </article>
             <hr>
@@ -276,7 +296,7 @@
                     
                       <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/">前端</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a>
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/jQuery/">jQuery</a>
                     
                   </div>
                 
@@ -284,7 +304,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                      <a class="hover-with-bg" href="/tags/jQuery/">jQuery</a>
                     
                   </div>
                 
@@ -297,9 +317,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/03/12/JS-3/">
+                      <a href="/2020/06/30/jQuery-2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">JavaScript学习笔记（三）函数&对象</span>
+                        <span class="hidden-mobile">jQuery学习笔记（二）效果</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -307,8 +327,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/03/12/JS-1/">
-                        <span class="hidden-mobile">JavaScript学习笔记（一）变量&逻辑</span>
+                      <a href="/2020/06/24/CentOS_Pycharm/">
+                        <span class="hidden-mobile">CentOS 虚拟机上安装 Pycharm 教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -490,7 +510,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "JavaScript学习笔记（二）条件判断&循环&nbsp;",
+        "jQuery学习笔记（一）语法&选择器&事件&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

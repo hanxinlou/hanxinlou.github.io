@@ -18,7 +18,7 @@
   <meta name="author" content="guihanhan">
   <meta name="keywords" content="">
   <meta name="baidu-site-verification" content="xXvXTVjbBL" />
-  <title>Archives - Guihanhan</title>
+  <title>jQuery学习笔记（四）HTML 遍历 - Guihanhan</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -65,7 +65,7 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -139,6 +139,38 @@
             </span>
 
             
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-06-30 23:12">
+                    June 30, 2020 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    268 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    3
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
           </div>
 
           
@@ -149,73 +181,109 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">25 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/01/14/hexo_markdown_image/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo+Markdown修改图片样式</span>
-      <span style="float: right;">01-14</span>
-    </a>
-  
-    
-    <a href="/2020/01/13/html+css-2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">HTML、CSS学习笔记（二）CSS&amp;盒模型</span>
-      <span style="float: right;">01-13</span>
-    </a>
-  
-    
-    <a href="/2020/01/13/html+css-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">HTML、CSS学习笔记（一）HTML&amp;标签</span>
-      <span style="float: right;">01-13</span>
-    </a>
-  
-    
-    <a href="/2020/01/12/google/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Vultr+Shadowsocks+Proxy SwitchAyOmega实现自由上网</span>
-      <span style="float: right;">01-12</span>
-    </a>
-  
-    
-    <a href="/2020/01/11/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hello World</span>
-      <span style="float: right;">01-11</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="一-向上遍历"><a href="#一-向上遍历" class="headerlink" title="一.向上遍历"></a>一.向上遍历</h2><h3 id="1-语法"><a href="#1-语法" class="headerlink" title="1.语法"></a>1.语法</h3><pre><code class="hljs js">$(selector).parent(); <span class="hljs-comment">// 返回被选元素的直接父元素</span>
+$(selector).parents(); <span class="hljs-comment">// 返回被选元素的所有祖先元素</span>
+$(selector1).parentsUntil(selector1); <span class="hljs-comment">// 返回介于两个给定元素之间的所有祖先元素</span></code></pre>
 
 
+<h2 id="二-向下遍历"><a href="#二-向下遍历" class="headerlink" title="二. 向下遍历"></a>二. 向下遍历</h2><h3 id="1-语法-1"><a href="#1-语法-1" class="headerlink" title="1.语法"></a>1.语法</h3><pre><code class="hljs js">$(selector).children(); <span class="hljs-comment">// 返回被选元素的所有直接子元素</span>
+$(selector).find(); <span class="hljs-comment">// 返回被选元素的后代元素</span></code></pre>
 
+<h2 id="三-水平遍历"><a href="#三-水平遍历" class="headerlink" title="三.水平遍历"></a>三.水平遍历</h2><h3 id="1-语法-2"><a href="#1-语法-2" class="headerlink" title="1.语法"></a>1.语法</h3><pre><code class="hljs js">$(selector).siblings(); <span class="hljs-comment">// 返回被选元素的所有同胞元素</span>
+$(selector).next(); <span class="hljs-comment">// 返回被选元素的下一个同胞元素</span>
+$(selector).nextAll();<span class="hljs-comment">// 返回被选元素的所有跟随的同胞元素</span>
+$(selector1).nextUntil(selector2);<span class="hljs-comment">// 返回介于两个给定参数之间的所有跟随的同胞元素</span>
+$(selector).prev();
+$(selector).prevAll();
+$(selector).prevUntil();</code></pre>
+
+<h2 id="四-过滤"><a href="#四-过滤" class="headerlink" title="四.过滤"></a>四.过滤</h2><h3 id="1-语法-3"><a href="#1-语法-3" class="headerlink" title="1.语法"></a>1.语法</h3><pre><code class="hljs js">$(selector).first(); <span class="hljs-comment">// 返回被选元素的首个元素</span>
+$(selector).last(); <span class="hljs-comment">// 返回被选元素的最后一个元素</span>
+$(selector).eq(); <span class="hljs-comment">// 返回被选元素中带有指定索引号的元素</span>
+$(selector).filter(); <span class="hljs-comment">// 返回匹配的元素</span>
+$(selector).not(); <span class="hljs-comment">// 返回不匹配的元素</span></code></pre>
+
+<p>参考资料：<a href="https://www.runoob.com/jquery/jquery-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/jquery/jquery-tutorial.html</a></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%89%8D%E7%AB%AF/jQuery/">jQuery</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/jQuery/">jQuery</a>
+                    
+                  </div>
+                
               </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/30/jQuery-3/">
+                        <span class="hidden-mobile">jQuery学习笔记（三）HTML DOM操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
             </div>
+
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -319,6 +387,34 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
 
 
   <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
@@ -340,7 +436,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "jQuery学习笔记（四）HTML 遍历&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -383,6 +479,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
