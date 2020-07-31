@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>SQL学习笔记（一） 重要命令</title>
+    <link href="/2020/07/31/nodejsInstall/"/>
+    <url>/2020/07/31/nodejsInstall/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Nodejs安装教程"><a href="#Nodejs安装教程" class="headerlink" title="Nodejs安装教程"></a>Nodejs安装教程</h2><blockquote><p>记录一下安装Nodejs中需要注意的问题</p></blockquote><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官网</a>下载对应系统的安装包</p><img src="/2020/07/31/nodejsInstall/img1.png" srcset="/img/loading.gif"><h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><p>① 运行下载好的安装包一路默认安装即可<br>② 请注意安装目录最好放在非C盘目录下，且保证路径中无中文或空格<br>③ 我的安装过程图如下，供参考</p><img src="/2020/07/31/nodejsInstall/img2.png" srcset="/img/loading.gif"><img src="/2020/07/31/nodejsInstall/img3.png" srcset="/img/loading.gif"><img src="/2020/07/31/nodejsInstall/img4.png" srcset="/img/loading.gif"><p>④ 最后点击 <code>install</code> 等待安装完毕</p><h3 id="3-环境变量的设置"><a href="#3-环境变量的设置" class="headerlink" title="3. 环境变量的设置"></a>3. 环境变量的设置</h3><p>① 在安装目录下，如 <code>D:\nodejs</code> 新建两个文件夹 <code>node_global</code>(全局包存放目录) 和 <code>node_cache</code>(缓存目录)</p><img src="/2020/07/31/nodejsInstall/img5.png" srcset="/img/loading.gif"><p>② 打开命令行工具，执行以下命令，引号内为安装目录下新建的两个文件夹<br><code>npm config set prefix &quot;D:\nodejs\node_global&quot;</code><br><code>npm config set cache &quot;D:\soft\nodejs\node_cache&quot;</code></p><p>③ 环境变量——系统变量中新建变量名：<code>NODE_PATH</code>，变量值：<code>D:\nodejs\node_global\node_modules</code></p><img src="/2020/07/31/nodejsInstall/img6.png" srcset="/img/loading.gif"><p>④ 编辑用户变量的 <code>Path</code>，将默认的 <code>C</code> 盘下 <code>AppData\Roaming\npm</code> 修改为 <code>D:\nodejs\node_global</code></p><img src="/2020/07/31/nodejsInstall/img7.png" srcset="/img/loading.gif"><p>⑤ 打开命令行工具测试输入 <code>node -v</code> 和 <code>npm -v</code> 测试是否安装成功</p><img src="/2020/07/31/nodejsInstall/img8.png" srcset="/img/loading.gif"><h3 id="4-关于-npm"><a href="#4-关于-npm" class="headerlink" title="4.关于 npm"></a>4.关于 <code>npm</code></h3><ul><li><code>npm</code> 是 <code>nodejs</code> 的包管理器</li><li>用 <code>npm install + 包名</code> 即可下载相应模块包, 模块包的信息（比如版本）会记录在一个名为 <code>package.json</code> 文件里</li><li>由于一些原因，使用 <code>npm</code> 安装模块包有时候会遇到下载慢甚至安装失败的情况，<br>此时可以使用淘宝镜像 <code>cnpm install + 包名</code>来安装模块包</li></ul><p>参考资料：<a href="https://zhuanlan.zhihu.com/p/86241466" target="_blank" rel="noopener">nodejs安装及环境变量配置</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>Nodejs</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Nodejs</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>jQuery学习笔记（五）模板插件 template</title>
     <link href="/2020/07/01/jQuery_tmpl/"/>
     <url>/2020/07/01/jQuery_tmpl/</url>
