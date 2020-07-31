@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>jQuery学习笔记（五）模板插件 template</title>
+    <link href="/2020/07/01/jQuery_tmpl/"/>
+    <url>/2020/07/01/jQuery_tmpl/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>记录一下tmpl的用法</p></blockquote><h2 id="一-基本用法"><a href="#一-基本用法" class="headerlink" title="一.基本用法"></a>一.基本用法</h2><h3 id="1-引入-jquery-和-tmpl-脚本"><a href="#1-引入-jquery-和-tmpl-脚本" class="headerlink" title="1.引入 jquery 和 tmpl 脚本"></a>1.引入 <code>jquery</code> 和 <code>tmpl</code> 脚本</h3><ul><li><code>https://code.jquery.com/jquery-3.5.1.min.js</code></li><li><code>https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js</code></li></ul><h3 id="2-写模板"><a href="#2-写模板" class="headerlink" title="2.写模板"></a>2.写模板</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myTemplate"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/x-jquery-tmpl"</span>&gt;</span><span class="handlebars"><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$&#123;ID&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$&#123;Name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><h3 id="3-数据"><a href="#3-数据" class="headerlink" title="3.数据"></a>3.数据</h3><pre><code class="hljs js"><span class="hljs-keyword">var</span> users = [    &#123; <span class="hljs-attr">ID</span>: <span class="hljs-string">'think8848'</span>, <span class="hljs-attr">Name</span>: <span class="hljs-string">'Joseph Chan'</span> &#125;,     &#123; <span class="hljs-attr">ID</span>: <span class="hljs-string">'aCloud'</span>, <span class="hljs-attr">Name</span>: <span class="hljs-string">'Mary Cheung'</span>&#125;];</code></pre><h3 id="4-绑定模板"><a href="#4-绑定模板" class="headerlink" title="4.绑定模板"></a>4.绑定模板</h3><pre><code class="hljs js">$(<span class="hljs-string">'#myTemplate'</span>).tmpl(users).appendTo(<span class="hljs-string">'#rows'</span>);</code></pre><h3 id="5-html"><a href="#5-html" class="headerlink" title="5.html"></a>5.html</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">tbody</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"rows"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></code></pre><h2 id="二-逻辑判断"><a href="#二-逻辑判断" class="headerlink" title="二. 逻辑判断"></a>二. 逻辑判断</h2><p>###1. 条件语句</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+      <category>前端</category>
+      
+      <category>jQuery</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>jQuery</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>jQuery学习笔记（四）HTML 遍历</title>
     <link href="/2020/06/30/jQuery-4/"/>
     <url>/2020/06/30/jQuery-4/</url>
@@ -120,11 +149,11 @@
   
   
   <entry>
-    <title>CentOS 虚拟机上安装 Pycharm 教程</title>
-    <link href="/2020/06/24/CentOS_Pycharm/"/>
-    <url>/2020/06/24/CentOS_Pycharm/</url>
+    <title>CentOS 虚拟机上安装 VScode 教程</title>
+    <link href="/2020/06/24/CentOS_VScode/"/>
+    <url>/2020/06/24/CentOS_VScode/</url>
     
-    <content type="html"><![CDATA[<blockquote><p>记录一下怎么在 CentOS 虚拟机上安装 Pycharm</p></blockquote><h2 id="1-安装包下载"><a href="#1-安装包下载" class="headerlink" title="1.安装包下载"></a>1.安装包下载</h2><p><a href="https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions" target="_blank" rel="noopener">Download PyCharm</a><br>选择社区版下载<br>&nbsp;<br><img src="/2020/06/24/CentOS_Pycharm/img1.png" srcset="/img/loading.gif"><br>&nbsp;<br>文件名为 <code>pycharm-community-2020.1.2.tar.gz</code></p><h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h2><ul><li>利用 winSCP 将安装包传输至虚拟机上</li><li>打开 Terminal 进入安装包所在目录<br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img2.png" srcset="/img/loading.gif">&nbsp;</li><li>解压安装包 <code>tar zxf pycharm-community-2020.1.2.tar.gz</code></li><li>进入解压后的 bin 目录 <code>cd pycharm-community-2020.1.2/bin/</code></li><li>运行安装程序 <code>./pycharm.sh</code><br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img3.png" srcset="/img/loading.gif">&nbsp;</li><li>一路默认即可，可选界面颜色，如图<br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img4.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img5.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img6.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img7.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img8.png" srcset="/img/loading.gif">&nbsp;</li><li>至此，安装完成</li></ul><h2 id="3-设置启动图标"><a href="#3-设置启动图标" class="headerlink" title="3.设置启动图标"></a>3.设置启动图标</h2><ul><li><p>进入 <code>.local/share/appications</code></p></li><li><p>输入命令 <code>vim pycahrm.desktop</code> </p></li><li><p>输入命令 i 将以下内容写入文件</p><pre><code class="hljs bash">[Desktoktop Entry]Type=ApplicationName=PycharmGenericName=Pycharm3Comment=Pycharm3:The Python IDEExec=/root/pycharm-community-2020.1.2/bin/pycharm.sh Icon=/root/pycharm-community-2020.1.2/bin/pycharm.pngTerminal=pycharmCategories=Pycharm;</code></pre><p>&nbsp;</p><img src="/2020/06/24/CentOS_Pycharm/img9.png" srcset="/img/loading.gif">&nbsp;</li><li><p>其中，Exec 和 Icon 部分需根据自己的安装目录进行修改</p></li><li><p>输入命令 <code>esc+: wq!</code>保存退出</p></li><li><p>可以在 applications – 其他目录下看到Pycharm的启动图标了</p></li></ul><p>参考：<a href="https://zhuanlan.zhihu.com/p/134173595" target="_blank" rel="noopener">Linux CentOS7中安装使用PyCharm</a></p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>记录一下怎么在 CentOS 虚拟机上安装 VScode</p></blockquote><h2 id="1-官方教程"><a href="#1-官方教程" class="headerlink" title="1.官方教程"></a>1.官方教程</h2><p><a href="https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions" target="_blank" rel="noopener">Visual Studio Code on Linux</a></p><h2 id="2-启动-CentOS-后依次输入以下命令即可"><a href="#2-启动-CentOS-后依次输入以下命令即可" class="headerlink" title="2.启动 CentOS 后依次输入以下命令即可"></a>2.启动 CentOS 后依次输入以下命令即可</h2><pre><code class="hljs bash">sudo rpm --import https://packages.microsoft.com/keys/microsoft.ascsudo sh -c <span class="hljs-string">'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/vscode.repo'</span>yum check-updatesudo yum install codestartx //启动图形界面</code></pre>]]></content>
     
     
     <categories>
@@ -151,11 +180,11 @@
   
   
   <entry>
-    <title>CentOS 虚拟机上安装 VScode 教程</title>
-    <link href="/2020/06/24/CentOS_VScode/"/>
-    <url>/2020/06/24/CentOS_VScode/</url>
+    <title>CentOS 虚拟机上安装 Pycharm 教程</title>
+    <link href="/2020/06/24/CentOS_Pycharm/"/>
+    <url>/2020/06/24/CentOS_Pycharm/</url>
     
-    <content type="html"><![CDATA[<blockquote><p>记录一下怎么在 CentOS 虚拟机上安装 VScode</p></blockquote><h2 id="1-官方教程"><a href="#1-官方教程" class="headerlink" title="1.官方教程"></a>1.官方教程</h2><p><a href="https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions" target="_blank" rel="noopener">Visual Studio Code on Linux</a></p><h2 id="2-启动-CentOS-后依次输入以下命令即可"><a href="#2-启动-CentOS-后依次输入以下命令即可" class="headerlink" title="2.启动 CentOS 后依次输入以下命令即可"></a>2.启动 CentOS 后依次输入以下命令即可</h2><pre><code class="hljs bash">sudo rpm --import https://packages.microsoft.com/keys/microsoft.ascsudo sh -c <span class="hljs-string">'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/vscode.repo'</span>yum check-updatesudo yum install codestartx //启动图形界面</code></pre>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>记录一下怎么在 CentOS 虚拟机上安装 Pycharm</p></blockquote><h2 id="1-安装包下载"><a href="#1-安装包下载" class="headerlink" title="1.安装包下载"></a>1.安装包下载</h2><p><a href="https://code.visualstudio.com/docs/setup/linux#_rhel-fedora-and-centos-based-distributions" target="_blank" rel="noopener">Download PyCharm</a><br>选择社区版下载<br>&nbsp;<br><img src="/2020/06/24/CentOS_Pycharm/img1.png" srcset="/img/loading.gif"><br>&nbsp;<br>文件名为 <code>pycharm-community-2020.1.2.tar.gz</code></p><h2 id="2-安装"><a href="#2-安装" class="headerlink" title="2.安装"></a>2.安装</h2><ul><li>利用 winSCP 将安装包传输至虚拟机上</li><li>打开 Terminal 进入安装包所在目录<br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img2.png" srcset="/img/loading.gif">&nbsp;</li><li>解压安装包 <code>tar zxf pycharm-community-2020.1.2.tar.gz</code></li><li>进入解压后的 bin 目录 <code>cd pycharm-community-2020.1.2/bin/</code></li><li>运行安装程序 <code>./pycharm.sh</code><br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img3.png" srcset="/img/loading.gif">&nbsp;</li><li>一路默认即可，可选界面颜色，如图<br>&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img4.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img5.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img6.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img7.png" srcset="/img/loading.gif">&nbsp;<img src="/2020/06/24/CentOS_Pycharm/img8.png" srcset="/img/loading.gif">&nbsp;</li><li>至此，安装完成</li></ul><h2 id="3-设置启动图标"><a href="#3-设置启动图标" class="headerlink" title="3.设置启动图标"></a>3.设置启动图标</h2><ul><li><p>进入 <code>.local/share/appications</code></p></li><li><p>输入命令 <code>vim pycahrm.desktop</code> </p></li><li><p>输入命令 i 将以下内容写入文件</p><pre><code class="hljs bash">[Desktoktop Entry]Type=ApplicationName=PycharmGenericName=Pycharm3Comment=Pycharm3:The Python IDEExec=/root/pycharm-community-2020.1.2/bin/pycharm.sh Icon=/root/pycharm-community-2020.1.2/bin/pycharm.pngTerminal=pycharmCategories=Pycharm;</code></pre><p>&nbsp;</p><img src="/2020/06/24/CentOS_Pycharm/img9.png" srcset="/img/loading.gif">&nbsp;</li><li><p>其中，Exec 和 Icon 部分需根据自己的安装目录进行修改</p></li><li><p>输入命令 <code>esc+: wq!</code>保存退出</p></li><li><p>可以在 applications – 其他目录下看到Pycharm的启动图标了</p></li></ul><p>参考：<a href="https://zhuanlan.zhihu.com/p/134173595" target="_blank" rel="noopener">Linux CentOS7中安装使用PyCharm</a></p>]]></content>
     
     
     <categories>
@@ -359,13 +388,13 @@
     
     <tags>
       
+      <tag>JavaScript</tag>
+      
       <tag>DEMO</tag>
       
       <tag>CSS</tag>
       
       <tag>HTML</tag>
-      
-      <tag>JavaScript</tag>
       
     </tags>
     
@@ -394,13 +423,13 @@
     
     <tags>
       
+      <tag>JavaScript</tag>
+      
       <tag>DEMO</tag>
       
       <tag>CSS</tag>
       
       <tag>HTML</tag>
-      
-      <tag>JavaScript</tag>
       
     </tags>
     
