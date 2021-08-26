@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="guihanhan">
+  <meta name="keywords" content="">
+  <meta name="baidu-site-verification" content="xXvXTVjbBL" />
+  <title>Python处理Excel - Guihanhan</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?406b2e55269934984709c3c6b93f0c61";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170487446-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170487446-1');
+  </script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Guihanhan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/penglai.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2021-06-24 18:18">
+                    June 24, 2021 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.1k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    14
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>记录一下Python处理Excel的一些常用库及其用法</p>
+</blockquote>
+<h2 id="一、读取xls——xlrd"><a href="#一、读取xls——xlrd" class="headerlink" title="一、读取xls——xlrd"></a>一、读取xls——xlrd</h2><p><a href="https://xlrd.readthedocs.io/en/latest/" target="_blank">xlrd 官方文档</a></p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><p><code>pip install xlrd</code></p>
+<h3 id="2-使用示例"><a href="#2-使用示例" class="headerlink" title="2.使用示例"></a>2.使用示例</h3><pre><code class="hljs python"><span class="hljs-keyword">import</span> xlrd
+
+<span class="hljs-comment"># 打开Excel</span>
+data = xlrd.open_workbook(file_path)
+
+<span class="hljs-comment"># 打开第一张表</span>
+table = data.sheets()[<span class="hljs-number">0</span>]
+
+<span class="hljs-comment"># 获取表的行数</span>
+nrows = table.nrows
+
+<span class="hljs-comment"># 循环逐行打印</span>
+<span class="hljs-keyword">for</span> row_index <span class="hljs-keyword">in</span> range(nrows):
+
+    <span class="hljs-comment"># 跳过第一行（大多数为表头）</span>
+    <span class="hljs-keyword">if</span> row_index == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">continue</span>
+
+    <span class="hljs-comment"># 获取每一行的值，类型为 list</span>
+    row_value = table.row_values(row_index)
+    print(row_value)</code></pre>
+
+<h3 id="3-常用函数"><a href="#3-常用函数" class="headerlink" title="3.常用函数"></a>3.常用函数</h3><h4 id="①-表相关"><a href="#①-表相关" class="headerlink" title="① 表相关"></a>① 表相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 通过索引顺序获取表对象</span>
+table = data.sheets()[sheet_index]          
+table = data.sheet_by_index(sheet_index))
+
+<span class="hljs-comment"># 通过表名称名称获取表对象</span>
+table = data.sheet_by_name(sheet_name)
+
+<span class="hljs-comment"># 返回工作簿中所有工作表的名字</span>
+names = data.sheet_names()
+
+<span class="hljs-comment"># 检查某个sheet是否导入完毕</span>
+data.sheet_loaded(sheet_name <span class="hljs-keyword">or</span> sheet_indx)</code></pre>
+
+<h4 id="②-行相关"><a href="#②-行相关" class="headerlink" title="② 行相关"></a>② 行相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 返回该表中的有效行数</span>
+nrows = table.nrows
+  
+<span class="hljs-comment"># 返回由该行中所有的单元格对象组成的列表</span>
+table.row(row_index)
+table.row_slice(row_index)
+
+<span class="hljs-comment"># 返回由该行中所有单元格的数据组成的列表</span>
+table.row_values(row_index, start_colx = <span class="hljs-number">0</span>, end_colx = <span class="hljs-literal">None</span>)
+
+<span class="hljs-comment">#返回该列的有效单元格长度</span>
+table.row_len(row_index)</code></pre>
+
+<h4 id="③-列相关"><a href="#③-列相关" class="headerlink" title="③ 列相关"></a>③ 列相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 返回列表的有效列数</span>
+ncols = table.ncols
+
+<span class="hljs-comment">#返回由该列中所有的单元格对象组成的列表</span>
+table.col(colx, start_rowx=<span class="hljs-number">0</span>, end_rowx=<span class="hljs-literal">None</span>)  
+table.col_slice(colx, start_rowx=<span class="hljs-number">0</span>, end_rowx=<span class="hljs-literal">None</span>)
+
+<span class="hljs-comment"># 返回由该列中所有单元格的数据组成的列表</span>
+table.col_values(colx, start_rowx = <span class="hljs-number">0</span>, end_rowx = <span class="hljs-literal">None</span>)</code></pre>
+
+<h4 id="④-单元格相关"><a href="#④-单元格相关" class="headerlink" title="④ 单元格相关"></a>④ 单元格相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 返回单元格对象</span>
+table.cell(rowx,colx)      
+
+<span class="hljs-comment"># 返回单元格中的值</span>
+table.cell_value(rowx,colx)</code></pre>
+
+<hr>
+<h2 id="二、写入xls——xlwt"><a href="#二、写入xls——xlwt" class="headerlink" title="二、写入xls——xlwt"></a>二、写入xls——xlwt</h2><p><a href="https://xlwt.readthedocs.io/en/latest/" target="_blank">xlwt 官方文档</a></p>
+<h3 id="1-安装-1"><a href="#1-安装-1" class="headerlink" title="1.安装"></a>1.安装</h3><p><code>pip install xlwt</code></p>
+<h3 id="2-使用示例-1"><a href="#2-使用示例-1" class="headerlink" title="2.使用示例"></a>2.使用示例</h3><pre><code class="hljs python"><span class="hljs-keyword">import</span> xlwt
+
+<span class="hljs-comment"># 创建工作簿，默认编码为 ASCII，可自定义为其他编码，如下编码为 utf-8</span>
+workbook = xlwt.Workbook(encoding = <span class="hljs-string">'utf-8'</span>)
+
+<span class="hljs-comment"># 添加工作表</span>
+worksheet = workbook.add_sheet(<span class="hljs-string">'sheet1'</span>)
+
+<span class="hljs-comment"># 写入数据</span>
+worksheet.write(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, label = <span class="hljs-string">'test'</span>)
+
+<span class="hljs-comment"># 保存文件到 file_path</span>
+workbook.save(<span class="hljs-string">'test.xls'</span>)</code></pre>
+
+<h3 id="3-常用函数-1"><a href="#3-常用函数-1" class="headerlink" title="3.常用函数"></a>3.常用函数</h3><pre><code class="hljs python"><span class="hljs-comment"># 通过表名添加表</span>
+worksheet = workbook.add_sheet(sheet_name)
+
+<span class="hljs-comment"># 保存文件</span>
+workbook.save(filename_or_stream)
+
+<span class="hljs-comment"># 写入数据，r为行数，c为列数，label为数据，style 为该单元格样式</span>
+worksheet.write(r, c, label=<span class="hljs-string">''</span>, style=&lt;xlwt.Style.XFStyle object&gt;)</code></pre>
+
+<hr>
+<h2 id="三、读写xlsx——openpyxl"><a href="#三、读写xlsx——openpyxl" class="headerlink" title="三、读写xlsx——openpyxl"></a>三、读写xlsx——openpyxl</h2><p><a href="https://openpyxl.readthedocs.io/en/stable/" target="_blank">openpyxl 官方文档</a></p>
+<h3 id="1-安装-2"><a href="#1-安装-2" class="headerlink" title="1.安装"></a>1.安装</h3><p><code>pip install openpyxl</code></p>
+<h3 id="2-使用示例-2"><a href="#2-使用示例-2" class="headerlink" title="2.使用示例"></a>2.使用示例</h3><h4 id="①-读取"><a href="#①-读取" class="headerlink" title="① 读取"></a>① 读取</h4><pre><code class="hljs python"><span class="hljs-keyword">from</span> openpyxl <span class="hljs-keyword">import</span> load_workbook
+
+<span class="hljs-comment"># 打开Excel</span>
+wb = load_workbook(file_path)
+
+<span class="hljs-comment"># 获取当前被激活的工作薄</span>
+sheet = wb.active  
+
+<span class="hljs-comment"># 获取表的行数和列数</span>
+nrows = sheet.max_row
+ncols = sheet.max_cols
+
+<span class="hljs-comment"># 循环逐个打印</span>
+<span class="hljs-comment"># 下标从1开始计算，从2开始循环略过表头</span>
+<span class="hljs-keyword">for</span> row_index <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>, nrows + <span class="hljs-number">1</span>):
+    <span class="hljs-keyword">for</span> col_index <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,ncols + <span class="hljs-number">1</span>):
+        cell = sheet.cell(row=row_index, column=col_index).value
+        print(cell)</code></pre>
+
+<h4 id="②-写入"><a href="#②-写入" class="headerlink" title="② 写入"></a>② 写入</h4><pre><code class="hljs python"><span class="hljs-keyword">from</span> openpyxl <span class="hljs-keyword">import</span> Workbook
+
+<span class="hljs-comment"># 创建工作簿</span>
+wb = Workbook()
+
+<span class="hljs-comment"># 创建工作表</span>
+sheet = wb.create_sheet(<span class="hljs-string">'Sheet1'</span>, <span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># 定义标题行（下标从1开始）</span>
+sheet.cell(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">'username'</span>)
+sheet.cell(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'phone'</span>)
+sheet.cell(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'remarks'</span>)
+
+<span class="hljs-comment"># 将数据以行的形式添加到工作薄中,也可以用cell()循环插入</span>
+insert_data = [
+    [<span class="hljs-string">'test1'</span>, <span class="hljs-string">'123456'</span>, <span class="hljs-string">'测试'</span>],
+    [<span class="hljs-string">'test2'</span>, <span class="hljs-string">'123457'</span>, <span class="hljs-string">'测试'</span>],
+    [<span class="hljs-string">'test3'</span>, <span class="hljs-string">'123458'</span>, <span class="hljs-string">'测试'</span>]
+]
+<span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> insert_data:
+    sheet.append(row)
+
+<span class="hljs-comment"># 3. 保存工作表</span>
+wb.save(<span class="hljs-string">'test.xlsx'</span>)</code></pre>
+
+<h3 id="3-常用函数-2"><a href="#3-常用函数-2" class="headerlink" title="3.常用函数"></a>3.常用函数</h3><h4 id="①-表相关-1"><a href="#①-表相关-1" class="headerlink" title="① 表相关"></a>① 表相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 新建工作表</span>
+<span class="hljs-comment"># 默认插入到最后</span>
+wb.create_sheet(sheet_name)
+<span class="hljs-comment"># 插入到最前</span>
+wb.create_sheet(sheet_name, <span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># 返回一个工作表对象</span>
+wb[sheet_name]
+wb.get_sheet_by_name(sheet_name)
+
+<span class="hljs-comment"># 返回所有表名</span>
+wb.sheetnames</code></pre>
+
+<h4 id="②-行列相关"><a href="#②-行列相关" class="headerlink" title="② 行列相关"></a>② 行列相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 返回最大行</span>
+sheet.max_row
+
+<span class="hljs-comment"># 返回所有行，可循环访问</span>
+sheet.rows
+
+<span class="hljs-comment"># 返回最大列</span>
+sheet.max_column
+
+<span class="hljs-comment"># 返回所有列行，可循环访问</span>
+sheet.columns</code></pre>
+
+<h4 id="③-单元格相关"><a href="#③-单元格相关" class="headerlink" title="③ 单元格相关"></a>③ 单元格相关</h4><pre><code class="hljs python"><span class="hljs-comment"># 返回单元格的值</span>
+sheet.cell(row=row_index, column=col_index).value
+
+<span class="hljs-comment"># 设置单元格的值</span>
+sheet.cell(row_index, col_index).value = <span class="hljs-string">'test'</span>
+sheet.cell(row_index, col_index, <span class="hljs-string">'test'</span>)</code></pre>
+
+<hr>
+<h2 id="四、读写csv——csv"><a href="#四、读写csv——csv" class="headerlink" title="四、读写csv——csv"></a>四、读写csv——csv</h2><p><a href="https://docs.python.org/zh-cn/2.7/library/csv.html" target="_blank">csv 官方文档（python2.7）</a><br><a href="https://docs.python.org/zh-cn/3.8/library/csv.html" target="_blank">csv 官方文档（python3.8）</a></p>
+<h3 id="1-使用示例"><a href="#1-使用示例" class="headerlink" title="1.使用示例"></a>1.使用示例</h3><h4 id="①-读取-1"><a href="#①-读取-1" class="headerlink" title="① 读取"></a>① 读取</h4><pre><code class="hljs python"><span class="hljs-keyword">import</span> csv
+
+<span class="hljs-comment"># 打开文件</span>
+f = open(<span class="hljs-string">'test.csv'</span>, <span class="hljs-string">'r'</span>)
+
+<span class="hljs-keyword">with</span> f:
+    <span class="hljs-comment"># 读取文件</span>
+    reader = csv.reader(f)
+    <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> reader:
+        <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> row:
+            print(item)</code></pre>
+
+<h4 id="②-写入-1"><a href="#②-写入-1" class="headerlink" title="② 写入"></a>② 写入</h4><pre><code class="hljs python"><span class="hljs-keyword">import</span> csv
+
+insert_data = [
+    [<span class="hljs-string">'test1'</span>, <span class="hljs-string">'123456'</span>, <span class="hljs-string">'测试'</span>],
+    [<span class="hljs-string">'test2'</span>, <span class="hljs-string">'123457'</span>, <span class="hljs-string">'测试'</span>],
+    [<span class="hljs-string">'test3'</span>, <span class="hljs-string">'123458'</span>, <span class="hljs-string">'测试'</span>]
+]
+
+<span class="hljs-comment"># 打开文件</span>
+f = open(<span class="hljs-string">'test2.csv'</span>, <span class="hljs-string">'w'</span>)
+
+<span class="hljs-keyword">with</span> f:
+    <span class="hljs-comment"># 写入数据</span>
+    writer = csv.writer(f)
+    <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> insert_data:
+        writer.writerow(row)</code></pre>
+
+<h3 id="2-常用函数"><a href="#2-常用函数" class="headerlink" title="2. 常用函数"></a>2. 常用函数</h3><pre><code class="hljs python"><span class="hljs-comment"># 常规读取</span>
+reader = csv.reader(f)
+
+<span class="hljs-comment"># 根据分隔符（如'|'）读取 </span>
+reader = csv.reader(f, delimiter=<span class="hljs-string">'|'</span>)
+
+<span class="hljs-comment"># 读取后映射成字典</span>
+reader = csv.DictReader(f)
+<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> reader:
+    print(row[<span class="hljs-string">'username'</span>], row[<span class="hljs-string">'phone'</span>], row[<span class="hljs-string">'remarks'</span>])
+
+<span class="hljs-comment"># 常规写入</span>
+writer = csv.writer(f)
+
+<span class="hljs-comment"># 按行写入</span>
+writer.writerow(row)
+
+<span class="hljs-comment"># 一次性写入所有行</span>
+writer.writerows(insert_data)
+
+<span class="hljs-comment"># 用python字典写入 fieldnames 为表头</span>
+writer = csv.DictWriter(f, fieldnames=[<span class="hljs-string">'username'</span>, <span class="hljs-string">'phone'</span>, <span class="hljs-string">'remarks'</span>])
+writer.writeheader()
+writer.writerow(&#123;<span class="hljs-string">'username'</span> : <span class="hljs-string">'test1'</span>, <span class="hljs-string">'phone'</span>: <span class="hljs-string">'123456'</span>, <span class="hljs-string">'remarks'</span>: <span class="hljs-string">'测试'</span>&#125;)</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%90%8E%E7%AB%AF/Python/">Python</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Excel/">Excel</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/23/%E9%85%8D%E7%BD%AENginx%E5%AE%9E%E7%8E%B0%E6%96%B0%E8%80%81%E6%A1%86%E6%9E%B6%E9%A1%B5%E9%9D%A2%E5%85%B1%E5%AD%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">配置Nginx实现新老框架页面共存</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/22/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%92%8C%E7%BD%91%E9%A1%B5%E7%AB%AF%E8%B7%AF%E7%94%B1%E5%88%87%E6%8D%A2/">
+                        <span class="hidden-mobile">纯前端实现移动端和网页端路由切换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'true' === 'true',
+      loop: 'one',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"Eutopia","artist":"Yoohsic Roomz","url":"/songs/Yoohsic Roomz - Eutopia.mp3","cover":"/img/Eutopia.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Python处理Excel&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="guihanhan">
+  <meta name="keywords" content="">
+  <meta name="baidu-site-verification" content="xXvXTVjbBL" />
+  <title>配置Nginx实现新老框架页面共存 - Guihanhan</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?406b2e55269934984709c3c6b93f0c61";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170487446-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-170487446-1');
+  </script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Guihanhan</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              Home</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              Archives</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              Categories</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              Tags</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/penglai.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2021-08-23 18:18">
+                    August 23, 2021 pm
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    1.4k 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    17
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <blockquote>
+<p>记录一下如何使用 Nginx 实现新老框架页面共存并且可相互跳转</p>
+</blockquote>
+<h2 id="一、需求背景"><a href="#一、需求背景" class="headerlink" title="一、需求背景"></a>一、需求背景</h2><p>原项目使用 tornado 框架 动态 render 页面返回，现在需要慢慢引入前后端分离模式，考虑在新功能上用 Vue 实现页面，并且使新老页面可以相互跳转。</p>
+<h2 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h2><p>给新页面分配唯一路由（比如 <code>/example/</code>，以下配置以该路由举例 )，</p>
+<p>以该路由的开头的页面都会被 Nginx 通过路由正则匹配指向新的静态页面地址（ Vue 打包之后的页面），</p>
+<p>其他路由仍旧保持原来的路由匹配走原来的 tornado框架 动态 render，</p>
+<p>新老页面的相互跳转直接用 <code>href=&#39;xxx&#39;</code> 实现。</p>
+<p>为实现以上方案，需做三步处理：</p>
+<ul>
+<li><strong>在 Nginx 里进行特殊配置，正则匹配唯一路由并转发（和普通静态页面部署有所区别）</strong></li>
+<li><strong>把前端路由模式从兼容性较好的 hash 模式改成 history 模式</strong></li>
+<li><strong>前端打包的 baseUrl 需要设置为 Nginx 上配置的给新页面的唯一路由</strong></li>
+</ul>
+<h3 id="1-Nginx配置"><a href="#1-Nginx配置" class="headerlink" title="1. Nginx配置"></a>1. Nginx配置</h3><p><strong>想要实现的效果是匹配到/example/路由后，这个路由就被前端接管，接下来任何操作都由前端路由来控制</strong></p>
+<p>添加以下配置至nginx.conf</p>
+<pre><code class="hljs conf"># 匹配以&#x2F;example&#x2F;开头的路由，匹配后不匹配其他路由		
+location ^~ &#x2F;example&#x2F; &#123;  
+    alias &#x2F;example&#x2F;dist&#x2F;; # 使用 alias 指向准确目录之后由前端接管
+    index index.html;
+    autoindex on;
+    try_files $uri $uri&#x2F; &#x2F;dist&#x2F;index.html; # 前端 history 模式需加上该行配置，否则回车或刷新页面 404
+&#125;</code></pre>
+
+<p>配置后nginx.conf文件结构如下</p>
+<pre><code class="hljs conf">...              # 全局块
+events &#123;         # events块
+   ...
+&#125;
+http      # http块
+&#123;
+    ...   # http全局块
+    server        # server块
+    &#123; 
+        ...       # server全局块
+        location [PATTERN]   # location块
+        &#123;
+            ...
+        &#125;
+
+        # 添加的配置
+        location ^~ &#x2F;example&#x2F; &#123;    			
+            alias &#x2F;example&#x2F;dist&#x2F;;
+            index index.html;
+            autoindex on;
+            try_files $uri $uri&#x2F; &#x2F;dist&#x2F;index.html;
+        &#125;
+        
+        location [PATTERN] 
+        &#123;
+            ...
+        &#125;
+    &#125;
+    server
+    &#123;
+      ...
+    &#125;
+    ...     # http全局块
+&#125;</code></pre>
+
+<h4 id="alias-和-root-的区别"><a href="#alias-和-root-的区别" class="headerlink" title="alias 和 root 的区别"></a>alias 和 root 的区别</h4><ul>
+<li><p>alias的处理结果是：<strong>使用alias路径替换location路径</strong></p>
+  <pre><code class="hljs conf">location &#x2F;example&#x2F; &#123;
+    alias &#x2F;home&#x2F;www&#x2F;example&#x2F;;
+&#125;</code></pre>
+<p>  在上面alias虚拟目录配置下，访问 <code>http://www.example.com/example/a.html</code> 实际指定的是 <code>/home/www/example/a.html</code>。</p>
+</li>
+<li><p>root的处理结果是：<strong>root路径＋location路径</strong></p>
+  <pre><code class="hljs conf">location &#x2F;example&#x2F; &#123;
+root &#x2F;home&#x2F;www&#x2F;;
+&#125;</code></pre>
+<p>  使用该配置 Nginx 就会去 <code>/home/www/example</code> 下寻找 <code>http://www.example.com/example</code> 的访问资源</p>
+</li>
+</ul>
+<h3 id="2-前端路由模式"><a href="#2-前端路由模式" class="headerlink" title="2. 前端路由模式"></a>2. 前端路由模式</h3><p>前端路由模式分为2种，一种是 <code>hash</code> 模式，一种是 <code>history</code> 模式<br>|区别| <code>hash</code> 模式| <code>history</code> 模式|<br>|—-|——-|———–|<br>|地址栏表现|带 <code>#</code> 号|标准的 <code>Url</code> 格式，不带 <code>#</code>|<br>|路由的跳转实现|<code>window.onhashchange</code> 监听 <code>hash</code> 的改变|<code>pushState</code> 或者 <code>replaceState</code> API 改变路由|<br>|页面刷新|请求的地址中不携带 <code>#</code> 后面的内容，所以不需要后端的配合，也不会出现 404 |请求的是当前地址的完整路径，需要服务器做特殊处理，否则会出现 404|<br>|兼容性|可以兼容一些低版本的浏览器|不兼容低版本浏览器|</p>
+<p>具体可见 <a href="https://zhuanlan.zhihu.com/p/347739648" target="_blank" rel="noopener">Vue-router hash和history的区别</a></p>
+<p>目前我们采用 history 模式主要是因为原项目是标准的Url格式，此处做统一，配置如下：</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'vue-router'</span>
+
+<span class="hljs-keyword">const</span> routes = [
+    <span class="hljs-comment">// 本地开发时因为example路由下没有页面，直接重定向到A页面</span>
+    &#123;
+        <span class="hljs-attr">path</span>: <span class="hljs-string">'/example'</span>,
+        <span class="hljs-attr">redirect</span>: <span class="hljs-string">'/example/aaa'</span>
+    &#125;,
+    &#123;
+        <span class="hljs-attr">path</span>: <span class="hljs-string">'/example/a'</span>,
+        <span class="hljs-attr">name</span>: <span class="hljs-string">'ExampleA'</span>,
+        <span class="hljs-attr">component</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/ExampleA.vue'</span>),
+        <span class="hljs-attr">meta</span>: &#123;
+        <span class="hljs-attr">title</span>: <span class="hljs-string">'A页面'</span>
+        &#125;
+    &#125;,
+    &#123;
+        <span class="hljs-attr">path</span>: <span class="hljs-string">'/example/b'</span>,
+        <span class="hljs-attr">name</span>: <span class="hljs-string">'ExampleB'</span>,
+        <span class="hljs-attr">component</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'../views/ExampleB.vue'</span>),
+        <span class="hljs-attr">meta</span>: &#123;
+        <span class="hljs-attr">title</span>: <span class="hljs-string">'B页面'</span>
+        &#125;
+    &#125;,
+]
+
+<span class="hljs-comment">// 采用history模式</span>
+<span class="hljs-keyword">const</span> router = createRouter(&#123;
+    <span class="hljs-attr">mode</span>: <span class="hljs-string">'history'</span>,
+    <span class="hljs-attr">history</span>: createWebHistory(), 
+    routes
+&#125;)
+...
+
+export <span class="hljs-keyword">default</span> router</code></pre>
+
+<p>同时需在 Nginx 做特殊配置（添加 <code>try_files $uri $uri/ /dist/index.html;</code> 来保证回车或刷新时不出现404）。</p>
+<p>一般实际开发场景中，用 hash 模式较为常见，</p>
+<p>一是因为兼容性好（history 模式是 Html5 后提出的，故不兼容低版本浏览器），</p>
+<p>二是 hash 模式不需要在 Nginx 上特殊配置。</p>
+<p>若需要Url整洁或是别的需求，则考虑 history 模式，一切以实际开发需求为准。</p>
+<h3 id="3-build配置"><a href="#3-build配置" class="headerlink" title="3. build配置"></a>3. build配置</h3><p>目前新页面使用的脚手架为 Vite，故在vite.config.js里加上<code>base: &quot;/example/&quot;</code>，如下（Vue-Cli也可以找到类似的配置）</p>
+<pre><code class="hljs js">import &#123; defineConfig &#125; from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+// https://vitejs.dev/config/
+export default defineConfig(&#123;
+  plugins: [vue()],
+  base: "/example/",
+  ... # 其他配置
+&#125;)</code></pre>
+
+<p>这里的 <code>base</code> 表示 <strong>开发或生产环境服务的公共基础路径</strong>，默认值为<code>&#39;/&#39;</code>，</p>
+<p>此处需设为Nginx上配置的唯一匹配路由，主要是保证打包后的资源都能正常访问</p>
+<p>以下搬运Vite官网对该配置字段的介绍：</p>
+<blockquote>
+<p>如果你需要在嵌套的公共路径下部署项目，只需指定 base 配置项，然后所有资源的路径都将据此配置重写。这个选项也可以通过命令行参数指定，例如 vite build –base=/my/public/path/。</p>
+</blockquote>
+<blockquote>
+<p>由 JS 引入的资源 URL，CSS 中的 url() 引用以及 .html 文件中引用的资源在构建过程中都会自动调整，以适配此选项。</p>
+</blockquote>
+<blockquote>
+<p>当然，情况也有例外，当访问过程中需要使用动态连接的 url 时，可以使用全局注入的 import.meta.env.BASE_URL 变量，它的值为公共基础路径。注意，这个变量在构建时会被静态替换，因此，它必须按 import.meta.env.BASE_URL 的原样出现（例如 import.meta.env[‘BASE_URL’] 是无效的）</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Vue/">Vue</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Nginx/">Nginx</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/24/Python%E5%A4%84%E7%90%86Excel/">
+                        <span class="hidden-mobile">Python处理Excel</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'true' === 'true',
+      loop: 'one',
+      order: 'list',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"Eutopia","artist":"Yoohsic Roomz","url":"/songs/Yoohsic Roomz - Eutopia.mp3","cover":"/img/Eutopia.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "配置Nginx实现新老框架页面共存&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
